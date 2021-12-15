@@ -37,7 +37,11 @@ namespace RelateTerminal
 
 				try
 				{
-					Database.Create(new Entry(name));
+					if (Database.Create(new Entry(name)))
+						Console.WriteLine("Entry successfully added.");
+					else
+						Console.WriteLine("The entry could not be added.");
+
 					break;
 				}
 				catch (NotUniqueException)
@@ -50,6 +54,8 @@ namespace RelateTerminal
 
 				Console.WriteLine();
 			}
+
+			_ = Console.ReadLine();
 		}
 	}
 }

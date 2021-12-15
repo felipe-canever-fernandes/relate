@@ -10,7 +10,7 @@ namespace RelateLibrary.Database
 		private static readonly string _connectionString =
 				@"Data Source=.\Database.db;Version=3;";
 
-		public static void Create(Entry entry)
+		public static bool Create(Entry entry)
 		{
 			Debug.Assert(entry != null);
 
@@ -26,7 +26,7 @@ namespace RelateLibrary.Database
 
 					try
 					{
-						_ = command.ExecuteNonQuery();
+						return command.ExecuteNonQuery() > 0;
 					}
 					catch (SQLiteException ex)
 					{
