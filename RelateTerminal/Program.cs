@@ -18,11 +18,25 @@ namespace RelateTerminal
 				
 				new List<BaseScreen>
 				{
+					new Screen.Screen("List entries", ListEntries),
 					new Screen.Screen("Add entry", AddEntry)
 				}
 			);
 
 			mainMenu.Display();
+		}
+
+		static void ListEntries()
+		{
+			var entries = Database.ReadEntries();
+
+			if (entries.Count <= 0)
+				Console.WriteLine("No entries have been added yet.");
+			else
+				foreach (var entry in entries)
+					Console.WriteLine(entry.Name);
+
+			_ = Console.ReadLine();
 		}
 
 		static void AddEntry()
@@ -48,7 +62,7 @@ namespace RelateTerminal
 				{
 					Console.WriteLine
 					(
-						"There already is an entry with that name."
+						"There is already an entry with that name."
 					);
 				}
 
