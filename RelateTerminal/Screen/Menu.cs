@@ -30,7 +30,7 @@ namespace RelateTerminal.Screen
 				Debug.Assert
 				(
 					!string.IsNullOrEmpty(value),
-					"the menu exit label cannot be null or empty"
+					"The menu exit label cannot be null or empty."
 				);
 
 				value = value.Trim();
@@ -38,7 +38,7 @@ namespace RelateTerminal.Screen
 				Debug.Assert
 				(
 					value != "",
-					"the menu exit label cannot be only whitespace"
+					"The menu exit label cannot be only whitespace."
 				);
 
 				_exitLabel = value;
@@ -54,13 +54,13 @@ namespace RelateTerminal.Screen
 				Debug.Assert
 				(
 					value != null,
-					"the list of menu items cannot be null"
+					"The list of menu items cannot be null."
 				);
 
 				Debug.Assert
 				(
 					value.Count > 0,
-					"the list of menu items cannot be empty"
+					"The list of menu items cannot be empty."
 				);
 
 				_items = value;

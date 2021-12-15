@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Diagnostics;
 
 namespace RelateTerminal.Screen
@@ -23,7 +22,7 @@ namespace RelateTerminal.Screen
 				Debug.Assert
 				(
 					value != null,
-					"the screen functionality cannot be null"
+					"The screen functionality cannot be null."
 				);
 
 				_functionality = value;

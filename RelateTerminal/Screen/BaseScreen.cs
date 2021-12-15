@@ -17,7 +17,7 @@ namespace RelateTerminal.Screen
 				Debug.Assert
 				(
 					!string.IsNullOrEmpty(value),
-					"the screen title cannot be null or empty"
+					"The screen title cannot be null or empty."
 				);
 
 				value = value.Trim();
@@ -25,7 +25,7 @@ namespace RelateTerminal.Screen
 				Debug.Assert
 				(
 					value != "",
-					"the screen title cannot be only whitespace"
+					"The screen title cannot be only whitespace."
 				);
 
 				_title = value;

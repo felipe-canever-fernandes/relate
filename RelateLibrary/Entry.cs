@@ -22,7 +22,7 @@ namespace RelateLibrary
                 Debug.Assert
                 (
                     value >= 0,
-                    "the entry ID cannot be negative"
+                    "The entry ID cannot be negative."
                 );
 
                 _id = value;
@@ -38,7 +38,7 @@ namespace RelateLibrary
                 Debug.Assert
                 (
                     !string.IsNullOrEmpty(value),
-                    "the entry name cannot be null or empty"
+                    "The entry name cannot be null or empty."
                 );
 
                 value = value.Trim();
@@ -46,7 +46,7 @@ namespace RelateLibrary
                 Debug.Assert
                 (
                     value != "",
-                    "the entry name cannot be only whitespace"
+                    "The entry name cannot be only whitespace."
                 );
 
                 _name = value;
