@@ -25,13 +25,29 @@ namespace RelateTerminal
 
 		static void AddEntry()
 		{
-			Console.Write("Name: ");
-			var name = Console.ReadLine().Trim();
+			while (true)
+			{
+				Console.Write("Name: ");
+				var name = Console.ReadLine().Trim();
 
-			if (name == "")
-				return;
+				if (name == "")
+					break;
 
-			Database.Create(new Entry(name));
+				try
+				{
+					Database.Create(new Entry(name));
+					break;
+				}
+				catch (NotUniqueException)
+				{
+					Console.WriteLine
+					(
+						"There already is an entry with that name."
+					);
+				}
+
+				Console.WriteLine();
+			}
 		}
 	}
 }

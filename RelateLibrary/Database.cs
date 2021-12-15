@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Data.SQLite;
 using System.Diagnostics;
 
@@ -22,7 +23,18 @@ namespace RelateLibrary
 				using (var command = new SQLiteCommand(query, connection))
 				{
 					_ = command.Parameters.AddWithValue("@Name", entry.Name);
-					_ = command.ExecuteNonQuery();
+
+					try
+					{
+						_ = command.ExecuteNonQuery();
+					}
+					catch (SQLiteException ex)
+					{
+						if (ex.Message.Contains("UNIQUE"))
+							throw new NotUniqueException();
+
+						throw;
+					}
 				}
 			}
 		}
@@ -59,4 +71,6 @@ namespace RelateLibrary
 			return entries;
 		}
 	}
+
+	public class NotUniqueException : Exception {}
 }
