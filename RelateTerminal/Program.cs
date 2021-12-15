@@ -1,4 +1,6 @@
 ﻿using RelateLibrary;
+using RelateLibrary.Database;
+
 using RelateTerminal.Screen;
 
 using System;

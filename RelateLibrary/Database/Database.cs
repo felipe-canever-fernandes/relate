@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Data.SQLite;
 using System.Diagnostics;
 
-namespace RelateLibrary
+namespace RelateLibrary.Database
 {
 	public static class Database
 	{
