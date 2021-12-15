@@ -1,5 +1,4 @@
-﻿using RelateLibrary;
-using System;
+﻿using System.Collections.Generic;
 
 namespace RelateTerminal
 {
@@ -7,7 +6,17 @@ namespace RelateTerminal
     {
         static void Main()
         {
-            var mainMenu = new Menu("Relate");
+            var mainMenu = new Menu.Menu
+            (
+                "Relate",
+
+                new List<Menu.Item>
+                {
+                    new Menu.Item("List entries"),
+                    new Menu.Item("Create entry")
+                }
+            );
+
             mainMenu.Display();
         }
     }
