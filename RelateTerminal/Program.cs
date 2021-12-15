@@ -1,4 +1,7 @@
-﻿using RelateTerminal.Screen;
+﻿using RelateLibrary;
+using RelateTerminal.Screen;
+
+using System;
 using System.Collections.Generic;
 
 namespace RelateTerminal
@@ -13,11 +16,22 @@ namespace RelateTerminal
 				
 				new List<BaseScreen>
 				{
-					new Screen.Screen("Add entry", () => { })
+					new Screen.Screen("Add entry", AddEntry)
 				}
 			);
 
 			mainMenu.Display();
+		}
+
+		static void AddEntry()
+		{
+			Console.Write("Name: ");
+			var name = Console.ReadLine().Trim();
+
+			if (name == "")
+				return;
+
+			Database.Create(new Entry(name));
 		}
 	}
 }
