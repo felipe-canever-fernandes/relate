@@ -1,6 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Data.SQLite;
+using System.Diagnostics;
 
 namespace RelateLibrary
 {
@@ -11,12 +11,7 @@ namespace RelateLibrary
 
         public static void Create(Entry entry)
         {
-            if (entry == null)
-                throw new ArgumentException
-                (
-                    "the entry to be inserted cannot be null",
-                    nameof(entry)
-                );
+            Debug.Assert(entry != null);
 
             using (var connection = new SQLiteConnection(_connectionString))
             {
