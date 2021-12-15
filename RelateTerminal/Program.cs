@@ -13,7 +13,7 @@ namespace RelateTerminal
 				
 				new List<BaseScreen>
 				{
-					new Screen.Screen("Add entry")
+					new Screen.Screen("Add entry", () => { })
 				}
 			);
 

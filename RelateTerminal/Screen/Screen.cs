@@ -6,14 +6,37 @@ namespace RelateTerminal.Screen
 {
 	internal class Screen : BaseScreen
 	{
-		public Screen(string title) : base(title) {}
+		private FunctionalityCallback _functionality;
+
+		public Screen(string title, FunctionalityCallback functionality) :
+			base(title)
+			=> Functionality = functionality;
+
+		public delegate void FunctionalityCallback();
+
+		public FunctionalityCallback Functionality
+		{
+			get { return _functionality; }
+
+			set
+			{
+				Debug.Assert
+				(
+					value != null,
+					"the screen functionality cannot be null"
+				);
+
+				_functionality = value;
+			}
+		}
 
 		public override void Display()
 		{
 			Console.Clear();
 			Console.WriteLine($"\t\t{Title.ToUpper()}");
 			Console.WriteLine();
-			_ = Console.ReadLine();
+
+			Functionality();
 		}
 	}
 }
