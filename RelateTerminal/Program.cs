@@ -9,11 +9,7 @@ namespace RelateTerminal
 			Screen.Screen mainMenu = new Screen.Menu
 			(
 				"Relate",
-
-				new List<Screen.Item>
-				{
-					new Screen.Item("List entries")
-				}
+				null
 			);
 
 			mainMenu.Display();

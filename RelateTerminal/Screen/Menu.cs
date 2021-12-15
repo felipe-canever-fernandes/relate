@@ -6,13 +6,13 @@ namespace RelateTerminal.Screen
 {
 	internal class Menu : Screen
 	{
-		private List<Item> _items;
+		private List<Screen> _items;
 		private string _exitLabel;
 
 		public Menu
 		(
 			string title,
-			List<Item> items,
+			List<Screen> items,
 			string exitLabel = "Exit"
 		):
 			base(title)
@@ -45,7 +45,7 @@ namespace RelateTerminal.Screen
 			}
 		}
 
-		public List<Item> Items
+		public List<Screen> Items
 		{
 			get { return _items; }
 
@@ -79,7 +79,7 @@ namespace RelateTerminal.Screen
 
 				for (var i = 0; i < Items.Count; ++i)
 				{
-					DisplayItem(i + 1, Items[i].Label);
+					DisplayItem(i + 1, Items[i].Title);
 				}
 
 				DisplayItem(0, ExitLabel);
