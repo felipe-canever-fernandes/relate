@@ -42,10 +42,11 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Menu\Item.cs" />
-    <Compile Include="Menu\Menu.cs" />
+    <Compile Include="Screen\Item.cs" />
+    <Compile Include="Screen\Menu.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Screen\Screen.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Database.db">

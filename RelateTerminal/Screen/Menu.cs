@@ -4,41 +4,21 @@ using System.Diagnostics;
 
 namespace RelateTerminal.Screen
 {
-	internal class Menu
+	internal class Menu : Screen
 	{
-		private string _title;
 		private List<Item> _items;
 		private string _exitLabel;
 
-		public Menu(string title, List<Item> items, string exitLabel = "Exit")
+		public Menu
+		(
+			string title,
+			List<Item> items,
+			string exitLabel = "Exit"
+		):
+			base(title)
 		{
-			Title = title;
 			Items = items;
 			ExitLabel = exitLabel;
-		}
-
-		public string Title
-		{
-			get { return _title; }
-
-			set
-			{
-				Debug.Assert
-				(
-					!string.IsNullOrEmpty(value),
-					"the menu title cannot be null or empty"
-				);
-
-				value = value.Trim();
-
-				Debug.Assert
-				(
-					value != "",
-					"the menu title cannot be only whitespace"
-				);
-
-				_title = value;
-			}
 		}
 
 		public string ExitLabel
@@ -87,7 +67,7 @@ namespace RelateTerminal.Screen
 			}
 		}
 
-		public void Display()
+		public override void Display()
 		{
 			while (true)
 			{

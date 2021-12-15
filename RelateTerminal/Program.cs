@@ -6,7 +6,7 @@ namespace RelateTerminal
 	{
 		static void Main()
 		{
-			var mainMenu = new Screen.Menu
+			Screen.Screen mainMenu = new Screen.Menu
 			(
 				"Relate",
 
