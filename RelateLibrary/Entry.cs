@@ -8,6 +8,12 @@ namespace RelateLibrary
         private int _id;
         private string _name;
 
+        public Entry(string name, int id = 0)
+        {
+            Id = id;
+            Name = name;
+        }
+
         public int Id
         {
             get { return _id; }
@@ -46,12 +52,6 @@ namespace RelateLibrary
 
                 _name = value;
             }
-        }
-
-        public Entry(string name, int id = 0)
-        {
-            Id = id;
-            Name = name;
         }
     }
 }
