@@ -14,7 +14,7 @@ namespace RelateTerminal.Screen
 			string title,
 			List<BaseScreen> items,
 			string exitLabel = "Exit"
-		):
+		) :
 			base(title)
 		{
 			Items = items;
@@ -103,6 +103,8 @@ namespace RelateTerminal.Screen
 
 				if (option == 0)
 					break;
+
+				Items[option - 1].Display();
 
 				void DisplayItem(int number, string label)
 				{

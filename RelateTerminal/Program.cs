@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using RelateTerminal.Screen;
+using System.Collections.Generic;
 
 namespace RelateTerminal
 {
@@ -6,10 +7,14 @@ namespace RelateTerminal
 	{
 		static void Main()
 		{
-			Screen.BaseScreen mainMenu = new Screen.Menu
+			BaseScreen mainMenu = new Menu
 			(
 				"Relate",
-				null
+				
+				new List<BaseScreen>
+				{
+					new Screen.Screen("Add entry")
+				}
 			);
 
 			mainMenu.Display();
