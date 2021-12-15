@@ -95,6 +95,9 @@ namespace RelateTerminal.Menu
 					continue;
 				}
 
+				if (option == 0)
+					break;
+
 				void DisplayItem(int number, string label)
 				{
 					Debug.Assert

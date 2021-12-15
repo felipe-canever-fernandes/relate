@@ -12,8 +12,7 @@ namespace RelateTerminal
 
 				new List<Menu.Item>
 				{
-					new Menu.Item("List entries"),
-					new Menu.Item("Create entry")
+					new Menu.Item("List entries")
 				}
 			);
 
