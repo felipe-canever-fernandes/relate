@@ -6,13 +6,13 @@ namespace RelateTerminal
 	{
 		static void Main()
 		{
-			var mainMenu = new Menu.Menu
+			var mainMenu = new Screen.Menu
 			(
 				"Relate",
 
-				new List<Menu.Item>
+				new List<Screen.Item>
 				{
-					new Menu.Item("List entries")
+					new Screen.Item("List entries")
 				}
 			);
 
