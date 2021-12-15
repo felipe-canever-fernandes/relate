@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Diagnostics;
 
 namespace RelateLibrary
 {
@@ -13,13 +14,11 @@ namespace RelateLibrary
 
             set
             {
-                if (value < 0)
-                    throw new ArgumentOutOfRangeException
-                    (
-                        nameof(value),
-                        value,
-                        "the entry ID cannot be negative"
-                    );
+                Debug.Assert
+                (
+                    value >= 0,
+                    "the entry ID cannot be negative"
+                );
 
                 _id = value;
             }
@@ -31,21 +30,21 @@ namespace RelateLibrary
 
             set
             {
-                if (string.IsNullOrEmpty(value))
-                    throw new ArgumentException
-                    (
-                        "the entry name cannot be empty",
-                        nameof(value)
-                    );
+                Debug.Assert
+                (
+                    !string.IsNullOrEmpty(value),
+                    "the entry name cannot be null or empty"
+                );
 
-                if (value.Trim() == "")
-                    throw new ArgumentException
-                    (
-                        "the entry name cannot be only whitespace",
-                        nameof(value)
-                    );
+                value = value.Trim();
 
-                _name = value.Trim();
+                Debug.Assert
+                (
+                    value != "",
+                    "the entry name cannot be only whitespace"
+                );
+
+                _name = value;
             }
         }
 
