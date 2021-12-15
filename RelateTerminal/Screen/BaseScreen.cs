@@ -2,11 +2,11 @@
 
 namespace RelateTerminal.Screen
 {
-	internal abstract class Screen
+	internal abstract class BaseScreen
 	{
 		private string _title;
 
-		public Screen(string title) => Title = title;
+		public BaseScreen(string title) => Title = title;
 
 		public string Title
 		{

@@ -4,15 +4,15 @@ using System.Diagnostics;
 
 namespace RelateTerminal.Screen
 {
-	internal class Menu : Screen
+	internal class Menu : BaseScreen
 	{
-		private List<Screen> _items;
+		private List<BaseScreen> _items;
 		private string _exitLabel;
 
 		public Menu
 		(
 			string title,
-			List<Screen> items,
+			List<BaseScreen> items,
 			string exitLabel = "Exit"
 		):
 			base(title)
@@ -45,7 +45,7 @@ namespace RelateTerminal.Screen
 			}
 		}
 
-		public List<Screen> Items
+		public List<BaseScreen> Items
 		{
 			get { return _items; }
 
