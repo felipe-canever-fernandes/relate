@@ -65,6 +65,8 @@ namespace RelateTerminal.Menu
 		{
 			while (true)
 			{
+				Console.Clear();
+
 				Console.WriteLine($"\t\t{Title.ToUpper()}");
 
 				Console.WriteLine();
@@ -80,8 +82,13 @@ namespace RelateTerminal.Menu
 
 				Console.Write("Enter an option: ");
 
-				if (!int.TryParse(Console.ReadLine(), out int option))
+				var isOptionValid =
+						int.TryParse(Console.ReadLine(), out int option) &&
+						option >= 0 && option <= Items.Count;
+
+				if (!isOptionValid)
 				{
+					Console.WriteLine();
 					Console.WriteLine("Invalid option.");
 					_ = Console.ReadLine();
 
