@@ -63,34 +63,47 @@ namespace RelateTerminal.Menu
 
         public void Display()
         {
-            Console.WriteLine($"\t\t{Title.ToUpper()}");
-
-            Console.WriteLine();
-
-            for (var i = 0; i < Items.Count; ++i)
+            while (true)
             {
-                DisplayItem(i + 1, Items[i].Label);
-            }
+                Console.WriteLine($"\t\t{Title.ToUpper()}");
 
-            DisplayItem(0, "Exit");
+                Console.WriteLine();
 
-            Console.WriteLine();
+                for (var i = 0; i < Items.Count; ++i)
+                {
+                    DisplayItem(i + 1, Items[i].Label);
+                }
 
-            void DisplayItem(int number, string label)
-            {
-                Debug.Assert
-                (
-                    number >= 0,
-                    "the menu item number cannot be negative"
-                );
+                DisplayItem(0, "Exit");
 
-                Debug.Assert
-                (
-                    label != null,
-                    "the menu item label cannot be null"
-                );
+                Console.WriteLine();
 
-                Console.WriteLine($"\t{number}. {label}");
+                Console.Write("Enter an option: ");
+
+                if (!int.TryParse(Console.ReadLine(), out int option))
+                {
+                    Console.WriteLine("Invalid option.");
+					_ = Console.ReadLine();
+
+                    continue;
+                }
+
+                void DisplayItem(int number, string label)
+                {
+                    Debug.Assert
+                    (
+                        number >= 0,
+                        "the menu item number cannot be negative"
+                    );
+
+                    Debug.Assert
+                    (
+                        label != null,
+                        "the menu item label cannot be null"
+                    );
+
+                    Console.WriteLine($"\t{number}. {label}");
+                }
             }
         }
     }
