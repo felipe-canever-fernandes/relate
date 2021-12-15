@@ -1,9 +1,8 @@
-﻿using System;
-using System.Diagnostics;
+﻿using System.Diagnostics;
 
 namespace RelateLibrary
 {
-    public class Entry
+	public class Entry
     {
         private int _id;
         private string _name;
