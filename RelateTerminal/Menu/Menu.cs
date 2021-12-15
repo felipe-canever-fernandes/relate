@@ -8,11 +8,13 @@ namespace RelateTerminal.Menu
 	{
 		private string _title;
 		private List<Item> _items;
+		private string _exitLabel;
 
-		public Menu(string title, List<Item> items)
+		public Menu(string title, List<Item> items, string exitLabel = "Exit")
 		{
 			Title = title;
 			Items = items;
+			ExitLabel = exitLabel;
 		}
 
 		public string Title
@@ -36,6 +38,30 @@ namespace RelateTerminal.Menu
 				);
 
 				_title = value;
+			}
+		}
+
+		public string ExitLabel
+		{
+			get { return _exitLabel; }
+
+			set
+			{
+				Debug.Assert
+				(
+					!string.IsNullOrEmpty(value),
+					"the menu exit label cannot be null or empty"
+				);
+
+				value = value.Trim();
+
+				Debug.Assert
+				(
+					value != "",
+					"the menu exit label cannot be only whitespace"
+				);
+
+				_exitLabel = value;
 			}
 		}
 
@@ -76,7 +102,7 @@ namespace RelateTerminal.Menu
 					DisplayItem(i + 1, Items[i].Label);
 				}
 
-				DisplayItem(0, "Exit");
+				DisplayItem(0, ExitLabel);
 
 				Console.WriteLine();
 
