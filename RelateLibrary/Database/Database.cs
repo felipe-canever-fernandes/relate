@@ -39,6 +39,45 @@ namespace RelateLibrary.Database
 			}
 		}
 
+		public static Entry ReadEntry(int id)
+		{
+			Debug.Assert
+			(
+				id >= 1,
+				"The entry ID must be positive."
+			);
+
+			Entry entry = null;
+
+			using (var connection = new SQLiteConnection(_connectionString))
+			{
+				connection.Open();
+
+				var query = @"SELECT * FROM `Entry` WHERE `Id` = @Id;";
+
+				using (var command = new SQLiteCommand(query, connection))
+				{
+					_ = command.Parameters.AddWithValue("@Id", id);
+
+					using (var reader = command.ExecuteReader())
+					{
+						if (reader.HasRows)
+						{
+							_ = reader.Read();
+
+							entry = new Entry
+							(
+								reader["Name"].ToString(),
+								int.Parse(reader["Id"].ToString())
+							);
+						}
+					}
+				}
+			}
+
+			return entry;
+		}
+
 		public static List<Entry> ReadEntries()
 		{
 			var entries = new List<Entry>();
@@ -51,19 +90,20 @@ namespace RelateLibrary.Database
 
 				using (var command = new SQLiteCommand(query, connection))
 				{
-					var reader = command.ExecuteReader();
-
-					if (reader.HasRows)
+					using (var reader = command.ExecuteReader())
 					{
-						while (reader.Read())
+						if (reader.HasRows)
 						{
-							var entry = new Entry
-							(
-								reader["Name"].ToString(),
-								int.Parse(reader["Id"].ToString())
-							);
+							while (reader.Read())
+							{
+								var entry = new Entry
+								(
+									reader["Name"].ToString(),
+									int.Parse(reader["Id"].ToString())
+								);
 
-							entries.Add(entry);
+								entries.Add(entry);
+							}
 						}
 					}
 				}

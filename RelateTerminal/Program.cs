@@ -57,7 +57,7 @@ namespace RelateTerminal
 						new Item
 						(
 							entry.ToString(),
-							() => DisplayEntry(entry)
+							() => DisplayEntry(entry.Id)
 						)
 					);
 				}
@@ -124,15 +124,21 @@ namespace RelateTerminal
 			Menu.Menu.Wait();
 		}
 
-		static void DisplayEntry(Entry entry)
+		static void DisplayEntry(int id)
 		{
-			Debug.Assert(entry != null);
+			Debug.Assert
+			(
+				id >= 1,
+				"The entry ID must be positive."
+			);
+
+			var entry = Database.ReadEntry(id);
 
 			var menu = new Menu.Menu
 			(
 				items: new List<Item>
 				{
-					new Item("Rename", () => RenameEntry(entry)),
+					new Item("Rename", () => RenameEntry(entry.Id)),
 					new Item("Delete", () => { })
 				},
 
@@ -143,13 +149,15 @@ namespace RelateTerminal
 			menu.Display(out _);
 		}
 
-		static void RenameEntry(Entry entry)
+		static void RenameEntry(int id)
 		{
 			Debug.Assert
 			(
-				entry != null,
-				"The entry cannot be null."
+				id >= 1,
+				"The entry ID must be positive."
 			);
+
+			var entry = Database.ReadEntry(id);
 
 			Console.Clear();
 
@@ -159,16 +167,16 @@ namespace RelateTerminal
 			while (true)
 			{
 				Console.Write("New name: ");
-				var name = Console.ReadLine().Trim();
+				entry.Name = Console.ReadLine().Trim();
 
-				if (name == "")
+				if (entry.Name == "")
 				{
 					break;
 				}
 
 				try
 				{
-					if (Database.Update(new Entry(name, entry.Id)))
+					if (Database.Update(entry))
 					{
 						Console.WriteLine("Entry successfully renamed.");
 					}
