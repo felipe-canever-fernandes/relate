@@ -86,6 +86,8 @@ namespace RelateTerminal
 			Console.WriteLine("\tAdd entry");
 			Console.WriteLine();
 
+			long id;
+
 			while (true)
 			{
 				Console.Write("Name: ");
@@ -93,12 +95,14 @@ namespace RelateTerminal
 
 				if (name == "")
 				{
-					break;
+					return;
 				}
 
 				try
 				{
-					if (Database.Create(new Entry(name)))
+					id = Database.Create(new Entry(name));
+
+					if (id > 0)
 					{
 						Console.WriteLine("Entry successfully added.");
 					}
@@ -122,6 +126,11 @@ namespace RelateTerminal
 
 			Console.WriteLine();
 			Menu.Menu.Wait();
+
+			if (id > 0)
+			{
+				DisplayEntry(id);
+			}
 		}
 
 		static void DisplayEntry(long id)
