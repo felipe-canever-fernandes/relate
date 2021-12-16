@@ -5,6 +5,7 @@ using RelateTerminal.Screen;
 
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 
 namespace RelateTerminal
 {
@@ -31,24 +32,32 @@ namespace RelateTerminal
 			var entries = Database.ReadEntries();
 
 			if (entries.Count <= 0)
-				Console.WriteLine("No entries have been added yet.");
-			else
 			{
-				var items = new List<BaseScreen>();
+				Console.WriteLine("No entries have been added yet.");
+				_ = Console.ReadLine();
 
-				foreach (var entry in entries)
-					items.Add(new Screen.Screen(() => { }, entry.Name));
-
-				var menu = new Menu(items)
-				{ 
-					ClearsScreen = false,
-					ExitLabel = "Cancel"
-				};
-
-				menu.Display();
+				return;
 			}
+			
+			var items = new List<BaseScreen>();
 
-			_ = Console.ReadLine();
+			foreach (var entry in entries)
+				items.Add
+				(
+					new Screen.Screen
+					(
+						() => DisplayEntry(entry),
+						entry.Name
+					)
+				);
+
+			var menu = new Menu(items)
+			{
+				ClearsScreen = false,
+				ExitLabel = "Cancel"
+			};
+
+			menu.Display();
 		}
 
 		static void AddEntry()
@@ -81,6 +90,12 @@ namespace RelateTerminal
 				Console.WriteLine();
 			}
 
+			_ = Console.ReadLine();
+		}
+
+		static void DisplayEntry(Entry entry)
+		{
+			Debug.Assert(entry != null);
 			_ = Console.ReadLine();
 		}
 	}
