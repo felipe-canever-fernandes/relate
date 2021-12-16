@@ -11,9 +11,10 @@ namespace RelateTerminal.Screen
 		(
 			string title,
 			FunctionalityCallback functionality,
-			bool clearsScreen = true
+			bool clearsScreen = true,
+			bool displaysTitle = true
 		) :
-			base(title, clearsScreen)
+			base(title, clearsScreen, displaysTitle)
 			=> Functionality = functionality;
 
 		public delegate void FunctionalityCallback();

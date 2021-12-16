@@ -14,9 +14,10 @@ namespace RelateTerminal.Screen
 			string title,
 			List<BaseScreen> items,
 			bool clearsScreen = true,
+			bool displaysTitle = true,
 			string exitLabel = "Exit"
 		) :
-			base(title, clearsScreen)
+			base(title, clearsScreen, displaysTitle)
 		{
 			Items = items;
 			ExitLabel = exitLabel;

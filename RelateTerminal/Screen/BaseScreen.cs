@@ -7,10 +7,16 @@ namespace RelateTerminal.Screen
 	{
 		private string _title;
 
-		public BaseScreen(string title, bool clearsScreen = true)
+		public BaseScreen
+		(
+			string title,
+			bool clearsScreen = true,
+			bool displaysTitle = true
+		)
 		{
 			Title = title;
 			ClearsScreen = clearsScreen;
+			DisplaysTitle = displaysTitle;
 		}
 
 		public string Title
@@ -38,14 +44,18 @@ namespace RelateTerminal.Screen
 		}
 
 		public bool ClearsScreen { get; set; }
+		public bool DisplaysTitle { get; set; }
 
 		public virtual void Display()
 		{
 			if (ClearsScreen)
 				Console.Clear();
 
-			Console.WriteLine($"\t\t{Title.ToUpper()}");
-			Console.WriteLine();
+			if (DisplaysTitle)
+			{
+				Console.WriteLine($"\t\t{Title.ToUpper()}");
+				Console.WriteLine();
+			}
 		}
 	}
 }

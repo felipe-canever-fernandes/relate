@@ -20,7 +20,11 @@ namespace RelateTerminal
 				new List<BaseScreen>
 				{
 					new Screen.Screen("List entries", ListEntries),
+
 					new Screen.Screen("Add entry", AddEntry)
+					{
+						DisplaysTitle = false
+					}
 				}
 			);
 
@@ -51,7 +55,7 @@ namespace RelateTerminal
 					)
 				);
 
-			var menu = new Menu("List entries", items, true, "Cancel");
+			var menu = new Menu("List entries", items, true, true, "Cancel");
 			menu.Display();
 		}
 
