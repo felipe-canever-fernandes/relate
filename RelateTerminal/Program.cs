@@ -58,6 +58,11 @@ namespace RelateTerminal
 
 		static void AddEntry()
 		{
+			Console.Clear();
+
+			Console.WriteLine("\tADD ENTRY");
+			Console.WriteLine();
+
 			while (true)
 			{
 				Console.Write("Name: ");
