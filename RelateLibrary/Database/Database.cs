@@ -232,6 +232,57 @@ namespace RelateLibrary.Database
 				}
 			}
 		}
+
+		public static long Create(Relation relation)
+		{
+			Debug.Assert
+			(
+				relation != null,
+				"The relation cannot be null."
+			);
+
+			using (var connection = new SQLiteConnection(_connectionString))
+			{
+				connection.Open();
+
+				var query =
+						"INSERT INTO " +
+							"`Relation` (`FirstEntryId`, `SecondEntryId`)" +
+						"VALUES (@FirstEntryId, @SecondEntryId);";
+
+				using (var command = new SQLiteCommand(query, connection))
+				{
+					_ = command.Parameters.AddWithValue
+					(
+						"@FirstEntryId",
+						relation.FirstEntryId
+					);
+
+					_ = command.Parameters.AddWithValue
+					(
+						"@SecondEntryId",
+						relation.SecondEntryId
+					);
+
+					try
+					{
+						if (command.ExecuteNonQuery() <= 0)
+						{
+							return 0;
+						}
+					}
+					catch (SQLiteException ex)
+					{
+						if (ex.Message.Contains("UNIQUE"))
+							throw new NotUniqueException();
+
+						throw;
+					}
+
+					return connection.LastInsertRowId;
+				}
+			}
+		}
 	}
 	public class NotUniqueException : Exception {}
 }
