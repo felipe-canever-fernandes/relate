@@ -39,7 +39,12 @@ namespace RelateTerminal
 				foreach (var entry in entries)
 					items.Add(new Screen.Screen(() => { }, entry.Name));
 
-				var menu = new Menu(items) { ExitLabel = "Cancel" };
+				var menu = new Menu(items)
+				{ 
+					ClearsScreen = false,
+					ExitLabel = "Cancel"
+				};
+
 				menu.Display();
 			}
 
