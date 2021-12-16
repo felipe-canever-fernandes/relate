@@ -95,7 +95,23 @@ namespace RelateTerminal
 		static void DisplayEntry(Entry entry)
 		{
 			Debug.Assert(entry != null);
-			_ = Console.ReadLine();
+
+			var menu = new Menu
+			(
+				entry.Name,
+
+				new List<BaseScreen>
+				{
+					new Screen.Screen("Rename", () => { }, true, true),
+					new Screen.Screen("Delete", () => { }, true, true)
+				},
+
+				false,
+				false,
+				"Cancel"
+			);
+
+			menu.Display();
 		}
 	}
 }
