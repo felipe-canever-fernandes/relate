@@ -7,7 +7,7 @@ namespace RelateTerminal.Screen
 	{
 		private string _title;
 
-		public BaseScreen(string title = null, bool clearsScreen = true)
+		public BaseScreen(string title, bool clearsScreen = true)
 		{
 			Title = title;
 			ClearsScreen = clearsScreen;
@@ -19,16 +19,19 @@ namespace RelateTerminal.Screen
 
 			set
 			{
-				if (value != null)
-				{
-					value = value.Trim();
+				Debug.Assert
+				(
+					!string.IsNullOrEmpty(value),
+					"The screen title cannot be null or empty."
+				);
 
-					Debug.Assert
-					(
-						value != "",
-						"The screen title cannot be only whitespace."
-					);
-				}
+				value = value.Trim();
+
+				Debug.Assert
+				(
+					value != "",
+					"The screen title cannot be only whitespace."
+				);
 
 				_title = value;
 			}
@@ -41,11 +44,8 @@ namespace RelateTerminal.Screen
 			if (ClearsScreen)
 				Console.Clear();
 
-			if (Title != null)
-			{
-				Console.WriteLine($"\t\t{Title.ToUpper()}");
-				Console.WriteLine();
-			}
+			Console.WriteLine($"\t\t{Title.ToUpper()}");
+			Console.WriteLine();
 		}
 	}
 }

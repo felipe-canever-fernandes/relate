@@ -9,8 +9,8 @@ namespace RelateTerminal.Screen
 
 		public Screen
 		(
+			string title,
 			FunctionalityCallback functionality,
-			string title = null,
 			bool clearsScreen = true
 		) :
 			base(title, clearsScreen)

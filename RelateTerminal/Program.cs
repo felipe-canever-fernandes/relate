@@ -15,13 +15,13 @@ namespace RelateTerminal
 		{
 			var mainMenu = new Menu
 			(
+				"Relate",
+
 				new List<BaseScreen>
 				{
-					new Screen.Screen(ListEntries, "List entries"),
-					new Screen.Screen(AddEntry, "Add entry")
-				},
-
-				"Relate"
+					new Screen.Screen("List entries", ListEntries),
+					new Screen.Screen("Add entry", AddEntry)
+				}
 			);
 
 			mainMenu.Display();
@@ -46,17 +46,12 @@ namespace RelateTerminal
 				(
 					new Screen.Screen
 					(
-						() => DisplayEntry(entry),
-						entry.Name
+						entry.Name,
+						() => DisplayEntry(entry)
 					)
 				);
 
-			var menu = new Menu(items)
-			{
-				ClearsScreen = false,
-				ExitLabel = "Cancel"
-			};
-
+			var menu = new Menu("List entries", items, true, "Cancel");
 			menu.Display();
 		}
 

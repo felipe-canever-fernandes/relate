@@ -11,8 +11,8 @@ namespace RelateTerminal.Screen
 
 		public Menu
 		(
+			string title,
 			List<BaseScreen> items,
-			string title = null,
 			bool clearsScreen = true,
 			string exitLabel = "Exit"
 		) :
