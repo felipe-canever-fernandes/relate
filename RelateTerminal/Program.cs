@@ -34,7 +34,9 @@ namespace RelateTerminal
 			if (entries.Count <= 0)
 			{
 				Console.WriteLine("No entries have been added yet.");
-				_ = Console.ReadLine();
+
+				Console.WriteLine();
+				Menu.Menu.Wait();
 
 				return;
 			}
@@ -97,7 +99,8 @@ namespace RelateTerminal
 				Console.WriteLine();
 			}
 
-			_ = Console.ReadLine();
+			Console.WriteLine();
+			Menu.Menu.Wait();
 		}
 
 		static void DisplayEntry(Entry entry)

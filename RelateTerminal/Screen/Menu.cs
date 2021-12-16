@@ -99,6 +99,12 @@ namespace RelateTerminal.Menu
 			}
 		}
 
+		public static void Wait()
+		{
+			Console.WriteLine("Press any key to continue...");
+			_ = Console.ReadKey();
+		}
+
 		public void Display()
 		{
 			while (true)
@@ -133,7 +139,9 @@ namespace RelateTerminal.Menu
 				{
 					Console.WriteLine();
 					Console.WriteLine("Invalid option.");
-					_ = Console.ReadLine();
+
+					Console.WriteLine();
+					Wait();
 
 					continue;
 				}
