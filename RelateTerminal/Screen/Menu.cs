@@ -114,7 +114,7 @@ namespace RelateTerminal.Menu
 
 				if (Title != null)
 				{
-					Console.WriteLine($"\t\t{Title.ToUpper()}");
+					Console.WriteLine($"\t\t{Title}");
 					Console.WriteLine();
 				}
 
