@@ -57,7 +57,8 @@ namespace RelateTerminal
 			(
 				items,
 				title: "List entries",
-				exitLabel: "Go back"
+				exitLabel: "Go back",
+				displaysOnce: true
 			);
 
 			menu.Display();

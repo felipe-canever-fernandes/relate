@@ -15,13 +15,15 @@ namespace RelateTerminal.Menu
 			List<Item> items,
 			string title = null,
 			bool clearsScreen = true,
-			string exitLabel = "Exit"
+			string exitLabel = "Exit",
+			bool displaysOnce = false
 		)
 		{
 			Title = title;
 			Items = items;
 			ClearsScreen = clearsScreen;
 			ExitLabel = exitLabel;
+			DisplaysOnce = displaysOnce;
 		}
 
 		public string Title
@@ -71,6 +73,8 @@ namespace RelateTerminal.Menu
 			}
 		}
 
+		public bool DisplaysOnce { get; set; }
+
 		public List<Item> Items
 		{
 			get { return _items; }
@@ -101,7 +105,7 @@ namespace RelateTerminal.Menu
 
 		public void Display()
 		{
-			while (true)
+			do
 			{
 				if (ClearsScreen)
 				{
@@ -164,6 +168,7 @@ namespace RelateTerminal.Menu
 					Console.WriteLine($"\t{number}. {label}");
 				}
 			}
+			while (!DisplaysOnce);
 		}
 	}
 }
