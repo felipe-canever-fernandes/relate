@@ -136,5 +136,16 @@ namespace RelateTerminal
 
 			menu.Display(out _);
 		}
+
+		static string InQuotes(string value)
+		{
+			Debug.Assert
+			(
+				value != null,
+				"the string cannot be null"
+			);
+
+			return $"\"{value}\"";
+		}
 	}
 }
