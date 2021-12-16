@@ -50,8 +50,8 @@ namespace RelateTerminal
 
 			var menu = new Menu.Menu
 			(
-				title: "List entries",
 				items,
+				title: "List entries",
 				exitLabel: "Go back"
 			);
 
@@ -109,16 +109,14 @@ namespace RelateTerminal
 
 			var menu = new Menu.Menu
 			(
-				title: entry.Name,
-
 				items: new List<Item>
 				{
 					new Item("Rename", () => { }),
 					new Item("Delete", () => { })
 				},
 
+				title: entry.Name,
 				clearsScreen: false,
-				displaysTitle: false,
 				exitLabel: "Go back"
 			);
 

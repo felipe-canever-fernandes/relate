@@ -12,17 +12,15 @@ namespace RelateTerminal.Menu
 
 		public Menu
 		(
-			string title,
 			List<Item> items,
+			string title = null,
 			bool clearsScreen = true,
-			bool displaysTitle = true,
 			string exitLabel = "Exit"
 		)
 		{
 			Title = title;
 			Items = items;
 			ClearsScreen = clearsScreen;
-			DisplaysTitle = displaysTitle;
 			ExitLabel = exitLabel;
 		}
 
@@ -32,26 +30,22 @@ namespace RelateTerminal.Menu
 
 			set
 			{
-				Debug.Assert
-				(
-					!string.IsNullOrEmpty(value),
-					"The menu title cannot be null or empty."
-				);
+				if (value != null)
+				{
+					value = value.Trim();
 
-				value = value.Trim();
-
-				Debug.Assert
-				(
-					value != "",
-					"The menu title cannot be only whitespace."
-				);
+					Debug.Assert
+					(
+						value != "",
+						"The menu title cannot be empty or only whitespace."
+					);
+				}
 
 				_title = value;
 			}
 		}
 
 		public bool ClearsScreen { get; set; }
-		public bool DisplaysTitle { get; set; }
 
 		public string ExitLabel
 		{
@@ -114,7 +108,7 @@ namespace RelateTerminal.Menu
 					Console.Clear();
 				}
 
-				if (DisplaysTitle)
+				if (Title != null)
 				{
 					Console.WriteLine($"\t\t{Title.ToUpper()}");
 					Console.WriteLine();
