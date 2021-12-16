@@ -1,6 +1,6 @@
 ﻿using System.Diagnostics;
 
-namespace RelateTerminal.Screen
+namespace RelateTerminal.Menu
 {
 	internal class Item
 	{

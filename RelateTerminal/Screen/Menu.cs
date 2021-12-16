@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Diagnostics;
 
-namespace RelateTerminal.Screen
+namespace RelateTerminal.Menu
 {
 	internal class Menu
 	{

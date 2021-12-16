@@ -1,7 +1,7 @@
 ﻿using RelateLibrary;
 using RelateLibrary.Database;
 
-using RelateTerminal.Screen;
+using RelateTerminal.Menu;
 
 using System;
 using System.Collections.Generic;
@@ -13,7 +13,7 @@ namespace RelateTerminal
 	{
 		static void Main()
 		{
-			var menu = new Menu
+			var menu = new Menu.Menu
 			(
 				title: "Relate",
 
@@ -44,7 +44,7 @@ namespace RelateTerminal
 			foreach (var entry in entries)
 				items.Add(new Item(entry.Name, () => DisplayEntry(entry)));
 
-			var menu = new Menu
+			var menu = new Menu.Menu
 			(
 				title: "List entries",
 				items,
@@ -91,7 +91,7 @@ namespace RelateTerminal
 		{
 			Debug.Assert(entry != null);
 
-			var menu = new Menu
+			var menu = new Menu.Menu
 			(
 				title: entry.Name,
 
