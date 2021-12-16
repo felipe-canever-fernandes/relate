@@ -148,6 +148,28 @@ namespace RelateLibrary.Database
 				}
 			}
 		}
+
+		public static bool Delete(Entry entry)
+		{
+			Debug.Assert
+			(
+				entry != null,
+				"The entry cannot be null."
+			);
+
+			using (var connection = new SQLiteConnection(_connectionString))
+			{
+				connection.Open();
+
+				var query = @"DELETE FROM `Entry` WHERE `Id` = @Id;";
+
+				using (var command = new SQLiteCommand(query, connection))
+				{
+					_ = command.Parameters.AddWithValue("@Id", entry.Id);
+					return command.ExecuteNonQuery() > 0;
+				}
+			}
+		}
 	}
 	public class NotUniqueException : Exception {}
 }

@@ -136,12 +136,17 @@ namespace RelateTerminal
 			{
 				var entry = Database.ReadEntry(id);
 
+				if (entry == null)
+				{
+					return;
+				}
+
 				var menu = new Menu.Menu
 				(
 					items: new List<Item>
 					{
-					new Item("Rename", () => RenameEntry(entry.Id)),
-					new Item("Delete", () => { })
+						new Item("Rename", () => RenameEntry(entry.Id)),
+						new Item("Delete", () => DeleteEntry(entry.Id))
 					},
 
 					title: entry.ToString(),
@@ -203,6 +208,46 @@ namespace RelateTerminal
 				}
 
 				Console.WriteLine();
+			}
+
+			Console.WriteLine();
+			Menu.Menu.Wait();
+		}
+
+		static void DeleteEntry(int id)
+		{
+			Debug.Assert
+			(
+				id >= 1,
+				"The entry ID must be positive."
+			);
+
+			var entry = Database.ReadEntry(id);
+
+			Console.Clear();
+
+			Console.WriteLine($"\tDelete {entry}");
+			Console.WriteLine();
+
+			Console.Write
+			(
+				"Are you sure you want to delete this entry? (y/n): "
+			);
+
+			var answer = Console.ReadLine().ToLower();
+
+			if (answer == "y")
+			{
+				Console.WriteLine();
+
+				if (Database.Delete(entry))
+				{
+					Console.WriteLine("Entry successfully deleted.");
+				}
+				else
+				{
+					Console.WriteLine("The entry could not be deleted.");
+				}
 			}
 
 			Console.WriteLine();
