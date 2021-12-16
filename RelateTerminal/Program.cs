@@ -42,7 +42,9 @@ namespace RelateTerminal
 			var items = new List<Item>();
 
 			foreach (var entry in entries)
+			{
 				items.Add(new Item(entry.Name, () => DisplayEntry(entry)));
+			}	
 
 			var menu = new Menu.Menu
 			(
@@ -62,14 +64,20 @@ namespace RelateTerminal
 				var name = Console.ReadLine().Trim();
 
 				if (name == "")
+				{
 					break;
+				}
 
 				try
 				{
 					if (Database.Create(new Entry(name)))
+					{
 						Console.WriteLine("Entry successfully added.");
+					}
 					else
+					{
 						Console.WriteLine("The entry could not be added.");
+					}
 
 					break;
 				}

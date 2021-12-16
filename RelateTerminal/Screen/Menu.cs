@@ -104,7 +104,9 @@ namespace RelateTerminal.Menu
 			while (true)
 			{
 				if (ClearsScreen)
+				{
 					Console.Clear();
+				}
 
 				if (DisplaysTitle)
 				{
@@ -137,7 +139,9 @@ namespace RelateTerminal.Menu
 				}
 
 				if (option == 0)
+				{
 					break;
+				}
 
 				Items[option - 1].Function();
 

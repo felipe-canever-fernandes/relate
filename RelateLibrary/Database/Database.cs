@@ -54,6 +54,7 @@ namespace RelateLibrary.Database
 					var reader = command.ExecuteReader();
 
 					if (reader.HasRows)
+					{
 						while (reader.Read())
 						{
 							var entry = new Entry
@@ -64,7 +65,7 @@ namespace RelateLibrary.Database
 
 							entries.Add(entry);
 						}
-
+					}
 				}
 			}
 
