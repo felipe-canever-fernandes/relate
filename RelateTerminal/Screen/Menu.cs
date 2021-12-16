@@ -103,7 +103,7 @@ namespace RelateTerminal.Menu
 			_ = Console.ReadKey();
 		}
 
-		public void Display()
+		public void Display(out bool exited)
 		{
 			do
 			{
@@ -146,7 +146,8 @@ namespace RelateTerminal.Menu
 
 				if (option == 0)
 				{
-					break;
+					exited = true;
+					return;
 				}
 
 				Items[option - 1].Function();
@@ -169,6 +170,8 @@ namespace RelateTerminal.Menu
 				}
 			}
 			while (!DisplaysOnce);
+
+			exited = false;
 		}
 	}
 }

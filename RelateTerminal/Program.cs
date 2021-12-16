@@ -24,44 +24,52 @@ namespace RelateTerminal
 				}
 			);
 
-			menu.Display();
+			menu.Display(out _);
 		}
 
 		static void ListEntries()
 		{
-			Console.Clear();
-
-			Console.WriteLine("\tALL ENTRIES");
-			Console.WriteLine();
-
-			var entries = Database.ReadEntries();
-
-			if (entries.Count <= 0)
+			while (true)
 			{
-				Console.WriteLine("No entries have been added yet.");
+				Console.Clear();
 
+				Console.WriteLine("\tALL ENTRIES");
 				Console.WriteLine();
-				Menu.Menu.Wait();
 
-				return;
+				var entries = Database.ReadEntries();
+
+				if (entries.Count <= 0)
+				{
+					Console.WriteLine("No entries have been added yet.");
+
+					Console.WriteLine();
+					Menu.Menu.Wait();
+
+					return;
+				}
+
+				var items = new List<Item>();
+
+				foreach (var entry in entries)
+				{
+					items.Add(new Item(entry.Name, () => DisplayEntry(entry)));
+				}
+
+				var menu = new Menu.Menu
+				(
+					items,
+					title: "List entries",
+					exitLabel: "Go back",
+					displaysOnce: true
+				);
+
+				menu.Display(out bool exited);
+
+				if (exited)
+				{
+					break;
+				}
 			}
-			
-			var items = new List<Item>();
-
-			foreach (var entry in entries)
-			{
-				items.Add(new Item(entry.Name, () => DisplayEntry(entry)));
-			}	
-
-			var menu = new Menu.Menu
-			(
-				items,
-				title: "List entries",
-				exitLabel: "Go back",
-				displaysOnce: true
-			);
-
-			menu.Display();
 		}
 
 		static void AddEntry()
@@ -126,7 +134,7 @@ namespace RelateTerminal
 				exitLabel: "Go back"
 			);
 
-			menu.Display();
+			menu.Display(out _);
 		}
 	}
 }
