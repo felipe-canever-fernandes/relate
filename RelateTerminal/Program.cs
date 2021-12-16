@@ -52,7 +52,7 @@ namespace RelateTerminal
 			(
 				title: "List entries",
 				items,
-				exitLabel: "Cancel"
+				exitLabel: "Go back"
 			);
 
 			menu.Display();
@@ -119,7 +119,7 @@ namespace RelateTerminal
 
 				clearsScreen: false,
 				displaysTitle: false,
-				exitLabel: "Cancel"
+				exitLabel: "Go back"
 			);
 
 			menu.Display();
