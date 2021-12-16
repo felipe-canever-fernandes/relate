@@ -12,7 +12,7 @@ namespace RelateTerminal
 	{
 		static void Main()
 		{
-			BaseScreen mainMenu = new Menu
+			var mainMenu = new Menu
 			(
 				new List<BaseScreen>
 				{
@@ -33,8 +33,15 @@ namespace RelateTerminal
 			if (entries.Count <= 0)
 				Console.WriteLine("No entries have been added yet.");
 			else
+			{
+				var items = new List<BaseScreen>();
+
 				foreach (var entry in entries)
-					Console.WriteLine(entry.Name);
+					items.Add(new Screen.Screen(() => { }, entry.Name));
+
+				var menu = new Menu(items) { ExitLabel = "Cancel" };
+				menu.Display();
+			}
 
 			_ = Console.ReadLine();
 		}
