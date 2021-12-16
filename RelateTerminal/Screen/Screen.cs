@@ -7,7 +7,11 @@ namespace RelateTerminal.Screen
 	{
 		private FunctionalityCallback _functionality;
 
-		public Screen(string title, FunctionalityCallback functionality) :
+		public Screen
+		(
+			FunctionalityCallback functionality,
+			string title = null
+		) :
 			base(title)
 			=> Functionality = functionality;
 
@@ -32,8 +36,12 @@ namespace RelateTerminal.Screen
 		public override void Display()
 		{
 			Console.Clear();
-			Console.WriteLine($"\t\t{Title.ToUpper()}");
-			Console.WriteLine();
+
+			if (Title != null)
+			{
+				Console.WriteLine($"\t\t{Title.ToUpper()}");
+				Console.WriteLine();
+			}
 
 			Functionality();
 		}

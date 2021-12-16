@@ -14,13 +14,13 @@ namespace RelateTerminal
 		{
 			BaseScreen mainMenu = new Menu
 			(
-				"Relate",
-				
 				new List<BaseScreen>
 				{
-					new Screen.Screen("List entries", ListEntries),
-					new Screen.Screen("Add entry", AddEntry)
-				}
+					new Screen.Screen(ListEntries, "List entries"),
+					new Screen.Screen(AddEntry, "Add entry")
+				},
+
+				"Relate"
 			);
 
 			mainMenu.Display();

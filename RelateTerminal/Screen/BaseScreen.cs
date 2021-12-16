@@ -6,7 +6,7 @@ namespace RelateTerminal.Screen
 	{
 		private string _title;
 
-		public BaseScreen(string title) => Title = title;
+		public BaseScreen(string title = null) => Title = title;
 
 		public string Title
 		{
@@ -14,19 +14,16 @@ namespace RelateTerminal.Screen
 
 			set
 			{
-				Debug.Assert
-				(
-					!string.IsNullOrEmpty(value),
-					"The screen title cannot be null or empty."
-				);
+				if (value != null)
+				{
+					value = value.Trim();
 
-				value = value.Trim();
-
-				Debug.Assert
-				(
-					value != "",
-					"The screen title cannot be only whitespace."
-				);
+					Debug.Assert
+					(
+						value != "",
+						"The screen title cannot be only whitespace."
+					);
+				}
 
 				_title = value;
 			}

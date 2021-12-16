@@ -11,8 +11,8 @@ namespace RelateTerminal.Screen
 
 		public Menu
 		(
-			string title,
 			List<BaseScreen> items,
+			string title = null,
 			string exitLabel = "Exit"
 		) :
 			base(title)
@@ -73,9 +73,11 @@ namespace RelateTerminal.Screen
 			{
 				Console.Clear();
 
-				Console.WriteLine($"\t\t{Title.ToUpper()}");
-
-				Console.WriteLine();
+				if (Title != null)
+				{
+					Console.WriteLine($"\t\t{Title.ToUpper()}");
+					Console.WriteLine();
+				}
 
 				for (var i = 0; i < Items.Count; ++i)
 				{
