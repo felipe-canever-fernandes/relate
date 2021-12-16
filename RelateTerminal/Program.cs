@@ -132,21 +132,28 @@ namespace RelateTerminal
 				"The entry ID must be positive."
 			);
 
-			var entry = Database.ReadEntry(id);
+			while (true)
+			{
+				var entry = Database.ReadEntry(id);
 
-			var menu = new Menu.Menu
-			(
-				items: new List<Item>
-				{
+				var menu = new Menu.Menu
+				(
+					items: new List<Item>
+					{
 					new Item("Rename", () => RenameEntry(entry.Id)),
 					new Item("Delete", () => { })
-				},
+					},
 
-				title: entry.ToString(),
-				exitLabel: "Go back"
-			);
+					title: entry.ToString(),
+					exitLabel: "Go back",
+					displaysOnce: true
+				);
 
-			menu.Display(out _);
+				menu.Display(out bool exited);
+
+				if (exited)
+					break; 
+			}
 		}
 
 		static void RenameEntry(int id)
