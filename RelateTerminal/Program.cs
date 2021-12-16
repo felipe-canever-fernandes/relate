@@ -29,6 +29,11 @@ namespace RelateTerminal
 
 		static void ListEntries()
 		{
+			Console.Clear();
+
+			Console.WriteLine("\tALL ENTRIES");
+			Console.WriteLine();
+
 			var entries = Database.ReadEntries();
 
 			if (entries.Count <= 0)
