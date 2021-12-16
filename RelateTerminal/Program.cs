@@ -21,7 +21,7 @@ namespace RelateTerminal
 				{
 					new Item("Search entry", SearchEntry),
 					new Item("Add entry", AddEntry),
-					new Item("List entries", ListEntries)
+					new Item("List entries", ListAllEntries)
 				}
 			);
 
@@ -144,7 +144,7 @@ namespace RelateTerminal
 			}
 		}
 
-		static void ListEntries()
+		static void ListAllEntries()
 		{
 			while (true)
 			{
