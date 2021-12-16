@@ -33,7 +33,7 @@ namespace RelateTerminal
 			{
 				Console.Clear();
 
-				Console.WriteLine("\tALL ENTRIES");
+				Console.WriteLine("\tAll entries");
 				Console.WriteLine();
 
 				var entries = Database.ReadEntries();
@@ -83,7 +83,7 @@ namespace RelateTerminal
 		{
 			Console.Clear();
 
-			Console.WriteLine("\tADD ENTRY");
+			Console.WriteLine("\tAdd entry");
 			Console.WriteLine();
 
 			while (true)
