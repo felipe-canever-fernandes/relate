@@ -1,4 +1,5 @@
-﻿using System.Diagnostics;
+﻿using System;
+using System.Diagnostics;
 
 namespace RelateTerminal.Screen
 {
@@ -29,6 +30,15 @@ namespace RelateTerminal.Screen
 			}
 		}
 
-		public abstract void Display();
+		public virtual void Display()
+		{
+			Console.Clear();
+
+			if (Title != null)
+			{
+				Console.WriteLine($"\t\t{Title.ToUpper()}");
+				Console.WriteLine();
+			}
+		}
 	}
 }

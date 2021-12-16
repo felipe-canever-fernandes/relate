@@ -35,14 +35,7 @@ namespace RelateTerminal.Screen
 
 		public override void Display()
 		{
-			Console.Clear();
-
-			if (Title != null)
-			{
-				Console.WriteLine($"\t\t{Title.ToUpper()}");
-				Console.WriteLine();
-			}
-
+			base.Display();
 			Functionality();
 		}
 	}

@@ -71,13 +71,7 @@ namespace RelateTerminal.Screen
 		{
 			while (true)
 			{
-				Console.Clear();
-
-				if (Title != null)
-				{
-					Console.WriteLine($"\t\t{Title.ToUpper()}");
-					Console.WriteLine();
-				}
+				base.Display();
 
 				for (var i = 0; i < Items.Count; ++i)
 				{
