@@ -12,7 +12,11 @@ namespace RelateLibrary.Database
 
 		public static long Create(Entry entry)
 		{
-			Debug.Assert(entry != null);
+			Debug.Assert
+			(
+				entry != null,
+				"The entry cannot be null."
+			);
 
 			using (var connection = new SQLiteConnection(_connectionString))
 			{
