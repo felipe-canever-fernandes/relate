@@ -70,7 +70,39 @@ namespace RelateLibrary.Database
 
 			return entries;
 		}
-	}
 
+		public static bool Update(Entry entry)
+		{
+			Debug.Assert(entry != null);
+
+			using (var connection = new SQLiteConnection(_connectionString))
+			{
+				connection.Open();
+
+				var query =
+					@"UPDATE `Entry`
+					SET `Name` = @Name
+					WHERE `Id` = @Id;";
+
+				using (var command = new SQLiteCommand(query, connection))
+				{
+					_ = command.Parameters.AddWithValue("@Name", entry.Name);
+					_ = command.Parameters.AddWithValue("@Id", entry.Id);
+
+					try
+					{
+						return command.ExecuteNonQuery() > 0;
+					}
+					catch (SQLiteException ex)
+					{
+						if (ex.Message.Contains("UNIQUE"))
+							throw new NotUniqueException();
+
+						throw;
+					}
+				}
+			}
+		}
+	}
 	public class NotUniqueException : Exception {}
 }
