@@ -15,7 +15,7 @@ namespace RelateTerminal
 		{
 			var menu = new Menu.Menu
 			(
-				title: "Relate",
+				title: "RELATE",
 
 				items: new List<Item>
 				{
