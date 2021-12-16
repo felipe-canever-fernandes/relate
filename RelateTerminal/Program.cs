@@ -13,7 +13,7 @@ namespace RelateTerminal
 	{
 		static void Main()
 		{
-			var mainMenu = new Menu
+			var menu = new Menu
 			(
 				title: "Relate",
 
@@ -33,7 +33,7 @@ namespace RelateTerminal
 				}
 			);
 
-			mainMenu.Display();
+			menu.Display();
 		}
 
 		static void ListEntries()
