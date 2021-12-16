@@ -15,16 +15,21 @@ namespace RelateTerminal
 		{
 			var mainMenu = new Menu
 			(
-				"Relate",
+				title: "Relate",
 
-				new List<BaseScreen>
+				items: new List<BaseScreen>
 				{
-					new Screen.Screen("List entries", ListEntries),
+					new Screen.Screen
+					(
+						title: "List entries",
+						functionality: ListEntries
+					),
 
-					new Screen.Screen("Add entry", AddEntry)
-					{
-						DisplaysTitle = false
-					}
+					new Screen.Screen
+					(
+						title: "Add entry",
+						functionality: AddEntry
+					)
 				}
 			);
 
@@ -50,12 +55,18 @@ namespace RelateTerminal
 				(
 					new Screen.Screen
 					(
-						entry.Name,
-						() => DisplayEntry(entry)
+						title: entry.Name,
+						functionality: () => DisplayEntry(entry)
 					)
 				);
 
-			var menu = new Menu("List entries", items, true, true, "Cancel");
+			var menu = new Menu
+			(
+				title: "List entries",
+				items,
+				exitLabel: "Cancel"
+			);
+
 			menu.Display();
 		}
 
@@ -98,17 +109,26 @@ namespace RelateTerminal
 
 			var menu = new Menu
 			(
-				entry.Name,
+				title: entry.Name,
 
-				new List<BaseScreen>
+				items: new List<BaseScreen>
 				{
-					new Screen.Screen("Rename", () => { }, true, true),
-					new Screen.Screen("Delete", () => { }, true, true)
+					new Screen.Screen
+					(
+						title: "Rename",
+						functionality: () => { }
+					),
+
+					new Screen.Screen
+					(
+						title: "Delete",
+						functionality: () => { }
+					)
 				},
 
-				false,
-				false,
-				"Cancel"
+				clearsScreen: false,
+				displaysTitle: false,
+				exitLabel: "Cancel"
 			);
 
 			menu.Display();
