@@ -19,65 +19,13 @@ namespace RelateTerminal
 
 				items: new List<Item>
 				{
-					new Item("List entries", ListEntries),
 					new Item("Search entry", SearchEntry),
-					new Item("Add entry", AddEntry)
+					new Item("Add entry", AddEntry),
+					new Item("List entries", ListEntries)
 				}
 			);
 
 			menu.Display(out _);
-		}
-
-		static void ListEntries()
-		{
-			while (true)
-			{
-				Console.Clear();
-
-				Console.WriteLine("\tAll entries");
-				Console.WriteLine();
-
-				var entries = Database.ReadEntries();
-
-				if (entries.Count <= 0)
-				{
-					Console.WriteLine("No entries have been added yet.");
-
-					Console.WriteLine();
-					Menu.Menu.Wait();
-
-					return;
-				}
-
-				var items = new List<Item>();
-
-				foreach (var entry in entries)
-				{
-					items.Add
-					(
-						new Item
-						(
-							entry.ToString(),
-							() => DisplayEntry(entry.Id)
-						)
-					);
-				}
-
-				var menu = new Menu.Menu
-				(
-					items,
-					clearsScreen: false,
-					exitLabel: "Go back",
-					displaysOnce: true
-				);
-
-				menu.Display(out bool exited);
-
-				if (exited)
-				{
-					break;
-				}
-			}
 		}
 
 		static void SearchEntry()
@@ -193,6 +141,58 @@ namespace RelateTerminal
 			if (id > 0)
 			{
 				DisplayEntry(id);
+			}
+		}
+
+		static void ListEntries()
+		{
+			while (true)
+			{
+				Console.Clear();
+
+				Console.WriteLine("\tAll entries");
+				Console.WriteLine();
+
+				var entries = Database.ReadEntries();
+
+				if (entries.Count <= 0)
+				{
+					Console.WriteLine("No entries have been added yet.");
+
+					Console.WriteLine();
+					Menu.Menu.Wait();
+
+					return;
+				}
+
+				var items = new List<Item>();
+
+				foreach (var entry in entries)
+				{
+					items.Add
+					(
+						new Item
+						(
+							entry.ToString(),
+							() => DisplayEntry(entry.Id)
+						)
+					);
+				}
+
+				var menu = new Menu.Menu
+				(
+					items,
+					clearsScreen: false,
+					exitLabel: "Go back",
+					displaysOnce: true
+				);
+
+				menu.Display(out bool exited);
+
+				if (exited)
+				{
+					break;
+				}
 			}
 		}
 
