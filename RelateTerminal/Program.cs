@@ -65,7 +65,7 @@ namespace RelateTerminal
 				var menu = new Menu.Menu
 				(
 					items,
-					title: "List entries",
+					clearsScreen: false,
 					exitLabel: "Go back",
 					displaysOnce: true
 				);
