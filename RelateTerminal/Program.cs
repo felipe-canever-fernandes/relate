@@ -56,7 +56,7 @@ namespace RelateTerminal
 					(
 						new Item
 						(
-							BetweenSquareBrackets(entry.Name),
+							entry.ToString(),
 							() => DisplayEntry(entry)
 						)
 					);
@@ -136,7 +136,7 @@ namespace RelateTerminal
 					new Item("Delete", () => { })
 				},
 
-				title: BetweenSquareBrackets(entry.Name),
+				title: entry.ToString(),
 				exitLabel: "Go back"
 			);
 
@@ -153,7 +153,7 @@ namespace RelateTerminal
 
 			Console.Clear();
 
-			Console.WriteLine($"\tRename {BetweenSquareBrackets(entry.Name)}");
+			Console.WriteLine($"\tRename {entry}");
 			Console.WriteLine();
 
 			while (true)
@@ -192,17 +192,6 @@ namespace RelateTerminal
 
 			Console.WriteLine();
 			Menu.Menu.Wait();
-		}
-
-		static string BetweenSquareBrackets(string value)
-		{
-			Debug.Assert
-			(
-				value != null,
-				"the string cannot be null"
-			);
-
-			return $"[{value}]";
 		}
 	}
 }

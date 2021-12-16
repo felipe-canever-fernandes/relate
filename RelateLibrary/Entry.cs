@@ -52,5 +52,10 @@ namespace RelateLibrary
                 _name = value;
             }
         }
-    }
+
+		public override string ToString()
+		{
+            return $"[{Name}]";
+        }
+	}
 }
