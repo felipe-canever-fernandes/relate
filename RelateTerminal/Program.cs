@@ -56,7 +56,7 @@ namespace RelateTerminal
 					(
 						new Item
 						(
-							InQuotes(entry.Name),
+							BetweenSquareBrackets(entry.Name),
 							() => DisplayEntry(entry)
 						)
 					);
@@ -136,14 +136,14 @@ namespace RelateTerminal
 					new Item("Delete", () => { })
 				},
 
-				title: InQuotes(entry.Name),
+				title: BetweenSquareBrackets(entry.Name),
 				exitLabel: "Go back"
 			);
 
 			menu.Display(out _);
 		}
 
-		static string InQuotes(string value)
+		static string BetweenSquareBrackets(string value)
 		{
 			Debug.Assert
 			(
@@ -151,7 +151,7 @@ namespace RelateTerminal
 				"the string cannot be null"
 			);
 
-			return $"\"{value}\"";
+			return $"[{value}]";
 		}
 	}
 }
