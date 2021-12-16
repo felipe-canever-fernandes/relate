@@ -7,7 +7,11 @@ namespace RelateTerminal.Screen
 	{
 		private string _title;
 
-		public BaseScreen(string title = null) => Title = title;
+		public BaseScreen(string title = null, bool clearsScreen = true)
+		{
+			Title = title;
+			ClearsScreen = clearsScreen;
+		}
 
 		public string Title
 		{
@@ -30,9 +34,12 @@ namespace RelateTerminal.Screen
 			}
 		}
 
+		public bool ClearsScreen { get; set; }
+
 		public virtual void Display()
 		{
-			Console.Clear();
+			if (ClearsScreen)
+				Console.Clear();
 
 			if (Title != null)
 			{
