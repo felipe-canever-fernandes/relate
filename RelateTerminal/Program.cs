@@ -19,7 +19,7 @@ namespace RelateTerminal
 
 				items: new List<Item>
 				{
-					new Item("List entries", function: ListEntries),
+					new Item("List entries", ListEntries),
 					new Item("Add entry", AddEntry)
 				}
 			);
