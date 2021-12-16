@@ -20,6 +20,7 @@ namespace RelateTerminal
 				items: new List<Item>
 				{
 					new Item("List entries", ListEntries),
+					new Item("Search entry", SearchEntry),
 					new Item("Add entry", AddEntry)
 				}
 			);
@@ -66,6 +67,68 @@ namespace RelateTerminal
 				(
 					items,
 					clearsScreen: false,
+					exitLabel: "Go back",
+					displaysOnce: true
+				);
+
+				menu.Display(out bool exited);
+
+				if (exited)
+				{
+					break;
+				}
+			}
+		}
+
+		static void SearchEntry()
+		{
+			Console.Clear();
+
+			Console.WriteLine("\tSearch entry");
+			Console.WriteLine();
+
+			Console.Write("Search: ");
+			var search = Console.ReadLine().Trim();
+
+			if (search == "")
+			{
+				return;
+			}
+
+			while (true)
+			{
+				var entries = Database.SearchEntry(search);
+
+				if (entries.Count <= 0)
+				{
+					Console.WriteLine();
+					Console.WriteLine("No entries match your search.");
+
+					Console.WriteLine();
+					Menu.Menu.Wait();
+
+					return;
+				}
+
+				var items = new List<Item>();
+
+				foreach (var entry in entries)
+				{
+					items.Add
+					(
+						new Item
+						(
+							entry.ToString(),
+							() => DisplayEntry(entry.Id)
+						)
+					);
+				}
+
+				var menu = new Menu.Menu
+				(
+					items,
+					title: $"Search results for \"{search}\"",
+					clearsScreen: true,
 					exitLabel: "Go back",
 					displaysOnce: true
 				);

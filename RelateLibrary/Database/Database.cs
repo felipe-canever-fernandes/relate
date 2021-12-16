@@ -117,6 +117,59 @@ namespace RelateLibrary.Database
 			return entries;
 		}
 
+		public static List<Entry> SearchEntry(string search)
+		{
+			Debug.Assert
+			(
+				!string.IsNullOrEmpty(search),
+				"The search cannot be null or empty."
+			);
+
+			search = search.Trim();
+
+			Debug.Assert
+			(
+				search != "",
+				"The search cannot be only whitespace."
+			);
+
+			var entries = new List<Entry>();
+
+			using (var connection = new SQLiteConnection(_connectionString))
+			{
+				connection.Open();
+
+				var query =
+						"SELECT * FROM `Entry`" +
+						$"WHERE `Name` LIKE \"%{search}%\"" +
+						"COLLATE NOCASE;";
+
+				using (var command = new SQLiteCommand(query, connection))
+				{
+					_ = command.Parameters.AddWithValue("@search", search);
+
+					using (var reader = command.ExecuteReader())
+					{
+						if (reader.HasRows)
+						{
+							while (reader.Read())
+							{
+								var entry = new Entry
+								(
+									reader["Name"].ToString(),
+									long.Parse(reader["Id"].ToString())
+								);
+
+								entries.Add(entry);
+							}
+						}
+					}
+				}
+			}
+
+			return entries;
+		}
+
 		public static bool Update(Entry entry)
 		{
 			Debug.Assert
