@@ -124,7 +124,7 @@ namespace RelateTerminal
 			Menu.Menu.Wait();
 		}
 
-		static void DisplayEntry(int id)
+		static void DisplayEntry(long id)
 		{
 			Debug.Assert
 			(
@@ -161,7 +161,7 @@ namespace RelateTerminal
 			}
 		}
 
-		static void RenameEntry(int id)
+		static void RenameEntry(long id)
 		{
 			Debug.Assert
 			(
@@ -214,7 +214,7 @@ namespace RelateTerminal
 			Menu.Menu.Wait();
 		}
 
-		static void DeleteEntry(int id)
+		static void DeleteEntry(long id)
 		{
 			Debug.Assert
 			(

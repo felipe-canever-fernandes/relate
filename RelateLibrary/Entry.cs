@@ -4,16 +4,16 @@ namespace RelateLibrary
 {
 	public class Entry
     {
-        private int _id;
+        private long _id;
         private string _name;
 
-        public Entry(string name, int id = 0)
+        public Entry(string name, long id = 0)
         {
             Id = id;
             Name = name;
         }
 
-        public int Id
+        public long Id
         {
             get { return _id; }
 

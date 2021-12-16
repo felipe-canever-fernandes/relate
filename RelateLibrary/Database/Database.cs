@@ -39,7 +39,7 @@ namespace RelateLibrary.Database
 			}
 		}
 
-		public static Entry ReadEntry(int id)
+		public static Entry ReadEntry(long id)
 		{
 			Debug.Assert
 			(
@@ -68,7 +68,7 @@ namespace RelateLibrary.Database
 							entry = new Entry
 							(
 								reader["Name"].ToString(),
-								int.Parse(reader["Id"].ToString())
+								long.Parse(reader["Id"].ToString())
 							);
 						}
 					}
@@ -99,7 +99,7 @@ namespace RelateLibrary.Database
 								var entry = new Entry
 								(
 									reader["Name"].ToString(),
-									int.Parse(reader["Id"].ToString())
+									long.Parse(reader["Id"].ToString())
 								);
 
 								entries.Add(entry);
