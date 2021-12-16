@@ -4,24 +4,54 @@ using System.Diagnostics;
 
 namespace RelateTerminal.Screen
 {
-	internal class Menu : BaseScreen
+	internal class Menu
 	{
-		private List<BaseScreen> _items;
+		private string _title;
+		private List<Item> _items;
 		private string _exitLabel;
 
 		public Menu
 		(
 			string title,
-			List<BaseScreen> items,
+			List<Item> items,
 			bool clearsScreen = true,
 			bool displaysTitle = true,
 			string exitLabel = "Exit"
-		) :
-			base(title, clearsScreen, displaysTitle)
+		)
 		{
+			Title = title;
 			Items = items;
+			ClearsScreen = clearsScreen;
+			DisplaysTitle = displaysTitle;
 			ExitLabel = exitLabel;
 		}
+
+		public string Title
+		{
+			get { return _title; }
+
+			set
+			{
+				Debug.Assert
+				(
+					!string.IsNullOrEmpty(value),
+					"The menu title cannot be null or empty."
+				);
+
+				value = value.Trim();
+
+				Debug.Assert
+				(
+					value != "",
+					"The menu title cannot be only whitespace."
+				);
+
+				_title = value;
+			}
+		}
+
+		public bool ClearsScreen { get; set; }
+		public bool DisplaysTitle { get; set; }
 
 		public string ExitLabel
 		{
@@ -47,7 +77,7 @@ namespace RelateTerminal.Screen
 			}
 		}
 
-		public List<BaseScreen> Items
+		public List<Item> Items
 		{
 			get { return _items; }
 
@@ -69,15 +99,22 @@ namespace RelateTerminal.Screen
 			}
 		}
 
-		public override void Display()
+		public void Display()
 		{
 			while (true)
 			{
-				base.Display();
+				if (ClearsScreen)
+					Console.Clear();
+
+				if (DisplaysTitle)
+				{
+					Console.WriteLine($"\t\t{Title.ToUpper()}");
+					Console.WriteLine();
+				}
 
 				for (var i = 0; i < Items.Count; ++i)
 				{
-					DisplayItem(i + 1, Items[i].Title);
+					DisplayItem(i + 1, Items[i].Label);
 				}
 
 				DisplayItem(0, ExitLabel);
@@ -102,7 +139,7 @@ namespace RelateTerminal.Screen
 				if (option == 0)
 					break;
 
-				Items[option - 1].Display();
+				Items[option - 1].Function();
 
 				void DisplayItem(int number, string label)
 				{

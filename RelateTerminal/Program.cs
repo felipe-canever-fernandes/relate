@@ -17,19 +17,10 @@ namespace RelateTerminal
 			(
 				title: "Relate",
 
-				items: new List<BaseScreen>
+				items: new List<Item>
 				{
-					new Screen.Screen
-					(
-						title: "List entries",
-						functionality: ListEntries
-					),
-
-					new Screen.Screen
-					(
-						title: "Add entry",
-						functionality: AddEntry
-					)
+					new Item("List entries", function: ListEntries),
+					new Item("Add entry", AddEntry)
 				}
 			);
 
@@ -48,17 +39,10 @@ namespace RelateTerminal
 				return;
 			}
 			
-			var items = new List<BaseScreen>();
+			var items = new List<Item>();
 
 			foreach (var entry in entries)
-				items.Add
-				(
-					new Screen.Screen
-					(
-						title: entry.Name,
-						functionality: () => DisplayEntry(entry)
-					)
-				);
+				items.Add(new Item(entry.Name, () => DisplayEntry(entry)));
 
 			var menu = new Menu
 			(
@@ -111,19 +95,10 @@ namespace RelateTerminal
 			(
 				title: entry.Name,
 
-				items: new List<BaseScreen>
+				items: new List<Item>
 				{
-					new Screen.Screen
-					(
-						title: "Rename",
-						functionality: () => { }
-					),
-
-					new Screen.Screen
-					(
-						title: "Delete",
-						functionality: () => { }
-					)
+					new Item("Rename", () => { }),
+					new Item("Delete", () => { })
 				},
 
 				clearsScreen: false,
