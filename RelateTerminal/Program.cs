@@ -132,7 +132,7 @@ namespace RelateTerminal
 			(
 				items: new List<Item>
 				{
-					new Item("Rename", () => { }),
+					new Item("Rename", () => RenameEntry(entry)),
 					new Item("Delete", () => { })
 				},
 
@@ -141,6 +141,57 @@ namespace RelateTerminal
 			);
 
 			menu.Display(out _);
+		}
+
+		static void RenameEntry(Entry entry)
+		{
+			Debug.Assert
+			(
+				entry != null,
+				"The entry cannot be null."
+			);
+
+			Console.Clear();
+
+			Console.WriteLine($"\tRename {BetweenSquareBrackets(entry.Name)}");
+			Console.WriteLine();
+
+			while (true)
+			{
+				Console.Write("New name: ");
+				var name = Console.ReadLine().Trim();
+
+				if (name == "")
+				{
+					break;
+				}
+
+				try
+				{
+					if (Database.Update(new Entry(name, entry.Id)))
+					{
+						Console.WriteLine("Entry successfully renamed.");
+					}
+					else
+					{
+						Console.WriteLine("The entry could not be renamed.");
+					}
+
+					break;
+				}
+				catch (NotUniqueException)
+				{
+					Console.WriteLine
+					(
+						"There is already an entry with that name."
+					);
+				}
+
+				Console.WriteLine();
+			}
+
+			Console.WriteLine();
+			Menu.Menu.Wait();
 		}
 
 		static string BetweenSquareBrackets(string value)
