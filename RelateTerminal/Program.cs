@@ -52,7 +52,14 @@ namespace RelateTerminal
 
 				foreach (var entry in entries)
 				{
-					items.Add(new Item(entry.Name, () => DisplayEntry(entry)));
+					items.Add
+					(
+						new Item
+						(
+							InQuotes(entry.Name),
+							() => DisplayEntry(entry)
+						)
+					);
 				}
 
 				var menu = new Menu.Menu
@@ -129,8 +136,7 @@ namespace RelateTerminal
 					new Item("Delete", () => { })
 				},
 
-				title: entry.Name,
-				clearsScreen: false,
+				title: InQuotes(entry.Name),
 				exitLabel: "Go back"
 			);
 
