@@ -229,6 +229,11 @@ namespace RelateTerminal
 					);
 				}
 
+				items.Add
+				(
+					new Item("Create relation", () => CreateRelation(entry.Id))
+				);
+
 				items.Add(new Item("Rename", () => RenameEntry(entry.Id)));
 				items.Add(new Item("Delete", () => DeleteEntry(entry.Id)));
 
@@ -245,6 +250,96 @@ namespace RelateTerminal
 
 				if (exited)
 					break; 
+			}
+		}
+
+		static void CreateRelation(long entryId)
+		{
+			Debug.Assert
+			(
+				entryId >= 1,
+				"The entry ID must be positive."
+			);
+
+			while (true)
+			{
+				var entry = Database.ReadEntry(entryId);
+
+				Console.Clear();
+
+				Console.WriteLine($"\tCreate relation for {entry}");
+				Console.WriteLine();
+
+				var relatableEntries = Database.ReadRelatableEntries(entry.Id);
+
+				if (relatableEntries.Count <= 0)
+				{
+					Console.WriteLine
+					(
+						"There are no entries " +
+						$"which {entry} can be related to."
+					);
+
+					break;
+				}
+
+				var items = new List<Item>();
+
+				foreach (var relatableEntry in relatableEntries)
+				{
+					items.Add
+					(
+						new Item
+						(
+							relatableEntry.ToString(),
+							() => CreateRelation(entry, relatableEntry)
+						)
+					);
+				}
+
+				var menu = new Menu.Menu
+				(
+					items: items,
+					clearsScreen: false,
+					exitLabel: "Cancel",
+					displaysOnce: true
+				);
+
+				menu.Display(out bool exited);
+
+				if (exited)
+				{
+					return;
+				}
+			}
+
+			Console.WriteLine();
+			Menu.Menu.Wait();
+
+			void CreateRelation(Entry firstEntry, Entry secondEntry)
+			{
+				var successful = Database.Create
+				(
+					new Relation(firstEntry.Id, secondEntry.Id)
+				);
+
+				Console.WriteLine();
+
+				if (successful)
+				{
+					Console.WriteLine
+					(
+						$"Relation {firstEntry}-{secondEntry} " +
+						"successfully created."
+					);
+				}
+				else
+				{
+					Console.WriteLine("The relation could not be created.");
+				}
+
+				Console.WriteLine();
+				Menu.Menu.Wait();
 			}
 		}
 

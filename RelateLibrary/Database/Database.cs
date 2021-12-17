@@ -431,6 +431,83 @@ namespace RelateLibrary.Database
 
 			return entries;
 		}
+
+		public static List<Entry> ReadRelatableEntries(long entryId)
+		{
+			Debug.Assert
+			(
+				entryId >= 1,
+				"The entry ID must be positive."
+			);
+
+			var entries = new List<Entry>();
+
+			using (var connection = new SQLiteConnection(_connectionString))
+			{
+				connection.Open();
+
+				using
+				(
+					var command = new SQLiteCommand
+					(
+						"PRAGMA foreign_keys = 1;",
+						connection
+					)
+				)
+				{
+					_ = command.ExecuteNonQuery();
+				}
+
+				var query =
+						"SELECT * " +
+						"FROM `Entry` " +
+						"WHERE `Id` != @entryId " +
+						"EXCEPT " +
+						"SELECT * " +
+						"FROM " +
+						"( " +
+						"	SELECT `Id`, `Name` " +
+						"	FROM `Entry` " +
+						"	INNER JOIN `Relation` " +
+						"	ON `Id` = `SecondEntryId` " +
+						"	WHERE `FirstEntryId` = @entryId " +
+						"	UNION " +
+						"	SELECT `Id`, `Name` " +
+						"	FROM `Entry` " +
+						"	INNER JOIN `Relation` " +
+						"	ON `Id` = `FirstEntryId` " +
+						"	WHERE `SecondEntryId` = @entryId " +
+						");";
+
+				using (var command = new SQLiteCommand(query, connection))
+				{
+					_ = command.Parameters.AddWithValue
+					(
+						"@entryId",
+						entryId
+					);
+
+					using (var reader = command.ExecuteReader())
+					{
+						if (reader.HasRows)
+						{
+							while (reader.Read())
+							{
+								var entry = new Entry
+								(
+									reader["Name"].ToString(),
+									long.Parse(reader["Id"].ToString())
+								);
+
+								entries.Add(entry);
+							}
+						}
+					}
+				}
+			}
+
+			return entries;
+		}
 	}
 	public class NotUniqueException : Exception {}
 }
