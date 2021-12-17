@@ -233,7 +233,7 @@ namespace RelateLibrary.Database
 			}
 		}
 
-		public static long Create(Relation relation)
+		public static bool Create(Relation relation)
 		{
 			Debug.Assert
 			(
@@ -266,10 +266,7 @@ namespace RelateLibrary.Database
 
 					try
 					{
-						if (command.ExecuteNonQuery() <= 0)
-						{
-							return 0;
-						}
+						return command.ExecuteNonQuery() > 0;
 					}
 					catch (SQLiteException ex)
 					{
@@ -278,8 +275,6 @@ namespace RelateLibrary.Database
 
 						throw;
 					}
-
-					return connection.LastInsertRowId;
 				}
 			}
 		}
