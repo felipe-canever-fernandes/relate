@@ -22,6 +22,18 @@ namespace RelateLibrary.Database
 			{
 				connection.Open();
 
+				using
+				(
+					var command = new SQLiteCommand
+					(
+						"PRAGMA foreign_keys = 1;",
+						connection
+					)
+				)
+				{
+					_ = command.ExecuteNonQuery();
+				}
+
 				var query = @"INSERT INTO `Entry` (`Name`) VALUES (@Name);";
 
 				using (var command = new SQLiteCommand(query, connection))
@@ -62,6 +74,18 @@ namespace RelateLibrary.Database
 			{
 				connection.Open();
 
+				using
+				(
+					var command = new SQLiteCommand
+					(
+						"PRAGMA foreign_keys = 1;",
+						connection
+					)
+				)
+				{
+					_ = command.ExecuteNonQuery();
+				}
+
 				var query = @"SELECT * FROM `Entry` WHERE `Id` = @Id;";
 
 				using (var command = new SQLiteCommand(query, connection))
@@ -94,6 +118,18 @@ namespace RelateLibrary.Database
 			using (var connection = new SQLiteConnection(_connectionString))
 			{
 				connection.Open();
+
+				using
+				(
+					var command = new SQLiteCommand
+					(
+						"PRAGMA foreign_keys = 1;",
+						connection
+					)
+				)
+				{
+					_ = command.ExecuteNonQuery();
+				}
 
 				var query = @"SELECT * FROM `Entry`;";
 
@@ -143,6 +179,18 @@ namespace RelateLibrary.Database
 			{
 				connection.Open();
 
+				using
+				(
+					var command = new SQLiteCommand
+					(
+						"PRAGMA foreign_keys = 1;",
+						connection
+					)
+				)
+				{
+					_ = command.ExecuteNonQuery();
+				}
+
 				var query =
 						"SELECT * FROM `Entry`" +
 						$"WHERE `Name` LIKE \"%{search}%\"" +
@@ -186,6 +234,18 @@ namespace RelateLibrary.Database
 			{
 				connection.Open();
 
+				using
+				(
+					var command = new SQLiteCommand
+					(
+						"PRAGMA foreign_keys = 1;",
+						connection
+					)
+				)
+				{
+					_ = command.ExecuteNonQuery();
+				}
+
 				var query =
 					@"UPDATE `Entry`
 					SET `Name` = @Name
@@ -223,6 +283,18 @@ namespace RelateLibrary.Database
 			{
 				connection.Open();
 
+				using
+				(
+					var command = new SQLiteCommand
+					(
+						"PRAGMA foreign_keys = 1;",
+						connection
+					)
+				)
+				{
+					_ = command.ExecuteNonQuery();
+				}
+
 				var query = @"DELETE FROM `Entry` WHERE `Id` = @Id;";
 
 				using (var command = new SQLiteCommand(query, connection))
@@ -244,6 +316,18 @@ namespace RelateLibrary.Database
 			using (var connection = new SQLiteConnection(_connectionString))
 			{
 				connection.Open();
+
+				using
+				(
+					var command = new SQLiteCommand
+					(
+						"PRAGMA foreign_keys = 1;",
+						connection
+					)
+				)
+				{
+					_ = command.ExecuteNonQuery();
+				}
 
 				var query =
 						"INSERT INTO " +
@@ -292,6 +376,18 @@ namespace RelateLibrary.Database
 			using (var connection = new SQLiteConnection(_connectionString))
 			{
 				connection.Open();
+
+				using
+				(
+					var command = new SQLiteCommand
+					(
+						"PRAGMA foreign_keys = 1;",
+						connection
+					)
+				)
+				{
+					_ = command.ExecuteNonQuery();
+				}
 
 				var query =
 						"SELECT `Id`, `Name` " +
