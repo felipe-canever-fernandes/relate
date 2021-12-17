@@ -508,6 +508,58 @@ namespace RelateLibrary.Database
 
 			return entries;
 		}
+
+		public static bool Delete(Relation relation)
+		{
+			Debug.Assert
+			(
+				relation != null,
+				"The relation cannot be null."
+			);
+
+			using (var connection = new SQLiteConnection(_connectionString))
+			{
+				connection.Open();
+
+				using
+				(
+					var command = new SQLiteCommand
+					(
+						"PRAGMA foreign_keys = 1;",
+						connection
+					)
+				)
+				{
+					_ = command.ExecuteNonQuery();
+				}
+
+				var query =
+						"DELETE FROM `Relation` " +
+						"WHERE " +
+						"	(`FirstEntryId` = @FirstEntryId " +
+						"	AND `SecondEntryId` = @SecondEntryId) " +
+						"	OR " +
+						"	(`SecondEntryId` = @FirstEntryId " +
+						"	AND `FirstEntryId` = @SecondEntryId);";
+
+				using (var command = new SQLiteCommand(query, connection))
+				{
+					_ = command.Parameters.AddWithValue
+					(
+						"@FirstEntryId",
+						relation.FirstEntryId
+					);
+
+					_ = command.Parameters.AddWithValue
+					(
+						"@SecondEntryId",
+						relation.SecondEntryId
+					);
+
+					return command.ExecuteNonQuery() > 0;
+				}
+			}
+		}
 	}
 	public class NotUniqueException : Exception {}
 }

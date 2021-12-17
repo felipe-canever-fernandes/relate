@@ -234,6 +234,15 @@ namespace RelateTerminal
 					new Item("Create relation", () => CreateRelation(entry.Id))
 				);
 
+				items.Add
+				(
+					new Item
+					(
+						"Destroy relation",
+						() => DestroyRelation(entry.Id)
+					)
+				);
+
 				items.Add(new Item("Rename", () => RenameEntry(entry.Id)));
 				items.Add(new Item("Delete", () => DeleteEntry(entry.Id)));
 
@@ -336,6 +345,95 @@ namespace RelateTerminal
 				else
 				{
 					Console.WriteLine("The relation could not be created.");
+				}
+
+				Console.WriteLine();
+				Menu.Menu.Wait();
+			}
+		}
+
+		static void DestroyRelation(long entryId)
+		{
+			Debug.Assert
+			(
+				entryId >= 1,
+				"The entry ID must be positive."
+			);
+
+			while (true)
+			{
+				var entry = Database.ReadEntry(entryId);
+
+				Console.Clear();
+
+				Console.WriteLine($"\tDestroy relation of {entry}");
+				Console.WriteLine();
+
+				var relatedEntries = Database.ReadRelatedEntries(entry.Id);
+
+				if (relatedEntries.Count <= 0)
+				{
+					Console.WriteLine
+					(
+						$"{entry} is not related to any other entries."
+					);
+
+					break;
+				}
+
+				var items = new List<Item>();
+
+				foreach (var relatedEntry in relatedEntries)
+				{
+					items.Add
+					(
+						new Item
+						(
+							relatedEntry.ToString(),
+							() => DestroyRelation(entry, relatedEntry)
+						)
+					);
+				}
+
+				var menu = new Menu.Menu
+				(
+					items: items,
+					clearsScreen: false,
+					exitLabel: "Go back",
+					displaysOnce: true
+				);
+
+				menu.Display(out bool exited);
+
+				if (exited)
+				{
+					return;
+				}
+			}
+
+			Console.WriteLine();
+			Menu.Menu.Wait();
+
+			void DestroyRelation(Entry firstEntry, Entry secondEntry)
+			{
+				var successful = Database.Delete
+				(
+					new Relation(firstEntry.Id, secondEntry.Id)
+				);
+
+				Console.WriteLine();
+
+				if (successful)
+				{
+					Console.WriteLine
+					(
+						$"Relation {firstEntry}-{secondEntry} " +
+						"successfully destroyed."
+					);
+				}
+				else
+				{
+					Console.WriteLine("The relation could not be destroyed.");
 				}
 
 				Console.WriteLine();
