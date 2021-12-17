@@ -297,14 +297,14 @@ namespace RelateLibrary.Database
 						"SELECT `Id`, `Name` " +
 						"FROM `Entry` " +
 						"INNER JOIN `Relation` " +
-						"ON `Id` = `SecondEntityId` " +
-						"WHERE `FirstEntityId` = @entryId " +
+						"ON `Id` = `SecondEntryId` " +
+						"WHERE `FirstEntryId` = @entryId " +
 						"UNION " +
 						"SELECT `Id`, `Name` " +
 						"FROM `Entry` " +
 						"INNER JOIN `Relation` " +
-						"ON `Id` = `FirstEntityId` " +
-						"WHERE `SecondEntityId` = @entryId;";
+						"ON `Id` = `FirstEntryId` " +
+						"WHERE `SecondEntryId` = @entryId;";
 
 				using (var command = new SQLiteCommand(query, connection))
 				{
