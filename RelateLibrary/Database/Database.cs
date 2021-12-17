@@ -283,6 +283,63 @@ namespace RelateLibrary.Database
 				}
 			}
 		}
+
+		public static List<Entry> ReadRelatedEntries(long entryId)
+		{
+			Debug.Assert
+			(
+				entryId >= 1,
+				"The entry ID must be positive."
+			);
+
+			var entries = new List<Entry>();
+
+			using (var connection = new SQLiteConnection(_connectionString))
+			{
+				connection.Open();
+
+				var query =
+						"SELECT `Id`, `Name` " +
+						"FROM `Entry` " +
+						"INNER JOIN `Relation` " +
+						"ON `Id` = `SecondEntityId` " +
+						"WHERE `FirstEntityId` = @entryId " +
+						"UNION " +
+						"SELECT `Id`, `Name` " +
+						"FROM `Entry` " +
+						"INNER JOIN `Relation` " +
+						"ON `Id` = `FirstEntityId` " +
+						"WHERE `SecondEntityId` = @entryId;";
+
+				using (var command = new SQLiteCommand(query, connection))
+				{
+					_ = command.Parameters.AddWithValue
+					(
+						"@entryId",
+						entryId
+					);
+
+					using (var reader = command.ExecuteReader())
+					{
+						if (reader.HasRows)
+						{
+							while (reader.Read())
+							{
+								var entry = new Entry
+								(
+									reader["Name"].ToString(),
+									long.Parse(reader["Id"].ToString())
+								);
+
+								entries.Add(entry);
+							}
+						}
+					}
+				}
+			}
+
+			return entries;
+		}
 	}
 	public class NotUniqueException : Exception {}
 }

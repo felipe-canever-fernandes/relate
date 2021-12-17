@@ -213,13 +213,28 @@ namespace RelateTerminal
 					return;
 				}
 
+				var items = new List<Item>();
+
+				var relatedEntries = Database.ReadRelatedEntries(entry.Id);
+
+				foreach (var relatedEntry in relatedEntries)
+				{
+					items.Add
+					(
+						new Item
+						(
+							relatedEntry.ToString(),
+							() => DisplayEntry(relatedEntry.Id)
+						)
+					);
+				}
+
+				items.Add(new Item("Rename", () => RenameEntry(entry.Id)));
+				items.Add(new Item("Delete", () => DeleteEntry(entry.Id)));
+
 				var menu = new Menu.Menu
 				(
-					items: new List<Item>
-					{
-						new Item("Rename", () => RenameEntry(entry.Id)),
-						new Item("Delete", () => DeleteEntry(entry.Id))
-					},
+					items: items,
 
 					title: entry.ToString(),
 					exitLabel: "Go back",
