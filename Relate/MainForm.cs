@@ -59,6 +59,14 @@ namespace Relate
 				!Database.EntryExists(filterTextBox.Text);
 		}
 
+		private void CreateEntry()
+		{
+			_ = Database.Create(new Entry(filterTextBox.Text));
+
+			FilterEntriesView();
+			UpdateAddButton();
+		}
+
 		private void filterTextBox_TextChanged
 		(
 			object sender,
@@ -67,6 +75,11 @@ namespace Relate
 		{
 			FilterEntriesView();
 			UpdateAddButton();
+		}
+
+		private void addButton_Click(object sender, System.EventArgs e)
+		{
+			CreateEntry();
 		}
 	}
 }
