@@ -31,6 +31,7 @@
 			this.entriesView = new System.Windows.Forms.DataGridView();
 			this.filterTextBox = new System.Windows.Forms.TextBox();
 			this.addButton = new System.Windows.Forms.Button();
+			this.entryLabel = new System.Windows.Forms.Label();
 			((System.ComponentModel.ISupportInitialize)(this.entriesView)).BeginInit();
 			this.SuspendLayout();
 			// 
@@ -51,8 +52,9 @@
 			this.entriesView.RowHeadersVisible = false;
 			this.entriesView.RowHeadersWidth = 51;
 			this.entriesView.RowTemplate.Height = 24;
-			this.entriesView.Size = new System.Drawing.Size(258, 401);
+			this.entriesView.Size = new System.Drawing.Size(258, 385);
 			this.entriesView.TabIndex = 0;
+			this.entriesView.CellMouseClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.entriesView_CellMouseClick);
 			// 
 			// filterTextBox
 			// 
@@ -75,11 +77,22 @@
 			this.addButton.UseVisualStyleBackColor = true;
 			this.addButton.Click += new System.EventHandler(this.addButton_Click);
 			// 
+			// entryLabel
+			// 
+			this.entryLabel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+			this.entryLabel.AutoSize = true;
+			this.entryLabel.Location = new System.Drawing.Point(12, 428);
+			this.entryLabel.Name = "entryLabel";
+			this.entryLabel.Size = new System.Drawing.Size(37, 16);
+			this.entryLabel.TabIndex = 3;
+			this.entryLabel.Text = "Entry";
+			// 
 			// MainForm
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
 			this.ClientSize = new System.Drawing.Size(282, 453);
+			this.Controls.Add(this.entryLabel);
 			this.Controls.Add(this.addButton);
 			this.Controls.Add(this.filterTextBox);
 			this.Controls.Add(this.entriesView);
@@ -97,6 +110,7 @@
 		private System.Windows.Forms.DataGridView entriesView;
 		private System.Windows.Forms.TextBox filterTextBox;
 		private System.Windows.Forms.Button addButton;
+		private System.Windows.Forms.Label entryLabel;
 	}
 }
 

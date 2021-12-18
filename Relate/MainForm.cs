@@ -10,6 +10,18 @@ namespace Relate
 	public partial class MainForm : Form
 	{
 		private BindingList<Entry> _entries = new BindingList<Entry>();
+		private Entry _selectedEntry;
+		
+		private Entry SelectedEntry
+		{
+			get => _selectedEntry;
+
+			set
+			{
+				_selectedEntry = value;
+				entryLabel.Text = _selectedEntry?.Name ?? "";
+			}
+		}
 
 		public MainForm()
 		{
@@ -18,6 +30,7 @@ namespace Relate
 			SetUpEntriesView();
 			ReadEntries();
 			UpdateAddButton();
+			SelectedEntry = null;
 		}
 
 		private void SetUpEntriesView()
@@ -80,6 +93,15 @@ namespace Relate
 		private void addButton_Click(object sender, System.EventArgs e)
 		{
 			CreateEntry();
+		}
+
+		private void entriesView_CellMouseClick
+		(
+			object sender,
+			DataGridViewCellMouseEventArgs e
+		)
+		{
+			SelectedEntry = entriesView.CurrentRow.DataBoundItem as Entry;
 		}
 	}
 }
