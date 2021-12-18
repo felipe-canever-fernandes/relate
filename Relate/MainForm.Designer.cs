@@ -71,6 +71,7 @@
 			this.Controls.Add(this.filterTextBox);
 			this.Controls.Add(this.entriesView);
 			this.Name = "MainForm";
+			this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
 			this.Text = "RELATE";
 			((System.ComponentModel.ISupportInitialize)(this.entriesView)).EndInit();
 			this.ResumeLayout(false);
