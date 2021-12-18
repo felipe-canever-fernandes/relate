@@ -30,6 +30,7 @@
 		{
 			this.entriesView = new System.Windows.Forms.DataGridView();
 			this.filterTextBox = new System.Windows.Forms.TextBox();
+			this.addButton = new System.Windows.Forms.Button();
 			((System.ComponentModel.ISupportInitialize)(this.entriesView)).BeginInit();
 			this.SuspendLayout();
 			// 
@@ -59,15 +60,26 @@
             | System.Windows.Forms.AnchorStyles.Right)));
 			this.filterTextBox.Location = new System.Drawing.Point(12, 12);
 			this.filterTextBox.Name = "filterTextBox";
-			this.filterTextBox.Size = new System.Drawing.Size(258, 22);
+			this.filterTextBox.Size = new System.Drawing.Size(177, 22);
 			this.filterTextBox.TabIndex = 1;
 			this.filterTextBox.TextChanged += new System.EventHandler(this.filterTextBox_TextChanged);
+			// 
+			// addButton
+			// 
+			this.addButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+			this.addButton.Location = new System.Drawing.Point(195, 11);
+			this.addButton.Name = "addButton";
+			this.addButton.Size = new System.Drawing.Size(75, 23);
+			this.addButton.TabIndex = 2;
+			this.addButton.Text = "Add";
+			this.addButton.UseVisualStyleBackColor = true;
 			// 
 			// MainForm
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
 			this.ClientSize = new System.Drawing.Size(282, 453);
+			this.Controls.Add(this.addButton);
 			this.Controls.Add(this.filterTextBox);
 			this.Controls.Add(this.entriesView);
 			this.Name = "MainForm";
@@ -83,6 +95,7 @@
 
 		private System.Windows.Forms.DataGridView entriesView;
 		private System.Windows.Forms.TextBox filterTextBox;
+		private System.Windows.Forms.Button addButton;
 	}
 }
 
