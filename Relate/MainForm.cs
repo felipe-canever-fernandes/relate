@@ -19,7 +19,17 @@ namespace Relate
 			set
 			{
 				_selectedEntry = value;
-				entryLabel.Text = _selectedEntry?.Name ?? "";
+
+				if (_selectedEntry == null)
+				{
+					entryLabel.Text = "";
+					entryPanel.Enabled = false;
+				}
+				else
+				{
+					entryLabel.Text = _selectedEntry.Name;
+					entryPanel.Enabled = true;
+				}
 			}
 		}
 
@@ -80,6 +90,15 @@ namespace Relate
 			UpdateAddButton();
 		}
 
+		private void DeleteEntry()
+		{
+			_ = Database.Delete(SelectedEntry);
+
+			SelectedEntry = null;
+			FilterEntriesView();
+			UpdateAddButton();
+		}
+
 		private void filterTextBox_TextChanged
 		(
 			object sender,
@@ -102,6 +121,11 @@ namespace Relate
 		)
 		{
 			SelectedEntry = entriesView.CurrentRow.DataBoundItem as Entry;
+		}
+
+		private void deleteButton_Click(object sender, System.EventArgs e)
+		{
+			DeleteEntry();
 		}
 	}
 }
