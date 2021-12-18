@@ -17,6 +17,7 @@ namespace Relate
 
 			SetUpEntriesView();
 			ReadEntries();
+			UpdateAddButton();
 		}
 
 		private void SetUpEntriesView()
@@ -37,11 +38,7 @@ namespace Relate
 			entriesView.DataSource = _entries;
 		}
 
-		private void filterTextBox_TextChanged
-		(
-			object sender,
-			System.EventArgs e
-		)
+		private void FilterEntriesView()
 		{
 			if (filterTextBox.Text.Trim() == "")
 			{
@@ -51,6 +48,19 @@ namespace Relate
 			{
 				UpdateEntriesView(Database.SearchEntry(filterTextBox.Text));
 			}
+		}
+
+		private void UpdateAddButton() =>
+			addButton.Enabled = filterTextBox.Text.Trim() != "";
+
+		private void filterTextBox_TextChanged
+		(
+			object sender,
+			System.EventArgs e
+		)
+		{
+			FilterEntriesView();
+			UpdateAddButton();
 		}
 	}
 }
