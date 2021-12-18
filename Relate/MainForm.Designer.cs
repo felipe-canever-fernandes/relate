@@ -50,7 +50,7 @@
 			this.entriesView.RowHeadersVisible = false;
 			this.entriesView.RowHeadersWidth = 51;
 			this.entriesView.RowTemplate.Height = 24;
-			this.entriesView.Size = new System.Drawing.Size(776, 398);
+			this.entriesView.Size = new System.Drawing.Size(258, 401);
 			this.entriesView.TabIndex = 0;
 			// 
 			// filterTextBox
@@ -59,7 +59,7 @@
             | System.Windows.Forms.AnchorStyles.Right)));
 			this.filterTextBox.Location = new System.Drawing.Point(12, 12);
 			this.filterTextBox.Name = "filterTextBox";
-			this.filterTextBox.Size = new System.Drawing.Size(776, 22);
+			this.filterTextBox.Size = new System.Drawing.Size(258, 22);
 			this.filterTextBox.TabIndex = 1;
 			this.filterTextBox.TextChanged += new System.EventHandler(this.filterTextBox_TextChanged);
 			// 
@@ -67,7 +67,7 @@
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-			this.ClientSize = new System.Drawing.Size(800, 450);
+			this.ClientSize = new System.Drawing.Size(282, 453);
 			this.Controls.Add(this.filterTextBox);
 			this.Controls.Add(this.entriesView);
 			this.Name = "MainForm";
