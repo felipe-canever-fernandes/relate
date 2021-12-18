@@ -50,8 +50,12 @@ namespace Relate
 			}
 		}
 
-		private void UpdateAddButton() =>
-			addButton.Enabled = filterTextBox.Text.Trim() != "";
+		private void UpdateAddButton()
+		{
+			addButton.Enabled =
+				filterTextBox.Text.Trim() != "" &&
+				!Database.EntryExists(filterTextBox.Text);
+		}
 
 		private void filterTextBox_TextChanged
 		(

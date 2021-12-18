@@ -111,6 +111,44 @@ namespace RelateLibrary.Database
 			return entry;
 		}
 
+		public static bool EntryExists(string entryName)
+		{
+			Debug.Assert
+			(
+				entryName != null,
+				"The entry name cannot be null."
+			);
+
+			using (var connection = new SQLiteConnection(_connectionString))
+			{
+				connection.Open();
+
+				using
+				(
+					var command = new SQLiteCommand
+					(
+						"PRAGMA foreign_keys = 1;",
+						connection
+					)
+				)
+				{
+					_ = command.ExecuteNonQuery();
+				}
+
+				var query = @"SELECT * FROM `Entry` WHERE `Name` = @Name;";
+
+				using (var command = new SQLiteCommand(query, connection))
+				{
+					_ = command.Parameters.AddWithValue("@Name", entryName);
+
+					using (var reader = command.ExecuteReader())
+					{
+						return reader.HasRows;
+					}
+				}
+			}
+		}
+
 		public static List<Entry> ReadEntries()
 		{
 			var entries = new List<Entry>();
