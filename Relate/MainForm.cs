@@ -92,6 +92,20 @@ namespace Relate
 
 		private void DeleteEntry()
 		{
+			var result = MessageBox.Show
+			(
+				this,
+				$"Are you sure you want to delete \"{SelectedEntry.Name}\"?",
+				"Delete Entry",
+				MessageBoxButtons.YesNo,
+				MessageBoxIcon.Question
+			);
+
+			if (result == DialogResult.No)
+			{
+				return;
+			}
+
 			_ = Database.Delete(SelectedEntry);
 
 			SelectedEntry = null;
