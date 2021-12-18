@@ -29,8 +29,10 @@ namespace Relate
 				DataGridViewAutoSizeColumnMode.Fill;
 		}
 
-		private void ReadEntries() =>
+		private void ReadEntries()
+		{
 			UpdateEntriesView(Database.ReadEntries());
+		}
 
 		private void UpdateEntriesView(List<Entry> entries)
 		{
