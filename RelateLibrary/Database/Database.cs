@@ -111,7 +111,7 @@ namespace RelateLibrary.Database
 			return entry;
 		}
 
-		public static bool EntryExists(string entryName)
+		public static long GetEntryId(string entryName)
 		{
 			Debug.Assert
 			(
@@ -135,7 +135,7 @@ namespace RelateLibrary.Database
 					_ = command.ExecuteNonQuery();
 				}
 
-				var query = @"SELECT * FROM `Entry` WHERE `Name` = @Name;";
+				var query = "SELECT `Id` FROM `Entry` WHERE `Name` = @Name;";
 
 				using (var command = new SQLiteCommand(query, connection))
 				{
@@ -143,7 +143,11 @@ namespace RelateLibrary.Database
 
 					using (var reader = command.ExecuteReader())
 					{
-						return reader.HasRows;
+						if (!reader.HasRows)
+							return 0;
+
+						_ = reader.Read();
+						return long.Parse(reader["Id"].ToString());
 					}
 				}
 			}

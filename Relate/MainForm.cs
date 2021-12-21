@@ -79,7 +79,7 @@ namespace Relate
 		{
 			addButton.Enabled =
 				filterTextBox.Text.Trim() != "" &&
-				!Database.EntryExists(filterTextBox.Text);
+				Database.GetEntryId(filterTextBox.Text) == 0;
 		}
 
 		private void CreateEntry()
