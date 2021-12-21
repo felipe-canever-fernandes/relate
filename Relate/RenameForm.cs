@@ -24,11 +24,12 @@ namespace Relate
 
 		private void nameTextBox_TextChanged(object sender, System.EventArgs e)
 		{
-			var entryId = Database.GetEntryId(nameTextBox.Text);
+			var entryId = Database.GetEntryId(nameTextBox.Text.Trim());
 
-			renameButton.Enabled =
-				!string.IsNullOrEmpty(nameTextBox.Text.Trim()) &&
-				(entryId == 0 || entryId == Entry.Id);
+			var isEmpty = string.IsNullOrEmpty(nameTextBox.Text.Trim());
+			var isUnique = entryId == 0;
+
+			renameButton.Enabled = !isEmpty && isUnique;
 		}
 
 		private void renameButton_Click(object sender, System.EventArgs e)
