@@ -33,9 +33,9 @@
 			this.addButton = new System.Windows.Forms.Button();
 			this.entryLabel = new System.Windows.Forms.Label();
 			this.entryPanel = new System.Windows.Forms.Panel();
+			this.renameButton = new System.Windows.Forms.Button();
 			this.deleteButton = new System.Windows.Forms.Button();
 			this.searchPanel = new System.Windows.Forms.Panel();
-			this.renameButton = new System.Windows.Forms.Button();
 			((System.ComponentModel.ISupportInitialize)(this.entriesView)).BeginInit();
 			this.entryPanel.SuspendLayout();
 			this.searchPanel.SuspendLayout();
@@ -58,7 +58,7 @@
 			this.entriesView.RowHeadersVisible = false;
 			this.entriesView.RowHeadersWidth = 51;
 			this.entriesView.RowTemplate.Height = 24;
-			this.entriesView.Size = new System.Drawing.Size(258, 360);
+			this.entriesView.Size = new System.Drawing.Size(458, 360);
 			this.entriesView.TabIndex = 0;
 			this.entriesView.CellMouseClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.entriesView_CellMouseClick);
 			// 
@@ -68,14 +68,14 @@
             | System.Windows.Forms.AnchorStyles.Right)));
 			this.filterTextBox.Location = new System.Drawing.Point(3, 3);
 			this.filterTextBox.Name = "filterTextBox";
-			this.filterTextBox.Size = new System.Drawing.Size(171, 22);
+			this.filterTextBox.Size = new System.Drawing.Size(371, 22);
 			this.filterTextBox.TabIndex = 1;
 			this.filterTextBox.TextChanged += new System.EventHandler(this.filterTextBox_TextChanged);
 			// 
 			// addButton
 			// 
 			this.addButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-			this.addButton.Location = new System.Drawing.Point(180, 3);
+			this.addButton.Location = new System.Drawing.Point(380, 3);
 			this.addButton.Name = "addButton";
 			this.addButton.Size = new System.Drawing.Size(75, 23);
 			this.addButton.TabIndex = 2;
@@ -101,13 +101,24 @@
 			this.entryPanel.Controls.Add(this.entryLabel);
 			this.entryPanel.Location = new System.Drawing.Point(12, 46);
 			this.entryPanel.Name = "entryPanel";
-			this.entryPanel.Size = new System.Drawing.Size(258, 29);
+			this.entryPanel.Size = new System.Drawing.Size(458, 29);
 			this.entryPanel.TabIndex = 4;
+			// 
+			// renameButton
+			// 
+			this.renameButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+			this.renameButton.Location = new System.Drawing.Point(299, 3);
+			this.renameButton.Name = "renameButton";
+			this.renameButton.Size = new System.Drawing.Size(75, 23);
+			this.renameButton.TabIndex = 4;
+			this.renameButton.Text = "Rename";
+			this.renameButton.UseVisualStyleBackColor = true;
+			this.renameButton.Click += new System.EventHandler(this.renameButton_Click);
 			// 
 			// deleteButton
 			// 
 			this.deleteButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-			this.deleteButton.Location = new System.Drawing.Point(180, 3);
+			this.deleteButton.Location = new System.Drawing.Point(380, 3);
 			this.deleteButton.Name = "deleteButton";
 			this.deleteButton.Size = new System.Drawing.Size(75, 23);
 			this.deleteButton.TabIndex = 4;
@@ -123,25 +134,14 @@
 			this.searchPanel.Controls.Add(this.addButton);
 			this.searchPanel.Location = new System.Drawing.Point(12, 12);
 			this.searchPanel.Name = "searchPanel";
-			this.searchPanel.Size = new System.Drawing.Size(258, 28);
+			this.searchPanel.Size = new System.Drawing.Size(458, 28);
 			this.searchPanel.TabIndex = 5;
-			// 
-			// renameButton
-			// 
-			this.renameButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-			this.renameButton.Location = new System.Drawing.Point(99, 3);
-			this.renameButton.Name = "renameButton";
-			this.renameButton.Size = new System.Drawing.Size(75, 23);
-			this.renameButton.TabIndex = 4;
-			this.renameButton.Text = "Rename";
-			this.renameButton.UseVisualStyleBackColor = true;
-			this.renameButton.Click += new System.EventHandler(this.renameButton_Click);
 			// 
 			// MainForm
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-			this.ClientSize = new System.Drawing.Size(282, 453);
+			this.ClientSize = new System.Drawing.Size(482, 453);
 			this.Controls.Add(this.searchPanel);
 			this.Controls.Add(this.entryPanel);
 			this.Controls.Add(this.entriesView);
