@@ -141,5 +141,11 @@ namespace Relate
 		{
 			DeleteEntry();
 		}
+
+		private void renameButton_Click(object sender, System.EventArgs e)
+		{
+			var renameForm = new RenameForm();
+			_ = renameForm.ShowDialog(this);
+		}
 	}
 }

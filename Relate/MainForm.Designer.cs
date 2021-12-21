@@ -135,6 +135,7 @@
 			this.renameButton.TabIndex = 4;
 			this.renameButton.Text = "Rename";
 			this.renameButton.UseVisualStyleBackColor = true;
+			this.renameButton.Click += new System.EventHandler(this.renameButton_Click);
 			// 
 			// MainForm
 			// 
