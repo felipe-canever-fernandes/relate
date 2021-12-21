@@ -1,12 +1,40 @@
-﻿using System.Windows.Forms;
+﻿using RelateLibrary;
+using RelateLibrary.Database;
+
+using System.Windows.Forms;
 
 namespace Relate
 {
 	public partial class RenameForm : Form
 	{
-		public RenameForm()
+		private Entry Entry { get; }
+
+		public RenameForm(Entry entry)
 		{
+			Entry = entry;
 			InitializeComponent();
+			Initialize();
+		}
+
+		private void Initialize()
+		{
+			renameLabel.Text = $"Rename \"{Entry.Name}\"";
+			nameTextBox.Text = Entry.Name;
+		}
+
+		private void nameTextBox_TextChanged(object sender, System.EventArgs e)
+		{
+			var entryId = Database.GetEntryId(nameTextBox.Text);
+
+			renameButton.Enabled =
+				!string.IsNullOrEmpty(nameTextBox.Text.Trim()) &&
+				(entryId == 0 || entryId == Entry.Id);
+		}
+
+		private void renameButton_Click(object sender, System.EventArgs e)
+		{
+			Entry.Name = nameTextBox.Text.Trim();
+			_ = Database.Update(Entry);
 		}
 	}
 }

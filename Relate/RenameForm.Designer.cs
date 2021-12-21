@@ -53,6 +53,7 @@
 			this.nameTextBox.Name = "nameTextBox";
 			this.nameTextBox.Size = new System.Drawing.Size(252, 22);
 			this.nameTextBox.TabIndex = 0;
+			this.nameTextBox.TextChanged += new System.EventHandler(this.nameTextBox_TextChanged);
 			// 
 			// renameButton
 			// 
@@ -63,6 +64,7 @@
 			this.renameButton.TabIndex = 1;
 			this.renameButton.Text = "Rename";
 			this.renameButton.UseVisualStyleBackColor = true;
+			this.renameButton.Click += new System.EventHandler(this.renameButton_Click);
 			// 
 			// renameLabel
 			// 

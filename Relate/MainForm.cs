@@ -144,8 +144,14 @@ namespace Relate
 
 		private void renameButton_Click(object sender, System.EventArgs e)
 		{
-			var renameForm = new RenameForm();
-			_ = renameForm.ShowDialog(this);
+			var renameForm = new RenameForm(SelectedEntry);
+			
+			if (renameForm.ShowDialog(this) == DialogResult.OK)
+			{
+				FilterEntriesView();
+				UpdateAddButton();
+				SelectedEntry = SelectedEntry;
+			}
 		}
 	}
 }
