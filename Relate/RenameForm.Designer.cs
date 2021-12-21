@@ -38,6 +38,9 @@
 			// 
 			// renamePanel
 			// 
+			this.renamePanel.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
 			this.renamePanel.Controls.Add(this.renameLabel);
 			this.renamePanel.Controls.Add(this.cancelButton);
 			this.renamePanel.Controls.Add(this.renameButton);
@@ -49,6 +52,9 @@
 			// 
 			// nameTextBox
 			// 
+			this.nameTextBox.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
 			this.nameTextBox.Location = new System.Drawing.Point(0, 19);
 			this.nameTextBox.Name = "nameTextBox";
 			this.nameTextBox.Size = new System.Drawing.Size(252, 22);
@@ -57,6 +63,7 @@
 			// 
 			// renameButton
 			// 
+			this.renameButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
 			this.renameButton.DialogResult = System.Windows.Forms.DialogResult.OK;
 			this.renameButton.Location = new System.Drawing.Point(96, 46);
 			this.renameButton.Name = "renameButton";
@@ -77,6 +84,7 @@
 			// 
 			// cancelButton
 			// 
+			this.cancelButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
 			this.cancelButton.DialogResult = System.Windows.Forms.DialogResult.Cancel;
 			this.cancelButton.Location = new System.Drawing.Point(177, 47);
 			this.cancelButton.Name = "cancelButton";
