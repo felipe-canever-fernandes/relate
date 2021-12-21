@@ -35,6 +35,7 @@
 			this.entryPanel = new System.Windows.Forms.Panel();
 			this.deleteButton = new System.Windows.Forms.Button();
 			this.searchPanel = new System.Windows.Forms.Panel();
+			this.renameButton = new System.Windows.Forms.Button();
 			((System.ComponentModel.ISupportInitialize)(this.entriesView)).BeginInit();
 			this.entryPanel.SuspendLayout();
 			this.searchPanel.SuspendLayout();
@@ -95,6 +96,7 @@
 			// 
 			this.entryPanel.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+			this.entryPanel.Controls.Add(this.renameButton);
 			this.entryPanel.Controls.Add(this.deleteButton);
 			this.entryPanel.Controls.Add(this.entryLabel);
 			this.entryPanel.Location = new System.Drawing.Point(12, 46);
@@ -123,6 +125,16 @@
 			this.searchPanel.Name = "searchPanel";
 			this.searchPanel.Size = new System.Drawing.Size(258, 28);
 			this.searchPanel.TabIndex = 5;
+			// 
+			// renameButton
+			// 
+			this.renameButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+			this.renameButton.Location = new System.Drawing.Point(99, 3);
+			this.renameButton.Name = "renameButton";
+			this.renameButton.Size = new System.Drawing.Size(75, 23);
+			this.renameButton.TabIndex = 4;
+			this.renameButton.Text = "Rename";
+			this.renameButton.UseVisualStyleBackColor = true;
 			// 
 			// MainForm
 			// 
@@ -153,6 +165,7 @@
 		private System.Windows.Forms.Panel entryPanel;
 		private System.Windows.Forms.Button deleteButton;
 		private System.Windows.Forms.Panel searchPanel;
+		private System.Windows.Forms.Button renameButton;
 	}
 }
 
