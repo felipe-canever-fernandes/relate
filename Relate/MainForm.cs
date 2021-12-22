@@ -137,6 +137,7 @@ namespace Relate
 		private void MainForm_Shown(object sender, System.EventArgs e)
 		{
 			ReadEntries();
+			SelectedEntry = null;
 		}
 
 		private void filterTextBox_TextChanged
