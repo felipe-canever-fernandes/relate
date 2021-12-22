@@ -153,7 +153,11 @@ namespace RelateLibrary.Database
 			}
 		}
 
-		public static List<Entry> ReadEntries(string search = "")
+		public static List<Entry> ReadEntries
+		(
+			Entry related = null,
+			string search = ""
+		)
 		{
 			Debug.Assert
 			(
@@ -181,7 +185,29 @@ namespace RelateLibrary.Database
 					_ = command.ExecuteNonQuery();
 				}
 
-				var query = @"SELECT * FROM `Entry`";
+				var query = @"SELECT * FROM";
+
+				if (related == null)
+				{
+					query += " `Entry`";
+				}
+				else
+				{
+					query +=
+						" (" +
+						"SELECT `Id`, `Name` " +
+						"FROM `Entry` " +
+						"INNER JOIN `Relation` " +
+						"ON `Id` = `SecondEntryId` " +
+						"WHERE `FirstEntryId` = @relatedId " +
+						"UNION " +
+						"SELECT `Id`, `Name` " +
+						"FROM `Entry` " +
+						"INNER JOIN `Relation` " +
+						"ON `Id` = `FirstEntryId` " +
+						"WHERE `SecondEntryId` = @relatedId" +
+						")";
+				}
 
 				if (!string.IsNullOrEmpty(search))
 				{
@@ -194,6 +220,15 @@ namespace RelateLibrary.Database
 
 				using (var command = new SQLiteCommand(query, connection))
 				{
+					if (related != null)
+					{
+						_ = command.Parameters.AddWithValue
+						(
+							"@relatedId",
+							related.Id
+						);
+					}
+
 					using (var reader = command.ExecuteReader())
 					{
 						if (reader.HasRows)
@@ -355,75 +390,6 @@ namespace RelateLibrary.Database
 					}
 				}
 			}
-		}
-
-		public static List<Entry> ReadRelatedEntries(long entryId)
-		{
-			Debug.Assert
-			(
-				entryId >= 1,
-				"The entry ID must be positive."
-			);
-
-			var entries = new List<Entry>();
-
-			using (var connection = new SQLiteConnection(_connectionString))
-			{
-				connection.Open();
-
-				using
-				(
-					var command = new SQLiteCommand
-					(
-						"PRAGMA foreign_keys = 1;",
-						connection
-					)
-				)
-				{
-					_ = command.ExecuteNonQuery();
-				}
-
-				var query =
-						"SELECT `Id`, `Name` " +
-						"FROM `Entry` " +
-						"INNER JOIN `Relation` " +
-						"ON `Id` = `SecondEntryId` " +
-						"WHERE `FirstEntryId` = @entryId " +
-						"UNION " +
-						"SELECT `Id`, `Name` " +
-						"FROM `Entry` " +
-						"INNER JOIN `Relation` " +
-						"ON `Id` = `FirstEntryId` " +
-						"WHERE `SecondEntryId` = @entryId;";
-
-				using (var command = new SQLiteCommand(query, connection))
-				{
-					_ = command.Parameters.AddWithValue
-					(
-						"@entryId",
-						entryId
-					);
-
-					using (var reader = command.ExecuteReader())
-					{
-						if (reader.HasRows)
-						{
-							while (reader.Read())
-							{
-								var entry = new Entry
-								(
-									reader["Name"].ToString(),
-									long.Parse(reader["Id"].ToString())
-								);
-
-								entries.Add(entry);
-							}
-						}
-					}
-				}
-			}
-
-			return entries;
 		}
 
 		public static List<Entry> ReadRelatableEntries(long entryId)
