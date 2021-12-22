@@ -1,8 +1,4 @@
 ﻿using RelateLibrary;
-using RelateLibrary.Database;
-
-using System.Collections.Generic;
-using System.ComponentModel;
 using System.Windows.Forms;
 
 namespace Relate
