@@ -21,10 +21,12 @@ namespace Relate
 
 			set
 			{
-				Debug.Assert(value != null);
+				Debug.Assert(!(value is null));
 				_entries = value;
 
 				_entriesDataGridView.DataSource = Entries;
+
+				SelectEntriesDataGridViewRow();
 			}
 		}
 
@@ -59,10 +61,35 @@ namespace Relate
 				DataGridViewAutoSizeColumnMode.Fill;
 		}
 
-		private void FilterEntries() => Entries = new BindingList<Entry>
-		(
-			Database.ReadEntries(null, Filter)
-		);
+		private void FilterEntries()
+		{
+			Entries = new BindingList<Entry>
+			(
+				Database.ReadEntries(null, Filter)
+			);
+		}
+
+		private void SelectEntriesDataGridViewRow()
+		{
+			_entriesDataGridView.ClearSelection();
+
+			if (!(SelectedEntry is null))
+			{
+				HighlightEntriesDataGridViewRow();
+			}
+		}
+
+		private void HighlightEntriesDataGridViewRow()
+		{
+			for (int i = 0; i < Entries.Count; i++)
+			{
+				if (Entries[i].Id == SelectedEntry.Id)
+				{
+					_entriesDataGridView.Rows[i].Selected = true;
+					break;
+				}
+			}
+		}
 
 		private void MainForm_Shown(object sender, System.EventArgs e)
 		{
