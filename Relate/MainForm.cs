@@ -139,8 +139,12 @@ namespace Relate
 					MessageBoxIcon.Error
 				);
 			}
+			else
+			{
+				FilterEntries();
+			}
+		}
 
-			FilterEntries();
 		}
 
 		#endregion
