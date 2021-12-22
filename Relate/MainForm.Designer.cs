@@ -72,6 +72,7 @@
 			this._filterTextBox.Name = "_filterTextBox";
 			this._filterTextBox.Size = new System.Drawing.Size(371, 22);
 			this._filterTextBox.TabIndex = 1;
+			this._filterTextBox.TextChanged += new System.EventHandler(this._filterTextBox_TextChanged);
 			// 
 			// _addButton
 			// 

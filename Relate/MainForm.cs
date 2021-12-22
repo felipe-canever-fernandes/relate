@@ -59,17 +59,23 @@ namespace Relate
 				DataGridViewAutoSizeColumnMode.Fill;
 		}
 
+		private void FilterEntries() => Entries = new BindingList<Entry>
+		(
+			Database.ReadEntries(null, Filter)
+		);
+
 		private void MainForm_Shown(object sender, System.EventArgs e)
 		{
-			Entries = new BindingList<Entry>
-			(
-				Database.ReadEntries(null, Filter)
-			);
-
+			FilterEntries();
 			SetUpEntriesDataGridView();
-
 			SelectedEntry = null;
 		}
+
+		private void _filterTextBox_TextChanged
+		(
+			object sender, System.EventArgs e
+		) =>
+			FilterEntries();
 
 		private void _entriesDataGridView_CellClick
 		(
