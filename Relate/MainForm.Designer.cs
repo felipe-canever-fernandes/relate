@@ -137,6 +137,7 @@
 			this._deleteSelectedEntryButton.TabIndex = 4;
 			this._deleteSelectedEntryButton.Text = "Delete";
 			this._deleteSelectedEntryButton.UseVisualStyleBackColor = true;
+			this._deleteSelectedEntryButton.Click += new System.EventHandler(this._deleteSelectedEntryButton_Click);
 			// 
 			// _filterPanel
 			// 

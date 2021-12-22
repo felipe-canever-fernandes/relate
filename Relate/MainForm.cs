@@ -159,6 +159,41 @@ namespace Relate
 			}
 		}
 
+		private void DeleteEntry()
+		{
+			var answer = MessageBox.Show
+			(
+				this,
+				$"Are you sure you want to delete \"{SelectedEntry.Name}\"?",
+				"Delete entry",
+				MessageBoxButtons.YesNo,
+				MessageBoxIcon.Question,
+				MessageBoxDefaultButton.Button2
+			);
+
+			if (answer == DialogResult.Yes)
+			{
+				var wasDeleteSuccessful = Database.Delete(SelectedEntry);
+
+				if (wasDeleteSuccessful)
+				{
+					SelectedEntry = null;
+					FilterEntries();
+				}
+				else
+				{
+					_ = MessageBox.Show
+					(
+						this,
+						"The entry could not be deleted.",
+						"Delete entry",
+						MessageBoxButtons.OK,
+						MessageBoxIcon.Error
+					);
+				}
+			}
+		}
+
 		private void UpdateEntry()
 		{
 			SelectedEntry = Database.ReadEntry(SelectedEntry.Id);
@@ -198,6 +233,16 @@ namespace Relate
 		)
 		{
 			RenameEntry();
+		}
+
+		#pragma warning disable IDE1006 // Naming Styles
+		private void _deleteSelectedEntryButton_Click
+		#pragma warning restore IDE1006 // Naming Styles
+		(
+			object sender, System.EventArgs e
+		)
+		{
+			DeleteEntry();
 		}
 
 #pragma warning disable IDE1006 // Naming Styles
