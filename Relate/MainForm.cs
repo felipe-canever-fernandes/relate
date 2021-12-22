@@ -63,6 +63,13 @@ namespace Relate
 
 		#region Methods
 
+		private void SetUp()
+		{
+			FilterEntries();
+			SetUpEntriesDataGridView();
+			SelectedEntry = null;
+		}
+
 		private void SetUpEntriesDataGridView()
 		{
 			_entriesDataGridView.Columns["Id"].Visible = false;
@@ -138,9 +145,7 @@ namespace Relate
 
 		private void MainForm_Shown(object sender, System.EventArgs e)
 		{
-			FilterEntries();
-			SetUpEntriesDataGridView();
-			SelectedEntry = null;
+			SetUp();
 		}
 
 		#pragma warning disable IDE1006 // Naming Styles
