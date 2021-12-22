@@ -67,6 +67,16 @@ namespace Relate
 			(
 				Database.ReadEntries(null, Filter)
 			);
+
+			UpdateAddButton();
+		}
+
+		private void UpdateAddButton()
+		{
+			var isFilterEmpty = string.IsNullOrEmpty(Filter);
+			var entryAlreadyExists = Database.GetEntryId(Filter) > 0;
+
+			_addButton.Enabled = !isFilterEmpty && !entryAlreadyExists;
 		}
 
 		private void SelectEntriesDataGridViewRow()
@@ -101,14 +111,18 @@ namespace Relate
 		private void _filterTextBox_TextChanged
 		(
 			object sender, System.EventArgs e
-		) =>
+		)
+		{
 			FilterEntries();
+		}
 
 		private void _entriesDataGridView_CellClick
 		(
 			object sender, DataGridViewCellEventArgs e
-		) =>
+		)
+		{
 			SelectedEntry =
 				_entriesDataGridView.CurrentRow.DataBoundItem as Entry;
+		}
 	}
 }
