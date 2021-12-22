@@ -73,5 +73,14 @@ namespace Relate
 
 			SelectedEntry = null;
 		}
+
+		private void _entriesDataGridView_CellClick
+		(
+			object sender, DataGridViewCellEventArgs e
+		)
+		{
+			SelectedEntry =
+				_entriesDataGridView.CurrentRow.DataBoundItem as Entry;
+		}
 	}
 }

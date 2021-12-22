@@ -62,6 +62,7 @@
 			this._entriesDataGridView.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
 			this._entriesDataGridView.Size = new System.Drawing.Size(458, 342);
 			this._entriesDataGridView.TabIndex = 0;
+			this._entriesDataGridView.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this._entriesDataGridView_CellClick);
 			// 
 			// _filterTextBox
 			// 
