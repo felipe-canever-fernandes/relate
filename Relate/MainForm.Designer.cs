@@ -83,6 +83,7 @@
 			this._addButton.TabIndex = 2;
 			this._addButton.Text = "Add";
 			this._addButton.UseVisualStyleBackColor = true;
+			this._addButton.Click += new System.EventHandler(this._addButton_Click);
 			// 
 			// _selectedEntryNameLabel
 			// 

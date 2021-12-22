@@ -111,6 +111,27 @@ namespace Relate
 			}
 		}
 
+		private void AddEntry()
+		{
+			var entry = new Entry(Filter);
+			var entryId = Database.Create(entry);
+
+
+			if (entryId <= 0)
+			{
+				_ = MessageBox.Show
+				(
+					this,
+					"The entry could not be added.",
+					"Add entry",
+					MessageBoxButtons.OK,
+					MessageBoxIcon.Error
+				);
+			}
+
+			FilterEntries();
+		}
+
 		#endregion
 
 		#region Event Handlers
@@ -130,6 +151,13 @@ namespace Relate
 		)
 		{
 			FilterEntries();
+		}
+
+		#pragma warning disable IDE1006 // Naming Styles
+		private void _addButton_Click(object sender, System.EventArgs e)
+		#pragma warning restore IDE1006 // Naming Styles
+		{
+			AddEntry();
 		}
 
 		#pragma warning disable IDE1006 // Naming Styles
