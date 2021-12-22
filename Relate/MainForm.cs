@@ -36,11 +36,7 @@ namespace Relate
 		public MainForm()
 		{
 			InitializeComponent();
-
 			SetUpEntriesView();
-			ReadEntries();
-			UpdateAddButton();
-			SelectedEntry = null;
 		}
 
 		private void SetUpEntriesView()
@@ -61,6 +57,7 @@ namespace Relate
 		{
 			_entries = new BindingList<Entry>(entries);
 			entriesView.DataSource = _entries;
+			RefreshSelection();
 		}
 
 		private void FilterEntriesView()
@@ -72,6 +69,25 @@ namespace Relate
 			else
 			{
 				UpdateEntriesView(Database.SearchEntry(filterTextBox.Text));
+			}
+		}
+
+		private void RefreshSelection()
+		{
+			if (SelectedEntry == null)
+			{
+				entriesView.ClearSelection();
+			}
+			else
+			{
+				for (var i = 0; i < _entries.Count; i++)
+				{
+					if (_entries[i].Id == SelectedEntry.Id)
+					{
+						entriesView.Rows[i].Selected = true;
+						break;
+					}
+				}
 			}
 		}
 
@@ -111,6 +127,11 @@ namespace Relate
 			SelectedEntry = null;
 			FilterEntriesView();
 			UpdateAddButton();
+		}
+
+		private void MainForm_Shown(object sender, System.EventArgs e)
+		{
+			ReadEntries();
 		}
 
 		private void filterTextBox_TextChanged

@@ -58,6 +58,7 @@
 			this.entriesView.RowHeadersVisible = false;
 			this.entriesView.RowHeadersWidth = 51;
 			this.entriesView.RowTemplate.Height = 24;
+			this.entriesView.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
 			this.entriesView.Size = new System.Drawing.Size(458, 360);
 			this.entriesView.TabIndex = 0;
 			this.entriesView.CellMouseClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.entriesView_CellMouseClick);
@@ -148,6 +149,7 @@
 			this.Name = "MainForm";
 			this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
 			this.Text = "RELATE";
+			this.Shown += new System.EventHandler(this.MainForm_Shown);
 			((System.ComponentModel.ISupportInitialize)(this.entriesView)).EndInit();
 			this.entryPanel.ResumeLayout(false);
 			this.entryPanel.PerformLayout();
