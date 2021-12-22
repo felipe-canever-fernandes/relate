@@ -153,68 +153,16 @@ namespace RelateLibrary.Database
 			}
 		}
 
-		public static List<Entry> ReadEntries()
-		{
-			var entries = new List<Entry>();
-
-			using (var connection = new SQLiteConnection(_connectionString))
-			{
-				connection.Open();
-
-				using
-				(
-					var command = new SQLiteCommand
-					(
-						"PRAGMA foreign_keys = 1;",
-						connection
-					)
-				)
-				{
-					_ = command.ExecuteNonQuery();
-				}
-
-				var query = @"SELECT * FROM `Entry`;";
-
-				using (var command = new SQLiteCommand(query, connection))
-				{
-					using (var reader = command.ExecuteReader())
-					{
-						if (reader.HasRows)
-						{
-							while (reader.Read())
-							{
-								var entry = new Entry
-								(
-									reader["Name"].ToString(),
-									long.Parse(reader["Id"].ToString())
-								);
-
-								entries.Add(entry);
-							}
-						}
-					}
-				}
-			}
-
-			return entries;
-		}
-
-		public static List<Entry> SearchEntry(string search)
+		public static List<Entry> ReadEntries(string search = "")
 		{
 			Debug.Assert
 			(
-				!string.IsNullOrEmpty(search),
+				search != null,
 				"The search cannot be null or empty."
 			);
 
 			search = search.Trim();
 
-			Debug.Assert
-			(
-				search != "",
-				"The search cannot be only whitespace."
-			);
-
 			var entries = new List<Entry>();
 
 			using (var connection = new SQLiteConnection(_connectionString))
@@ -233,15 +181,19 @@ namespace RelateLibrary.Database
 					_ = command.ExecuteNonQuery();
 				}
 
-				var query =
-						"SELECT * FROM `Entry`" +
-						$"WHERE `Name` LIKE \"%{search}%\"" +
-						"COLLATE NOCASE;";
+				var query = @"SELECT * FROM `Entry`";
+
+				if (!string.IsNullOrEmpty(search))
+				{
+					query +=
+						$" WHERE `Name` LIKE \"%{search}%\"" +
+						"COLLATE NOCASE";
+				}
+
+				query += ";";
 
 				using (var command = new SQLiteCommand(query, connection))
 				{
-					_ = command.Parameters.AddWithValue("@search", search);
-
 					using (var reader = command.ExecuteReader())
 					{
 						if (reader.HasRows)

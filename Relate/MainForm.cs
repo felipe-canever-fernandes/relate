@@ -62,14 +62,7 @@ namespace Relate
 
 		private void FilterEntriesView()
 		{
-			if (filterTextBox.Text.Trim() == "")
-			{
-				UpdateEntriesView(Database.ReadEntries());
-			}
-			else
-			{
-				UpdateEntriesView(Database.SearchEntry(filterTextBox.Text));
-			}
+			UpdateEntriesView(Database.ReadEntries(filterTextBox.Text));
 		}
 
 		private void RefreshSelection()
