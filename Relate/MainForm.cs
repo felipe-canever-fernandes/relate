@@ -13,45 +13,5 @@ namespace Relate
 		{
 			InitializeComponent();
 		}
-
-		private void MainForm_Shown(object sender, System.EventArgs e)
-		{
-		}
-
-		private void filterTextBox_TextChanged
-		(
-			object sender,
-			System.EventArgs e
-		)
-		{
-		}
-
-		private void addButton_Click(object sender, System.EventArgs e)
-		{
-		}
-
-		private void renameButton_Click(object sender, System.EventArgs e)
-		{
-		}
-
-		private void deleteButton_Click(object sender, System.EventArgs e)
-		{
-		}
-
-		private void relatedCheckBox_CheckedChanged
-		(
-			object sender,
-			System.EventArgs e
-		)
-		{
-		}
-
-		private void entriesView_CellMouseClick
-		(
-			object sender,
-			DataGridViewCellMouseEventArgs e
-		)
-		{
-		}
 	}
 }

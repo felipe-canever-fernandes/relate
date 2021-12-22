@@ -33,10 +33,10 @@
 			this.addButton = new System.Windows.Forms.Button();
 			this.entryLabel = new System.Windows.Forms.Label();
 			this.entryPanel = new System.Windows.Forms.Panel();
+			this.relatedCheckBox = new System.Windows.Forms.CheckBox();
 			this.renameButton = new System.Windows.Forms.Button();
 			this.deleteButton = new System.Windows.Forms.Button();
 			this.searchPanel = new System.Windows.Forms.Panel();
-			this.relatedCheckBox = new System.Windows.Forms.CheckBox();
 			((System.ComponentModel.ISupportInitialize)(this.entriesView)).BeginInit();
 			this.entryPanel.SuspendLayout();
 			this.searchPanel.SuspendLayout();
@@ -62,7 +62,6 @@
 			this.entriesView.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
 			this.entriesView.Size = new System.Drawing.Size(458, 342);
 			this.entriesView.TabIndex = 0;
-			this.entriesView.CellMouseClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.entriesView_CellMouseClick);
 			// 
 			// filterTextBox
 			// 
@@ -72,7 +71,6 @@
 			this.filterTextBox.Name = "filterTextBox";
 			this.filterTextBox.Size = new System.Drawing.Size(371, 22);
 			this.filterTextBox.TabIndex = 1;
-			this.filterTextBox.TextChanged += new System.EventHandler(this.filterTextBox_TextChanged);
 			// 
 			// addButton
 			// 
@@ -83,7 +81,6 @@
 			this.addButton.TabIndex = 2;
 			this.addButton.Text = "Add";
 			this.addButton.UseVisualStyleBackColor = true;
-			this.addButton.Click += new System.EventHandler(this.addButton_Click);
 			// 
 			// entryLabel
 			// 
@@ -107,6 +104,16 @@
 			this.entryPanel.Size = new System.Drawing.Size(458, 47);
 			this.entryPanel.TabIndex = 4;
 			// 
+			// relatedCheckBox
+			// 
+			this.relatedCheckBox.AutoSize = true;
+			this.relatedCheckBox.Location = new System.Drawing.Point(6, 25);
+			this.relatedCheckBox.Name = "relatedCheckBox";
+			this.relatedCheckBox.Size = new System.Drawing.Size(77, 20);
+			this.relatedCheckBox.TabIndex = 5;
+			this.relatedCheckBox.Text = "Related";
+			this.relatedCheckBox.UseVisualStyleBackColor = true;
+			// 
 			// renameButton
 			// 
 			this.renameButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
@@ -116,7 +123,6 @@
 			this.renameButton.TabIndex = 4;
 			this.renameButton.Text = "Rename";
 			this.renameButton.UseVisualStyleBackColor = true;
-			this.renameButton.Click += new System.EventHandler(this.renameButton_Click);
 			// 
 			// deleteButton
 			// 
@@ -127,7 +133,6 @@
 			this.deleteButton.TabIndex = 4;
 			this.deleteButton.Text = "Delete";
 			this.deleteButton.UseVisualStyleBackColor = true;
-			this.deleteButton.Click += new System.EventHandler(this.deleteButton_Click);
 			// 
 			// searchPanel
 			// 
@@ -140,17 +145,6 @@
 			this.searchPanel.Size = new System.Drawing.Size(458, 28);
 			this.searchPanel.TabIndex = 5;
 			// 
-			// relatedCheckBox
-			// 
-			this.relatedCheckBox.AutoSize = true;
-			this.relatedCheckBox.Location = new System.Drawing.Point(6, 25);
-			this.relatedCheckBox.Name = "relatedCheckBox";
-			this.relatedCheckBox.Size = new System.Drawing.Size(77, 20);
-			this.relatedCheckBox.TabIndex = 5;
-			this.relatedCheckBox.Text = "Related";
-			this.relatedCheckBox.UseVisualStyleBackColor = true;
-			this.relatedCheckBox.CheckedChanged += new System.EventHandler(this.relatedCheckBox_CheckedChanged);
-			// 
 			// MainForm
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -162,7 +156,6 @@
 			this.Name = "MainForm";
 			this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
 			this.Text = "RELATE";
-			this.Shown += new System.EventHandler(this.MainForm_Shown);
 			((System.ComponentModel.ISupportInitialize)(this.entriesView)).EndInit();
 			this.entryPanel.ResumeLayout(false);
 			this.entryPanel.PerformLayout();
