@@ -16,7 +16,11 @@ namespace Relate
 
 		#endregion
 
-		public MainForm() => InitializeComponent();
+		public MainForm()
+		{
+			InitializeComponent();
+			ActiveControl = _filterTextBox;
+		}
 
 		#region Properties
 
