@@ -54,12 +54,22 @@ namespace Relate
 			}
 		}
 
+		private void SetUpEntriesDataGridView()
+		{
+			_entriesDataGridView.Columns["Id"].Visible = false;
+
+			_entriesDataGridView.Columns["Name"].AutoSizeMode =
+				DataGridViewAutoSizeColumnMode.Fill;
+		}
+
 		private void MainForm_Shown(object sender, System.EventArgs e)
 		{
 			Entries = new BindingList<Entry>
 			(
 				Database.ReadEntries(null, Filter)
 			);
+
+			SetUpEntriesDataGridView();
 
 			SelectedEntry = null;
 		}
