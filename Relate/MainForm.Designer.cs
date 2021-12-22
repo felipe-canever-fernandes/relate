@@ -107,7 +107,7 @@
 			// _relatedEntriesCheckBox
 			// 
 			this._relatedEntriesCheckBox.AutoSize = true;
-			this._relatedEntriesCheckBox.Location = new System.Drawing.Point(6, 25);
+			this._relatedEntriesCheckBox.Location = new System.Drawing.Point(3, 24);
 			this._relatedEntriesCheckBox.Name = "_relatedEntriesCheckBox";
 			this._relatedEntriesCheckBox.Size = new System.Drawing.Size(77, 20);
 			this._relatedEntriesCheckBox.TabIndex = 5;
