@@ -7,35 +7,62 @@ namespace Relate
 {
 	public partial class RenameForm : Form
 	{
-		private Entry Entry { get; }
-
 		public RenameForm(Entry entry)
 		{
 			Entry = entry;
 			InitializeComponent();
-			Initialize();
+			SetUp();
 		}
 
-		private void Initialize()
+		#region Properties
+
+		private Entry Entry { get; }
+		private string EntryName => nameTextBox.Text.Trim();
+
+		#endregion
+
+		#region Methods
+
+		private void SetUp()
 		{
 			renameLabel.Text = $"Rename \"{Entry.Name}\"";
 			nameTextBox.Text = Entry.Name;
 		}
 
-		private void nameTextBox_TextChanged(object sender, System.EventArgs e)
+		private void UpdateRenameButton()
 		{
-			var entryId = Database.GetEntryId(nameTextBox.Text.Trim());
+			var entryId = Database.GetEntryId(EntryName);
 
-			var isEmpty = string.IsNullOrEmpty(nameTextBox.Text.Trim());
+			var isEmpty = string.IsNullOrEmpty(EntryName);
 			var isUnique = entryId == 0;
 
 			renameButton.Enabled = !isEmpty && isUnique;
 		}
 
-		private void renameButton_Click(object sender, System.EventArgs e)
+		private void RenameEntry()
 		{
-			Entry.Name = nameTextBox.Text.Trim();
+			Entry.Name = EntryName;
 			_ = Database.Update(Entry);
 		}
+
+		#endregion
+
+		#region Event Handlers
+
+		#pragma warning disable IDE1006 // Naming Styles
+		private void nameTextBox_TextChanged(object sender, System.EventArgs e)
+		#pragma warning restore IDE1006 // Naming Styles
+		{
+			UpdateRenameButton();
+		}
+
+		#pragma warning disable IDE1006 // Naming Styles
+		private void renameButton_Click(object sender, System.EventArgs e)
+		#pragma warning restore IDE1006 // Naming Styles
+		{
+			RenameEntry();
+		}
+
+		#endregion
 	}
 }
