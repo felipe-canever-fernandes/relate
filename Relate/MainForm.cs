@@ -9,10 +9,16 @@ namespace Relate
 {
 	public partial class MainForm : Form
 	{
+		#region Fields
+
 		private BindingList<Entry> _entries;
 		private Entry _selectedEntry;
 
+		#endregion
+
 		public MainForm() => InitializeComponent();
+
+		#region Properties
 
 		private string Filter => _filterTextBox.Text.Trim();
 		private BindingList<Entry> Entries
@@ -52,6 +58,10 @@ namespace Relate
 				}
 			}
 		}
+
+		#endregion
+
+		#region Methods
 
 		private void SetUpEntriesDataGridView()
 		{
@@ -101,6 +111,10 @@ namespace Relate
 			}
 		}
 
+		#endregion
+
+		#region Event Handlers
+
 		private void MainForm_Shown(object sender, System.EventArgs e)
 		{
 			FilterEntries();
@@ -127,6 +141,8 @@ namespace Relate
 		{
 			SelectedEntry =
 				_entriesDataGridView.CurrentRow.DataBoundItem as Entry;
-		}
+		} 
+
+		#endregion
 	}
 }
