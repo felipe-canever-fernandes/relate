@@ -216,7 +216,7 @@ namespace RelateLibrary.Database
 						"COLLATE NOCASE";
 				}
 
-				query += ";";
+				query += " ORDER BY `Name`;";
 
 				using (var command = new SQLiteCommand(query, connection))
 				{
