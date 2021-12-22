@@ -36,6 +36,7 @@
 			this.renameButton = new System.Windows.Forms.Button();
 			this.deleteButton = new System.Windows.Forms.Button();
 			this.searchPanel = new System.Windows.Forms.Panel();
+			this.relatedCheckBox = new System.Windows.Forms.CheckBox();
 			((System.ComponentModel.ISupportInitialize)(this.entriesView)).BeginInit();
 			this.entryPanel.SuspendLayout();
 			this.searchPanel.SuspendLayout();
@@ -51,7 +52,7 @@
             | System.Windows.Forms.AnchorStyles.Right)));
 			this.entriesView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
 			this.entriesView.ColumnHeadersVisible = false;
-			this.entriesView.Location = new System.Drawing.Point(12, 81);
+			this.entriesView.Location = new System.Drawing.Point(12, 99);
 			this.entriesView.MultiSelect = false;
 			this.entriesView.Name = "entriesView";
 			this.entriesView.ReadOnly = true;
@@ -59,7 +60,7 @@
 			this.entriesView.RowHeadersWidth = 51;
 			this.entriesView.RowTemplate.Height = 24;
 			this.entriesView.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-			this.entriesView.Size = new System.Drawing.Size(458, 360);
+			this.entriesView.Size = new System.Drawing.Size(458, 342);
 			this.entriesView.TabIndex = 0;
 			this.entriesView.CellMouseClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.entriesView_CellMouseClick);
 			// 
@@ -97,12 +98,13 @@
 			// 
 			this.entryPanel.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+			this.entryPanel.Controls.Add(this.relatedCheckBox);
 			this.entryPanel.Controls.Add(this.renameButton);
 			this.entryPanel.Controls.Add(this.deleteButton);
 			this.entryPanel.Controls.Add(this.entryLabel);
 			this.entryPanel.Location = new System.Drawing.Point(12, 46);
 			this.entryPanel.Name = "entryPanel";
-			this.entryPanel.Size = new System.Drawing.Size(458, 29);
+			this.entryPanel.Size = new System.Drawing.Size(458, 47);
 			this.entryPanel.TabIndex = 4;
 			// 
 			// renameButton
@@ -138,6 +140,17 @@
 			this.searchPanel.Size = new System.Drawing.Size(458, 28);
 			this.searchPanel.TabIndex = 5;
 			// 
+			// relatedCheckBox
+			// 
+			this.relatedCheckBox.AutoSize = true;
+			this.relatedCheckBox.Location = new System.Drawing.Point(6, 25);
+			this.relatedCheckBox.Name = "relatedCheckBox";
+			this.relatedCheckBox.Size = new System.Drawing.Size(77, 20);
+			this.relatedCheckBox.TabIndex = 5;
+			this.relatedCheckBox.Text = "Related";
+			this.relatedCheckBox.UseVisualStyleBackColor = true;
+			this.relatedCheckBox.CheckedChanged += new System.EventHandler(this.relatedCheckBox_CheckedChanged);
+			// 
 			// MainForm
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -169,6 +182,7 @@
 		private System.Windows.Forms.Button deleteButton;
 		private System.Windows.Forms.Panel searchPanel;
 		private System.Windows.Forms.Button renameButton;
+		private System.Windows.Forms.CheckBox relatedCheckBox;
 	}
 }
 

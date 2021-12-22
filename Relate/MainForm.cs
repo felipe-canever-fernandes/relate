@@ -62,7 +62,19 @@ namespace Relate
 
 		private void FilterEntriesView()
 		{
-			UpdateEntriesView(Database.ReadEntries(filterTextBox.Text));
+			var shouldFilterRelated =
+				SelectedEntry != null && relatedCheckBox.Checked;
+
+			var related = shouldFilterRelated ? SelectedEntry : null;
+
+			var entries = Database.ReadEntries(related, filterTextBox.Text);
+			
+			if (shouldFilterRelated)
+			{
+				entries.Insert(0, SelectedEntry);
+			}
+
+			UpdateEntriesView(entries);
 		}
 
 		private void RefreshSelection()
@@ -166,6 +178,15 @@ namespace Relate
 				UpdateAddButton();
 				SelectedEntry = SelectedEntry;
 			}
+		}
+
+		private void relatedCheckBox_CheckedChanged
+		(
+			object sender,
+			System.EventArgs e
+		)
+		{
+			FilterEntriesView();
 		}
 	}
 }
