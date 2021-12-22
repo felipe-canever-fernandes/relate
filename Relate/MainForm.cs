@@ -30,11 +30,7 @@ namespace Relate
 		{
 		}
 
-		private void entriesView_CellMouseClick
-		(
-			object sender,
-			DataGridViewCellMouseEventArgs e
-		)
+		private void renameButton_Click(object sender, System.EventArgs e)
 		{
 		}
 
@@ -42,14 +38,18 @@ namespace Relate
 		{
 		}
 
-		private void renameButton_Click(object sender, System.EventArgs e)
-		{
-		}
-
 		private void relatedCheckBox_CheckedChanged
 		(
 			object sender,
 			System.EventArgs e
+		)
+		{
+		}
+
+		private void entriesView_CellMouseClick
+		(
+			object sender,
+			DataGridViewCellMouseEventArgs e
 		)
 		{
 		}
