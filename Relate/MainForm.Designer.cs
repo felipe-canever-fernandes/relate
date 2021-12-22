@@ -126,6 +126,7 @@
 			this._renameSelectedEntryButton.TabIndex = 4;
 			this._renameSelectedEntryButton.Text = "Rename";
 			this._renameSelectedEntryButton.UseVisualStyleBackColor = true;
+			this._renameSelectedEntryButton.Click += new System.EventHandler(this._renameSelectedEntryButton_Click);
 			// 
 			// _deleteSelectedEntryButton
 			// 

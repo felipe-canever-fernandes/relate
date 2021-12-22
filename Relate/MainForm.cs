@@ -145,6 +145,15 @@ namespace Relate
 			}
 		}
 
+		private void RenameEntry()
+		{
+			var renameForm = new RenameForm(SelectedEntry);
+			var answer = renameForm.ShowDialog();
+
+			if (answer == DialogResult.OK)
+			{
+				FilterEntries();
+			}
 		}
 
 		#endregion
@@ -174,6 +183,16 @@ namespace Relate
 		}
 
 		#pragma warning disable IDE1006 // Naming Styles
+		private void _renameSelectedEntryButton_Click
+		#pragma warning restore IDE1006 // Naming Styles
+		(
+			object sender, System.EventArgs e
+		)
+		{
+			RenameEntry();
+		}
+
+#pragma warning disable IDE1006 // Naming Styles
 		private void _entriesDataGridView_CellClick
 		#pragma warning restore IDE1006 // Naming Styles
 		(
@@ -182,7 +201,7 @@ namespace Relate
 		{
 			SelectedEntry =
 				_entriesDataGridView.CurrentRow.DataBoundItem as Entry;
-		} 
+		}
 
 		#endregion
 	}
