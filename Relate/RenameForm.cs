@@ -10,6 +10,8 @@ namespace Relate
 		public RenameForm(Entry entry)
 		{
 			Entry = entry;
+			WasRenameSuccessful = false;
+
 			InitializeComponent();
 			SetUp();
 		}
@@ -18,6 +20,7 @@ namespace Relate
 
 		private Entry Entry { get; }
 		private string EntryName => nameTextBox.Text.Trim();
+		private bool WasRenameSuccessful { get; set; }
 
 		#endregion
 
@@ -42,12 +45,29 @@ namespace Relate
 		private void RenameEntry()
 		{
 			Entry.Name = EntryName;
-			_ = Database.Update(Entry);
+			WasRenameSuccessful = Database.Update(Entry);
 		}
 
 		#endregion
 
 		#region Event Handlers
+
+		private void RenameForm_FormClosing(object sender, FormClosingEventArgs e)
+		{
+			if (!WasRenameSuccessful)
+			{
+				_ = MessageBox.Show
+				(
+					this,
+					"The entry could not be renamed.",
+					"Rename entry",
+					MessageBoxButtons.OK,
+					MessageBoxIcon.Error
+				);
+
+				e.Cancel = true;
+			}
+		}
 
 		#pragma warning disable IDE1006 // Naming Styles
 		private void nameTextBox_TextChanged(object sender, System.EventArgs e)

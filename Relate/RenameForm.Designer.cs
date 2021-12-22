@@ -29,10 +29,10 @@
 		private void InitializeComponent()
 		{
 			this.renamePanel = new System.Windows.Forms.Panel();
-			this.nameTextBox = new System.Windows.Forms.TextBox();
-			this.renameButton = new System.Windows.Forms.Button();
 			this.renameLabel = new System.Windows.Forms.Label();
 			this.cancelButton = new System.Windows.Forms.Button();
+			this.renameButton = new System.Windows.Forms.Button();
+			this.nameTextBox = new System.Windows.Forms.TextBox();
 			this.renamePanel.SuspendLayout();
 			this.SuspendLayout();
 			// 
@@ -49,29 +49,6 @@
 			this.renamePanel.Name = "renamePanel";
 			this.renamePanel.Size = new System.Drawing.Size(258, 72);
 			this.renamePanel.TabIndex = 0;
-			// 
-			// nameTextBox
-			// 
-			this.nameTextBox.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-			this.nameTextBox.Location = new System.Drawing.Point(0, 19);
-			this.nameTextBox.Name = "nameTextBox";
-			this.nameTextBox.Size = new System.Drawing.Size(252, 22);
-			this.nameTextBox.TabIndex = 0;
-			this.nameTextBox.TextChanged += new System.EventHandler(this.nameTextBox_TextChanged);
-			// 
-			// renameButton
-			// 
-			this.renameButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-			this.renameButton.DialogResult = System.Windows.Forms.DialogResult.OK;
-			this.renameButton.Location = new System.Drawing.Point(96, 46);
-			this.renameButton.Name = "renameButton";
-			this.renameButton.Size = new System.Drawing.Size(75, 23);
-			this.renameButton.TabIndex = 1;
-			this.renameButton.Text = "Rename";
-			this.renameButton.UseVisualStyleBackColor = true;
-			this.renameButton.Click += new System.EventHandler(this.renameButton_Click);
 			// 
 			// renameLabel
 			// 
@@ -93,6 +70,29 @@
 			this.cancelButton.Text = "Cancel";
 			this.cancelButton.UseVisualStyleBackColor = true;
 			// 
+			// renameButton
+			// 
+			this.renameButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+			this.renameButton.DialogResult = System.Windows.Forms.DialogResult.OK;
+			this.renameButton.Location = new System.Drawing.Point(96, 46);
+			this.renameButton.Name = "renameButton";
+			this.renameButton.Size = new System.Drawing.Size(75, 23);
+			this.renameButton.TabIndex = 1;
+			this.renameButton.Text = "Rename";
+			this.renameButton.UseVisualStyleBackColor = true;
+			this.renameButton.Click += new System.EventHandler(this.renameButton_Click);
+			// 
+			// nameTextBox
+			// 
+			this.nameTextBox.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+			this.nameTextBox.Location = new System.Drawing.Point(0, 19);
+			this.nameTextBox.Name = "nameTextBox";
+			this.nameTextBox.Size = new System.Drawing.Size(252, 22);
+			this.nameTextBox.TabIndex = 0;
+			this.nameTextBox.TextChanged += new System.EventHandler(this.nameTextBox_TextChanged);
+			// 
 			// RenameForm
 			// 
 			this.AcceptButton = this.renameButton;
@@ -105,6 +105,7 @@
 			this.Name = "RenameForm";
 			this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
 			this.Text = "Rename";
+			this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.RenameForm_FormClosing);
 			this.renamePanel.ResumeLayout(false);
 			this.renamePanel.PerformLayout();
 			this.ResumeLayout(false);
