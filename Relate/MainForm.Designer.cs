@@ -156,6 +156,7 @@
 			this.Name = "MainForm";
 			this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
 			this.Text = "RELATE";
+			this.Shown += new System.EventHandler(this.MainForm_Shown);
 			((System.ComponentModel.ISupportInitialize)(this._entriesDataGridView)).EndInit();
 			this._selectedEntryPanel.ResumeLayout(false);
 			this._selectedEntryPanel.PerformLayout();
