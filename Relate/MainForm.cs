@@ -12,10 +12,7 @@ namespace Relate
 		private BindingList<Entry> _entries;
 		private Entry _selectedEntry;
 
-		public MainForm()
-		{
-			InitializeComponent();
-		}
+		public MainForm() => InitializeComponent();
 
 		private string Filter => _filterTextBox.Text.Trim();
 		private BindingList<Entry> Entries
@@ -77,10 +74,8 @@ namespace Relate
 		private void _entriesDataGridView_CellClick
 		(
 			object sender, DataGridViewCellEventArgs e
-		)
-		{
+		) =>
 			SelectedEntry =
 				_entriesDataGridView.CurrentRow.DataBoundItem as Entry;
-		}
 	}
 }
