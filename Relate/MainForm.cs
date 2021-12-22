@@ -108,7 +108,9 @@ namespace Relate
 			SelectedEntry = null;
 		}
 
+		#pragma warning disable IDE1006 // Naming Styles
 		private void _filterTextBox_TextChanged
+		#pragma warning restore IDE1006 // Naming Styles
 		(
 			object sender, System.EventArgs e
 		)
@@ -116,7 +118,9 @@ namespace Relate
 			FilterEntries();
 		}
 
+		#pragma warning disable IDE1006 // Naming Styles
 		private void _entriesDataGridView_CellClick
+		#pragma warning restore IDE1006 // Naming Styles
 		(
 			object sender, DataGridViewCellEventArgs e
 		)
