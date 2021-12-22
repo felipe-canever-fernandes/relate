@@ -152,8 +152,14 @@ namespace Relate
 
 			if (answer == DialogResult.OK)
 			{
+				UpdateEntry();
 				FilterEntries();
 			}
+		}
+
+		private void UpdateEntry()
+		{
+			SelectedEntry = Database.ReadEntry(SelectedEntry.Id);
 		}
 
 		#endregion
