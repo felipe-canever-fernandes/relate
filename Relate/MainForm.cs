@@ -117,6 +117,8 @@ namespace Relate
 				if (Entries[i].Id == SelectedEntry.Id)
 				{
 					_entriesDataGridView.Rows[i].Selected = true;
+					_entriesDataGridView.FirstDisplayedScrollingRowIndex = i;
+
 					break;
 				}
 			}
