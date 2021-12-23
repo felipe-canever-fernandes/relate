@@ -38,6 +38,7 @@
 			this._selectedEntryGroupBox = new System.Windows.Forms.GroupBox();
 			this.filterGroupBox = new System.Windows.Forms.GroupBox();
 			this._aboutButton = new System.Windows.Forms.Button();
+			this._relateEntryButton = new System.Windows.Forms.Button();
 			((System.ComponentModel.ISupportInitialize)(this._entriesDataGridView)).BeginInit();
 			this._selectedEntryGroupBox.SuspendLayout();
 			this.filterGroupBox.SuspendLayout();
@@ -112,7 +113,7 @@
 			// _deleteSelectedEntryButton
 			// 
 			this._deleteSelectedEntryButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-			this._deleteSelectedEntryButton.Location = new System.Drawing.Point(173, 20);
+			this._deleteSelectedEntryButton.Location = new System.Drawing.Point(254, 20);
 			this._deleteSelectedEntryButton.Name = "_deleteSelectedEntryButton";
 			this._deleteSelectedEntryButton.Size = new System.Drawing.Size(75, 23);
 			this._deleteSelectedEntryButton.TabIndex = 4;
@@ -135,6 +136,7 @@
 			// 
 			this._selectedEntryGroupBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+			this._selectedEntryGroupBox.Controls.Add(this._relateEntryButton);
 			this._selectedEntryGroupBox.Controls.Add(this._deleteSelectedEntryButton);
 			this._selectedEntryGroupBox.Controls.Add(this._renameSelectedEntryButton);
 			this._selectedEntryGroupBox.Controls.Add(this._deselectButton);
@@ -171,6 +173,16 @@
 			this._aboutButton.UseVisualStyleBackColor = true;
 			this._aboutButton.Click += new System.EventHandler(this._aboutButton_Click);
 			// 
+			// _relateEntryButton
+			// 
+			this._relateEntryButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+			this._relateEntryButton.Location = new System.Drawing.Point(173, 20);
+			this._relateEntryButton.Name = "_relateEntryButton";
+			this._relateEntryButton.Size = new System.Drawing.Size(75, 23);
+			this._relateEntryButton.TabIndex = 4;
+			this._relateEntryButton.Text = "Relate";
+			this._relateEntryButton.UseVisualStyleBackColor = true;
+			// 
 			// MainForm
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -204,6 +216,7 @@
 		private System.Windows.Forms.GroupBox _selectedEntryGroupBox;
 		private System.Windows.Forms.GroupBox filterGroupBox;
 		private System.Windows.Forms.Button _aboutButton;
+		private System.Windows.Forms.Button _relateEntryButton;
 	}
 }
 
