@@ -77,6 +77,7 @@ namespace Relate
 			FilterEntries();
 			SetUpEntriesDataGridView();
 			SelectedEntry = null;
+			_relatedEntriesCheckBox.Checked = true;
 		}
 
 		private void SetUpEntriesDataGridView()
