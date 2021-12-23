@@ -103,16 +103,16 @@
 			this._renameSelectedEntryButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
 			this._renameSelectedEntryButton.Location = new System.Drawing.Point(87, 20);
 			this._renameSelectedEntryButton.Name = "_renameSelectedEntryButton";
-			this._renameSelectedEntryButton.Size = new System.Drawing.Size(75, 23);
+			this._renameSelectedEntryButton.Size = new System.Drawing.Size(80, 23);
 			this._renameSelectedEntryButton.TabIndex = 4;
-			this._renameSelectedEntryButton.Text = "Rename";
+			this._renameSelectedEntryButton.Text = "Rename...";
 			this._renameSelectedEntryButton.UseVisualStyleBackColor = true;
 			this._renameSelectedEntryButton.Click += new System.EventHandler(this._renameSelectedEntryButton_Click);
 			// 
 			// _deleteSelectedEntryButton
 			// 
 			this._deleteSelectedEntryButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-			this._deleteSelectedEntryButton.Location = new System.Drawing.Point(168, 20);
+			this._deleteSelectedEntryButton.Location = new System.Drawing.Point(173, 20);
 			this._deleteSelectedEntryButton.Name = "_deleteSelectedEntryButton";
 			this._deleteSelectedEntryButton.Size = new System.Drawing.Size(75, 23);
 			this._deleteSelectedEntryButton.TabIndex = 4;
