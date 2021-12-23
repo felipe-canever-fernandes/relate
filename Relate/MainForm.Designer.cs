@@ -111,6 +111,7 @@
 			// 
 			// _relatedEntriesCheckBox
 			// 
+			this._relatedEntriesCheckBox.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
 			this._relatedEntriesCheckBox.AutoSize = true;
 			this._relatedEntriesCheckBox.Location = new System.Drawing.Point(84, 28);
 			this._relatedEntriesCheckBox.Name = "_relatedEntriesCheckBox";
@@ -155,7 +156,7 @@
 			// 
 			// _deselectButton
 			// 
-			this._deselectButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+			this._deselectButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
 			this._deselectButton.Location = new System.Drawing.Point(3, 25);
 			this._deselectButton.Name = "_deselectButton";
 			this._deselectButton.Size = new System.Drawing.Size(75, 23);
