@@ -150,7 +150,6 @@ namespace Relate
 			var entry = new Entry(Filter);
 			var entryId = Database.Create(entry);
 
-
 			if (entryId <= 0)
 			{
 				_ = MessageBox.Show
@@ -164,6 +163,13 @@ namespace Relate
 			}
 			else
 			{
+				entry.Id = entryId;
+
+				if (!(SelectedEntry is null))
+				{
+					CreateRelation(entry);
+				}
+
 				ClearFilterTextBox();
 			}
 		}
@@ -234,6 +240,43 @@ namespace Relate
 		private void UpdateEntry()
 		{
 			SelectedEntry = Database.ReadEntry(SelectedEntry.Id);
+		}
+
+		private void CreateRelation(Entry entry)
+		{
+			Debug.Assert(entry != null);
+
+			var answer = MessageBox.Show
+			(
+				this,
+				$"Do you want to relate {entry.Name} " +
+					$"to {SelectedEntry.Name}?",
+				"Relate entries",
+				MessageBoxButtons.YesNo,
+				MessageBoxIcon.Question,
+				MessageBoxDefaultButton.Button1
+			);
+
+			if (answer == DialogResult.No)
+			{
+				return;
+			}
+
+			var relation = new Relation(SelectedEntry.Id, entry.Id);
+
+			var wasSuccessful = Database.Create(relation);
+
+			if (!wasSuccessful)
+			{
+				_ = MessageBox.Show
+				(
+					this,
+					"The relation could not be created.",
+					"Create relation",
+					MessageBoxButtons.OK,
+					MessageBoxIcon.Error
+				);
+			}
 		}
 
 		#endregion
