@@ -251,6 +251,59 @@ namespace RelateLibrary.Database
 			return entries;
 		}
 
+		public static bool AreRelated(Entry firstEntry, Entry secondEntry)
+		{
+			Debug.Assert(firstEntry != null);
+			Debug.Assert(secondEntry != null);
+
+			using (var connection = new SQLiteConnection(_connectionString))
+			{
+				connection.Open();
+
+				using
+				(
+					var command = new SQLiteCommand
+					(
+						"PRAGMA foreign_keys = 1;",
+						connection
+					)
+				)
+				{
+					_ = command.ExecuteNonQuery();
+				}
+
+				var query =
+						"SELECT * " +
+						"FROM `Relation` " +
+						"WHERE " +
+						"	`FirstEntryId` = @firstEntryId AND " +
+						"		`SecondEntryId` = @secondEntryId " +
+						"	OR " +
+						"	`SecondEntryId` = @firstEntryId AND " +
+						"		`FirstEntryId` = @secondEntryId;";
+
+				using (var command = new SQLiteCommand(query, connection))
+				{
+					_ = command.Parameters.AddWithValue
+					(
+						"@firstEntryId",
+						firstEntry.Id
+					);
+
+					_ = command.Parameters.AddWithValue
+					(
+						"@secondEntryId",
+						secondEntry.Id
+					);
+
+					using (var reader = command.ExecuteReader())
+					{
+						return reader.HasRows;
+					}
+				}
+			}
+		}
+
 		public static bool Update(Entry entry)
 		{
 			Debug.Assert
