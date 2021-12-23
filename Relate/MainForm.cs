@@ -213,6 +213,12 @@ namespace Relate
 			}
 		}
 
+		private void SelectEntry()
+		{
+			SelectedEntry =
+				_entriesDataGridView.CurrentRow.DataBoundItem as Entry;
+		}
+
 		private void UpdateEntry()
 		{
 			SelectedEntry = Database.ReadEntry(SelectedEntry.Id);
@@ -281,8 +287,7 @@ namespace Relate
 			object sender, DataGridViewCellEventArgs e
 		)
 		{
-			SelectedEntry =
-				_entriesDataGridView.CurrentRow.DataBoundItem as Entry;
+			SelectEntry();
 		}
 
 		#endregion
