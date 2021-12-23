@@ -50,8 +50,6 @@ namespace Relate
 			{
 				_selectedEntry = value;
 
-				_relatedEntriesCheckBox.Checked = false;
-
 				if (SelectedEntry == null)
 				{
 					_selectedEntryPanel.Enabled = false;
@@ -61,6 +59,11 @@ namespace Relate
 				{
 					_selectedEntryPanel.Enabled = true;
 					_selectedEntryNameLabel.Text = SelectedEntry.Name;
+				}
+
+				if (_relatedEntriesCheckBox.Checked)
+				{
+					FilterEntries();
 				}
 			}
 		}
