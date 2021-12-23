@@ -91,7 +91,7 @@ namespace Relate
 		private void FilterEntries()
 		{
 			UpdateEntries();
-			UpdateAddButton();
+			UpdateCreateEntryButton();
 		}
 
 		private void UpdateEntries()
@@ -111,12 +111,12 @@ namespace Relate
 			Entries = new BindingList<Entry>(entries);
 		}
 
-		private void UpdateAddButton()
+		private void UpdateCreateEntryButton()
 		{
 			var isFilterEmpty = string.IsNullOrEmpty(Filter);
 			var entryAlreadyExists = Database.GetEntryId(Filter) > 0;
 
-			_addButton.Enabled = !isFilterEmpty && !entryAlreadyExists;
+			_createEntryButton.Enabled = !isFilterEmpty && !entryAlreadyExists;
 		}
 
 		private void SelectEntriesDataGridViewRow()
@@ -145,7 +145,7 @@ namespace Relate
 
 		private void ClearFilterTextBox() => _filterTextBox.Text = "";
 
-		private void AddEntry()
+		private void CreateEntry()
 		{
 			var entry = new Entry(Filter);
 			var entryId = Database.Create(entry);
@@ -156,8 +156,8 @@ namespace Relate
 				_ = MessageBox.Show
 				(
 					this,
-					"The entry could not be added.",
-					"Add entry",
+					"The entry could not be created.",
+					"Create entry",
 					MessageBoxButtons.OK,
 					MessageBoxIcon.Error
 				);
@@ -256,10 +256,13 @@ namespace Relate
 		}
 
 		#pragma warning disable IDE1006 // Naming Styles
-		private void _addButton_Click(object sender, System.EventArgs e)
+		private void _createEntryButton_Click
+		(
+			object sender, System.EventArgs e
+		)
 		#pragma warning restore IDE1006 // Naming Styles
 		{
-			AddEntry();
+			CreateEntry();
 		}
 
 		#pragma warning disable IDE1006 // Naming Styles

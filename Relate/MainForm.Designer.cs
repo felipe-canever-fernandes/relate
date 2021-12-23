@@ -30,7 +30,7 @@
 		{
 			this._entriesDataGridView = new System.Windows.Forms.DataGridView();
 			this._filterTextBox = new System.Windows.Forms.TextBox();
-			this._addButton = new System.Windows.Forms.Button();
+			this._createEntryButton = new System.Windows.Forms.Button();
 			this._relatedEntriesCheckBox = new System.Windows.Forms.CheckBox();
 			this._renameSelectedEntryButton = new System.Windows.Forms.Button();
 			this._deleteSelectedEntryButton = new System.Windows.Forms.Button();
@@ -70,20 +70,20 @@
             | System.Windows.Forms.AnchorStyles.Right)));
 			this._filterTextBox.Location = new System.Drawing.Point(7, 21);
 			this._filterTextBox.Name = "_filterTextBox";
-			this._filterTextBox.Size = new System.Drawing.Size(155, 22);
+			this._filterTextBox.Size = new System.Drawing.Size(139, 22);
 			this._filterTextBox.TabIndex = 1;
 			this._filterTextBox.TextChanged += new System.EventHandler(this._filterTextBox_TextChanged);
 			// 
-			// _addButton
+			// _createEntryButton
 			// 
-			this._addButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-			this._addButton.Location = new System.Drawing.Point(168, 21);
-			this._addButton.Name = "_addButton";
-			this._addButton.Size = new System.Drawing.Size(75, 23);
-			this._addButton.TabIndex = 2;
-			this._addButton.Text = "Add";
-			this._addButton.UseVisualStyleBackColor = true;
-			this._addButton.Click += new System.EventHandler(this._addButton_Click);
+			this._createEntryButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+			this._createEntryButton.Location = new System.Drawing.Point(152, 21);
+			this._createEntryButton.Name = "_createEntryButton";
+			this._createEntryButton.Size = new System.Drawing.Size(91, 23);
+			this._createEntryButton.TabIndex = 2;
+			this._createEntryButton.Text = "Create entry";
+			this._createEntryButton.UseVisualStyleBackColor = true;
+			this._createEntryButton.Click += new System.EventHandler(this._createEntryButton_Click);
 			// 
 			// _relatedEntriesCheckBox
 			// 
@@ -150,7 +150,7 @@
 			this.filterGroupBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
 			this.filterGroupBox.Controls.Add(this._filterTextBox);
-			this.filterGroupBox.Controls.Add(this._addButton);
+			this.filterGroupBox.Controls.Add(this._createEntryButton);
 			this.filterGroupBox.Controls.Add(this._relatedEntriesCheckBox);
 			this.filterGroupBox.Location = new System.Drawing.Point(12, 12);
 			this.filterGroupBox.Name = "filterGroupBox";
@@ -183,7 +183,7 @@
 
 		private System.Windows.Forms.DataGridView _entriesDataGridView;
 		private System.Windows.Forms.TextBox _filterTextBox;
-		private System.Windows.Forms.Button _addButton;
+		private System.Windows.Forms.Button _createEntryButton;
 		private System.Windows.Forms.Button _deleteSelectedEntryButton;
 		private System.Windows.Forms.Button _renameSelectedEntryButton;
 		private System.Windows.Forms.CheckBox _relatedEntriesCheckBox;
