@@ -263,6 +263,16 @@ namespace Relate
 		}
 
 		#pragma warning disable IDE1006 // Naming Styles
+		private void _selectedEntryGroupBox_EnabledChanged
+		(
+			object sender, System.EventArgs e
+		)
+		#pragma warning restore IDE1006 // Naming Styles
+		{
+			_relatedEntriesCheckBox.Enabled = _selectedEntryGroupBox.Enabled;
+		}
+
+		#pragma warning disable IDE1006 // Naming Styles
 		private void _renameSelectedEntryButton_Click
 		#pragma warning restore IDE1006 // Naming Styles
 		(
