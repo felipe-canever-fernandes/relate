@@ -219,6 +219,14 @@ namespace Relate
 				_entriesDataGridView.CurrentRow.DataBoundItem as Entry;
 		}
 
+		private void DeselectEntry()
+		{
+			if (!(SelectedEntry is null))
+			{
+				SelectedEntry = null;
+			}
+		}
+
 		private void UpdateEntry()
 		{
 			SelectedEntry = Database.ReadEntry(SelectedEntry.Id);
@@ -268,6 +276,13 @@ namespace Relate
 		)
 		{
 			DeleteEntry();
+		}
+
+		#pragma warning disable IDE1006 // Naming Styles
+		private void _deselectButton_Click(object sender, System.EventArgs e)
+		#pragma warning restore IDE1006 // Naming Styles
+		{
+			DeselectEntry();
 		}
 
 		#pragma warning disable IDE1006 // Naming Styles

@@ -162,7 +162,7 @@
 			this._deselectButton.TabIndex = 4;
 			this._deselectButton.Text = "Deselect";
 			this._deselectButton.UseVisualStyleBackColor = true;
-			this._deselectButton.Click += new System.EventHandler(this._renameSelectedEntryButton_Click);
+			this._deselectButton.Click += new System.EventHandler(this._deselectButton_Click);
 			// 
 			// MainForm
 			// 
