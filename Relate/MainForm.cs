@@ -380,7 +380,7 @@ namespace Relate
 		}
 
 		#pragma warning disable IDE1006 // Naming Styles
-		private void _entriesDataGridView_CellClick
+		private void _entriesDataGridView_CellDoubleClick
 		#pragma warning restore IDE1006 // Naming Styles
 		(
 			object sender, DataGridViewCellEventArgs e
