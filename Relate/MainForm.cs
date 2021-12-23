@@ -145,6 +145,23 @@ namespace Relate
 
 		private void ClearFilterTextBox() => _filterTextBox.Text = "";
 
+		private void DisplayAboutDialog()
+		{
+			_ = MessageBox.Show
+			(
+				this,
+
+				"RELATE\nVersion 2.0.0-beta\n\n" +
+				"2021 Felipe Canever Fernandes\n" +
+				"<felipe.canever.fernandes@outlook.com>",
+
+				"About RELATE",
+				MessageBoxButtons.OK,
+				MessageBoxIcon.Information,
+				MessageBoxDefaultButton.Button1
+			);
+		}
+
 		private void CreateEntry()
 		{
 			var entry = new Entry(Filter);
@@ -363,6 +380,13 @@ namespace Relate
 		)
 		{
 			SelectEntry();
+		}
+
+		#pragma warning disable IDE1006 // Naming Styles
+		private void _aboutButton_Click(object sender, System.EventArgs e)
+		#pragma warning restore IDE1006 // Naming Styles
+		{
+			DisplayAboutDialog();
 		}
 
 		#endregion

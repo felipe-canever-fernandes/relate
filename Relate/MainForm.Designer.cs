@@ -37,6 +37,7 @@
 			this._deselectButton = new System.Windows.Forms.Button();
 			this._selectedEntryGroupBox = new System.Windows.Forms.GroupBox();
 			this.filterGroupBox = new System.Windows.Forms.GroupBox();
+			this._aboutButton = new System.Windows.Forms.Button();
 			((System.ComponentModel.ISupportInitialize)(this._entriesDataGridView)).BeginInit();
 			this._selectedEntryGroupBox.SuspendLayout();
 			this.filterGroupBox.SuspendLayout();
@@ -60,7 +61,7 @@
 			this._entriesDataGridView.RowHeadersWidth = 51;
 			this._entriesDataGridView.RowTemplate.Height = 24;
 			this._entriesDataGridView.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-			this._entriesDataGridView.Size = new System.Drawing.Size(253, 291);
+			this._entriesDataGridView.Size = new System.Drawing.Size(253, 362);
 			this._entriesDataGridView.TabIndex = 0;
 			this._entriesDataGridView.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this._entriesDataGridView_CellClick);
 			// 
@@ -159,11 +160,23 @@
 			this.filterGroupBox.TabStop = false;
 			this.filterGroupBox.Text = "Filter";
 			// 
+			// _aboutButton
+			// 
+			this._aboutButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+			this._aboutButton.Location = new System.Drawing.Point(149, 518);
+			this._aboutButton.Name = "_aboutButton";
+			this._aboutButton.Size = new System.Drawing.Size(116, 23);
+			this._aboutButton.TabIndex = 8;
+			this._aboutButton.Text = "About RELATE...";
+			this._aboutButton.UseVisualStyleBackColor = true;
+			this._aboutButton.Click += new System.EventHandler(this._aboutButton_Click);
+			// 
 			// MainForm
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-			this.ClientSize = new System.Drawing.Size(277, 453);
+			this.ClientSize = new System.Drawing.Size(277, 553);
+			this.Controls.Add(this._aboutButton);
 			this.Controls.Add(this.filterGroupBox);
 			this.Controls.Add(this._selectedEntryGroupBox);
 			this.Controls.Add(this._entriesDataGridView);
@@ -190,6 +203,7 @@
 		private System.Windows.Forms.Button _deselectButton;
 		private System.Windows.Forms.GroupBox _selectedEntryGroupBox;
 		private System.Windows.Forms.GroupBox filterGroupBox;
+		private System.Windows.Forms.Button _aboutButton;
 	}
 }
 
