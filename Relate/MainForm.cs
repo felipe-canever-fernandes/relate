@@ -52,13 +52,13 @@ namespace Relate
 
 				if (SelectedEntry == null)
 				{
-					_selectedEntryPanel.Enabled = false;
-					_selectedEntryNameLabel.Text = "";
+					_selectedEntryGroupBox.Enabled = false;
+					_selectedEntryGroupBox.Text = "";
 				}
 				else
 				{
-					_selectedEntryPanel.Enabled = true;
-					_selectedEntryNameLabel.Text = SelectedEntry.Name;
+					_selectedEntryGroupBox.Enabled = true;
+					_selectedEntryGroupBox.Text = SelectedEntry.Name;
 				}
 
 				if (_relatedEntriesCheckBox.Checked)
