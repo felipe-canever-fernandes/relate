@@ -27,6 +27,9 @@ namespace Relate
 
 		private string Filter => _filterTextBox.Text.Trim();
 
+		private Entry SelectedEntryInEntriesDataGridView =>
+			_entriesDataGridView.CurrentRow.DataBoundItem as Entry;
+
 		private BindingList<Entry> Entries
 		{
 			get => _entries;
@@ -240,9 +243,7 @@ namespace Relate
 
 		private void SelectEntry()
 		{
-			SelectedEntry =
-				_entriesDataGridView.CurrentRow.DataBoundItem as Entry;
-
+			SelectedEntry = SelectedEntryInEntriesDataGridView;
 			ClearFilterTextBox();
 		}
 
