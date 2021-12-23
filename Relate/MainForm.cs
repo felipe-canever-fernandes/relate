@@ -162,7 +162,7 @@ namespace Relate
 			}
 			else
 			{
-				FilterEntries();
+				_filterTextBox.Text = "";
 			}
 		}
 
