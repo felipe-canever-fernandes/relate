@@ -266,8 +266,10 @@ namespace Relate
 			var answer = MessageBox.Show
 			(
 				this,
-				$"Do you want to relate {entry.Name} " +
-					$"to {SelectedEntry.Name}?",
+
+				$"Do you want to relate \"{entry.Name}\" " +
+				$"to \"{SelectedEntry.Name}\"?",
+
 				"Relate entries",
 				MessageBoxButtons.YesNo,
 				MessageBoxIcon.Question,
