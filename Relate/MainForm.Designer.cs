@@ -34,12 +34,12 @@
 			this._relatedEntriesCheckBox = new System.Windows.Forms.CheckBox();
 			this._renameSelectedEntryButton = new System.Windows.Forms.Button();
 			this._deleteSelectedEntryButton = new System.Windows.Forms.Button();
-			this._filterPanel = new System.Windows.Forms.Panel();
 			this._deselectButton = new System.Windows.Forms.Button();
 			this._selectedEntryGroupBox = new System.Windows.Forms.GroupBox();
+			this.filterGroupBox = new System.Windows.Forms.GroupBox();
 			((System.ComponentModel.ISupportInitialize)(this._entriesDataGridView)).BeginInit();
-			this._filterPanel.SuspendLayout();
 			this._selectedEntryGroupBox.SuspendLayout();
+			this.filterGroupBox.SuspendLayout();
 			this.SuspendLayout();
 			// 
 			// _entriesDataGridView
@@ -52,7 +52,7 @@
             | System.Windows.Forms.AnchorStyles.Right)));
 			this._entriesDataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
 			this._entriesDataGridView.ColumnHeadersVisible = false;
-			this._entriesDataGridView.Location = new System.Drawing.Point(12, 101);
+			this._entriesDataGridView.Location = new System.Drawing.Point(12, 123);
 			this._entriesDataGridView.MultiSelect = false;
 			this._entriesDataGridView.Name = "_entriesDataGridView";
 			this._entriesDataGridView.ReadOnly = true;
@@ -60,7 +60,7 @@
 			this._entriesDataGridView.RowHeadersWidth = 51;
 			this._entriesDataGridView.RowTemplate.Height = 24;
 			this._entriesDataGridView.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-			this._entriesDataGridView.Size = new System.Drawing.Size(334, 340);
+			this._entriesDataGridView.Size = new System.Drawing.Size(334, 318);
 			this._entriesDataGridView.TabIndex = 0;
 			this._entriesDataGridView.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this._entriesDataGridView_CellClick);
 			// 
@@ -68,16 +68,16 @@
 			// 
 			this._filterTextBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-			this._filterTextBox.Location = new System.Drawing.Point(3, 3);
+			this._filterTextBox.Location = new System.Drawing.Point(7, 21);
 			this._filterTextBox.Name = "_filterTextBox";
-			this._filterTextBox.Size = new System.Drawing.Size(247, 22);
+			this._filterTextBox.Size = new System.Drawing.Size(239, 22);
 			this._filterTextBox.TabIndex = 1;
 			this._filterTextBox.TextChanged += new System.EventHandler(this._filterTextBox_TextChanged);
 			// 
 			// _addButton
 			// 
 			this._addButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-			this._addButton.Location = new System.Drawing.Point(256, 3);
+			this._addButton.Location = new System.Drawing.Point(252, 21);
 			this._addButton.Name = "_addButton";
 			this._addButton.Size = new System.Drawing.Size(75, 23);
 			this._addButton.TabIndex = 2;
@@ -119,17 +119,6 @@
 			this._deleteSelectedEntryButton.UseVisualStyleBackColor = true;
 			this._deleteSelectedEntryButton.Click += new System.EventHandler(this._deleteSelectedEntryButton_Click);
 			// 
-			// _filterPanel
-			// 
-			this._filterPanel.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-			this._filterPanel.Controls.Add(this._filterTextBox);
-			this._filterPanel.Controls.Add(this._addButton);
-			this._filterPanel.Location = new System.Drawing.Point(12, 12);
-			this._filterPanel.Name = "_filterPanel";
-			this._filterPanel.Size = new System.Drawing.Size(334, 28);
-			this._filterPanel.TabIndex = 5;
-			// 
 			// _deselectButton
 			// 
 			this._deselectButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
@@ -149,30 +138,43 @@
 			this._selectedEntryGroupBox.Controls.Add(this._renameSelectedEntryButton);
 			this._selectedEntryGroupBox.Controls.Add(this._deselectButton);
 			this._selectedEntryGroupBox.Controls.Add(this._relatedEntriesCheckBox);
-			this._selectedEntryGroupBox.Location = new System.Drawing.Point(13, 46);
+			this._selectedEntryGroupBox.Location = new System.Drawing.Point(13, 68);
 			this._selectedEntryGroupBox.Name = "_selectedEntryGroupBox";
 			this._selectedEntryGroupBox.Size = new System.Drawing.Size(333, 49);
 			this._selectedEntryGroupBox.TabIndex = 6;
 			this._selectedEntryGroupBox.TabStop = false;
 			this._selectedEntryGroupBox.Text = "Entry";
 			// 
+			// filterGroupBox
+			// 
+			this.filterGroupBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+			this.filterGroupBox.Controls.Add(this._filterTextBox);
+			this.filterGroupBox.Controls.Add(this._addButton);
+			this.filterGroupBox.Location = new System.Drawing.Point(12, 12);
+			this.filterGroupBox.Name = "filterGroupBox";
+			this.filterGroupBox.Size = new System.Drawing.Size(334, 50);
+			this.filterGroupBox.TabIndex = 7;
+			this.filterGroupBox.TabStop = false;
+			this.filterGroupBox.Text = "Filter";
+			// 
 			// MainForm
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
 			this.ClientSize = new System.Drawing.Size(358, 453);
+			this.Controls.Add(this.filterGroupBox);
 			this.Controls.Add(this._selectedEntryGroupBox);
-			this.Controls.Add(this._filterPanel);
 			this.Controls.Add(this._entriesDataGridView);
 			this.Name = "MainForm";
 			this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
 			this.Text = "RELATE";
 			this.Shown += new System.EventHandler(this.MainForm_Shown);
 			((System.ComponentModel.ISupportInitialize)(this._entriesDataGridView)).EndInit();
-			this._filterPanel.ResumeLayout(false);
-			this._filterPanel.PerformLayout();
 			this._selectedEntryGroupBox.ResumeLayout(false);
 			this._selectedEntryGroupBox.PerformLayout();
+			this.filterGroupBox.ResumeLayout(false);
+			this.filterGroupBox.PerformLayout();
 			this.ResumeLayout(false);
 
 		}
@@ -183,11 +185,11 @@
 		private System.Windows.Forms.TextBox _filterTextBox;
 		private System.Windows.Forms.Button _addButton;
 		private System.Windows.Forms.Button _deleteSelectedEntryButton;
-		private System.Windows.Forms.Panel _filterPanel;
 		private System.Windows.Forms.Button _renameSelectedEntryButton;
 		private System.Windows.Forms.CheckBox _relatedEntriesCheckBox;
 		private System.Windows.Forms.Button _deselectButton;
 		private System.Windows.Forms.GroupBox _selectedEntryGroupBox;
+		private System.Windows.Forms.GroupBox filterGroupBox;
 	}
 }
 
