@@ -116,6 +116,7 @@
 			this._relatedEntriesCheckBox.TabIndex = 5;
 			this._relatedEntriesCheckBox.Text = "Related";
 			this._relatedEntriesCheckBox.UseVisualStyleBackColor = true;
+			this._relatedEntriesCheckBox.CheckedChanged += new System.EventHandler(this._relatedEntriesCheckBox_CheckedChanged);
 			// 
 			// _renameSelectedEntryButton
 			// 

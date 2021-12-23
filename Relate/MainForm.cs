@@ -1,6 +1,7 @@
 ﻿using RelateLibrary;
 using RelateLibrary.Database;
 
+using System.Collections.Generic;
 using System.ComponentModel;
 using System.Diagnostics;
 using System.Windows.Forms;
@@ -25,6 +26,7 @@ namespace Relate
 		#region Properties
 
 		private string Filter => _filterTextBox.Text.Trim();
+
 		private BindingList<Entry> Entries
 		{
 			get => _entries;
@@ -84,12 +86,25 @@ namespace Relate
 
 		private void FilterEntries()
 		{
-			Entries = new BindingList<Entry>
-			(
-				Database.ReadEntries(null, Filter)
-			);
-
+			UpdateEntries();
 			UpdateAddButton();
+		}
+
+		private void UpdateEntries()
+		{
+			var relatedTo =
+				_relatedEntriesCheckBox.Checked ?
+				SelectedEntry :
+				null;
+
+			var entries = new List<Entry>();
+
+			if (!(relatedTo is null))
+				entries.Add(relatedTo);
+
+			entries.AddRange(Database.ReadEntries(relatedTo, Filter));
+
+			Entries = new BindingList<Entry>(entries);
 		}
 
 		private void UpdateAddButton()
@@ -245,7 +260,17 @@ namespace Relate
 			DeleteEntry();
 		}
 
-#pragma warning disable IDE1006 // Naming Styles
+		#pragma warning disable IDE1006 // Naming Styles
+		private void _relatedEntriesCheckBox_CheckedChanged
+		(
+			object sender, System.EventArgs e
+		)
+		#pragma warning restore IDE1006 // Naming Styles
+		{
+			FilterEntries();
+		}
+
+		#pragma warning disable IDE1006 // Naming Styles
 		private void _entriesDataGridView_CellClick
 		#pragma warning restore IDE1006 // Naming Styles
 		(
