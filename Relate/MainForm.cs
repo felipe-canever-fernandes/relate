@@ -219,6 +219,8 @@ namespace Relate
 		{
 			SelectedEntry =
 				_entriesDataGridView.CurrentRow.DataBoundItem as Entry;
+
+			ClearFilterTextBox();
 		}
 
 		private void DeselectEntry()
