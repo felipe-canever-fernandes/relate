@@ -37,6 +37,7 @@
 			this._renameSelectedEntryButton = new System.Windows.Forms.Button();
 			this._deleteSelectedEntryButton = new System.Windows.Forms.Button();
 			this._filterPanel = new System.Windows.Forms.Panel();
+			this._deselectButton = new System.Windows.Forms.Button();
 			((System.ComponentModel.ISupportInitialize)(this._entriesDataGridView)).BeginInit();
 			this._selectedEntryPanel.SuspendLayout();
 			this._filterPanel.SuspendLayout();
@@ -52,7 +53,7 @@
             | System.Windows.Forms.AnchorStyles.Right)));
 			this._entriesDataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
 			this._entriesDataGridView.ColumnHeadersVisible = false;
-			this._entriesDataGridView.Location = new System.Drawing.Point(12, 99);
+			this._entriesDataGridView.Location = new System.Drawing.Point(12, 103);
 			this._entriesDataGridView.MultiSelect = false;
 			this._entriesDataGridView.Name = "_entriesDataGridView";
 			this._entriesDataGridView.ReadOnly = true;
@@ -60,7 +61,7 @@
 			this._entriesDataGridView.RowHeadersWidth = 51;
 			this._entriesDataGridView.RowTemplate.Height = 24;
 			this._entriesDataGridView.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-			this._entriesDataGridView.Size = new System.Drawing.Size(458, 342);
+			this._entriesDataGridView.Size = new System.Drawing.Size(458, 338);
 			this._entriesDataGridView.TabIndex = 0;
 			this._entriesDataGridView.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this._entriesDataGridView_CellClick);
 			// 
@@ -99,18 +100,19 @@
 			this._selectedEntryPanel.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
 			this._selectedEntryPanel.Controls.Add(this._relatedEntriesCheckBox);
+			this._selectedEntryPanel.Controls.Add(this._deselectButton);
 			this._selectedEntryPanel.Controls.Add(this._renameSelectedEntryButton);
 			this._selectedEntryPanel.Controls.Add(this._deleteSelectedEntryButton);
 			this._selectedEntryPanel.Controls.Add(this._selectedEntryNameLabel);
 			this._selectedEntryPanel.Location = new System.Drawing.Point(12, 46);
 			this._selectedEntryPanel.Name = "_selectedEntryPanel";
-			this._selectedEntryPanel.Size = new System.Drawing.Size(458, 47);
+			this._selectedEntryPanel.Size = new System.Drawing.Size(458, 51);
 			this._selectedEntryPanel.TabIndex = 4;
 			// 
 			// _relatedEntriesCheckBox
 			// 
 			this._relatedEntriesCheckBox.AutoSize = true;
-			this._relatedEntriesCheckBox.Location = new System.Drawing.Point(3, 24);
+			this._relatedEntriesCheckBox.Location = new System.Drawing.Point(84, 28);
 			this._relatedEntriesCheckBox.Name = "_relatedEntriesCheckBox";
 			this._relatedEntriesCheckBox.Size = new System.Drawing.Size(77, 20);
 			this._relatedEntriesCheckBox.TabIndex = 5;
@@ -151,6 +153,17 @@
 			this._filterPanel.Size = new System.Drawing.Size(458, 28);
 			this._filterPanel.TabIndex = 5;
 			// 
+			// _deselectButton
+			// 
+			this._deselectButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+			this._deselectButton.Location = new System.Drawing.Point(3, 25);
+			this._deselectButton.Name = "_deselectButton";
+			this._deselectButton.Size = new System.Drawing.Size(75, 23);
+			this._deselectButton.TabIndex = 4;
+			this._deselectButton.Text = "Deselect";
+			this._deselectButton.UseVisualStyleBackColor = true;
+			this._deselectButton.Click += new System.EventHandler(this._renameSelectedEntryButton_Click);
+			// 
 			// MainForm
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -183,6 +196,7 @@
 		private System.Windows.Forms.Panel _filterPanel;
 		private System.Windows.Forms.Button _renameSelectedEntryButton;
 		private System.Windows.Forms.CheckBox _relatedEntriesCheckBox;
+		private System.Windows.Forms.Button _deselectButton;
 	}
 }
 
