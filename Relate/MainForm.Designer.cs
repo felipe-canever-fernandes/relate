@@ -158,6 +158,7 @@
 			this._relateEntriesButton.TabIndex = 4;
 			this._relateEntriesButton.Text = "Relate";
 			this._relateEntriesButton.UseVisualStyleBackColor = true;
+			this._relateEntriesButton.Click += new System.EventHandler(this._relateEntriesButton_Click);
 			// 
 			// filterGroupBox
 			// 

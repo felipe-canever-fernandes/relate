@@ -372,6 +372,16 @@ namespace Relate
 		}
 
 		#pragma warning disable IDE1006 // Naming Styles
+		private void _relateEntriesButton_Click
+		#pragma warning restore IDE1006 // Naming Styles
+		(
+			object sender, System.EventArgs e
+		)
+		{
+			CreateRelation(SelectedEntryInEntriesDataGridView);
+		}
+
+		#pragma warning disable IDE1006 // Naming Styles
 		private void _deleteSelectedEntryButton_Click
 		#pragma warning restore IDE1006 // Naming Styles
 		(
