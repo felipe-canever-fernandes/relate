@@ -65,6 +65,7 @@
 			this._entriesDataGridView.Size = new System.Drawing.Size(358, 362);
 			this._entriesDataGridView.TabIndex = 0;
 			this._entriesDataGridView.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this._entriesDataGridView_CellDoubleClick);
+			this._entriesDataGridView.SelectionChanged += new System.EventHandler(this._entriesDataGridView_SelectionChanged);
 			// 
 			// _filterTextBox
 			// 

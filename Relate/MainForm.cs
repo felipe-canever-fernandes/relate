@@ -122,6 +122,24 @@ namespace Relate
 			_createEntryButton.Enabled = !isFilterEmpty && !entryAlreadyExists;
 		}
 
+		private void UpdateRelateEntriesButton()
+		{
+			if (_entriesDataGridView.SelectedRows.Count <= 0)
+			{
+				_relateEntriesButton.Enabled = false;
+				return;
+			}
+
+			var firstEntry = SelectedEntry;
+			var secondEntry = SelectedEntryInEntriesDataGridView;
+
+			var areEntriesTheSame = firstEntry.Id == secondEntry.Id;
+
+			_relateEntriesButton.Enabled =
+				!areEntriesTheSame &&
+				!Database.AreRelated(firstEntry, secondEntry);
+		}
+
 		private void SelectEntriesDataGridViewRow()
 		{
 			_entriesDataGridView.ClearSelection();
@@ -388,6 +406,19 @@ namespace Relate
 		)
 		{
 			SelectEntry();
+		}
+
+		#pragma warning disable IDE1006 // Naming Styles
+		private void _entriesDataGridView_SelectionChanged
+		(
+			object sender, System.EventArgs e
+		)
+		#pragma warning restore IDE1006 // Naming Styles
+		{
+			if (!(SelectedEntry is null))
+			{
+				UpdateRelateEntriesButton();
+			}
 		}
 
 		#pragma warning disable IDE1006 // Naming Styles
