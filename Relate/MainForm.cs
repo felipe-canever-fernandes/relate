@@ -143,6 +143,8 @@ namespace Relate
 			}
 		}
 
+		private void ClearFilterTextBox() => _filterTextBox.Text = "";
+
 		private void AddEntry()
 		{
 			var entry = new Entry(Filter);
@@ -162,7 +164,7 @@ namespace Relate
 			}
 			else
 			{
-				_filterTextBox.Text = "";
+				ClearFilterTextBox();
 			}
 		}
 
