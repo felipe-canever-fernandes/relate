@@ -61,7 +61,7 @@
 			this._entriesDataGridView.RowHeadersWidth = 51;
 			this._entriesDataGridView.RowTemplate.Height = 24;
 			this._entriesDataGridView.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-			this._entriesDataGridView.Size = new System.Drawing.Size(253, 362);
+			this._entriesDataGridView.Size = new System.Drawing.Size(358, 362);
 			this._entriesDataGridView.TabIndex = 0;
 			this._entriesDataGridView.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this._entriesDataGridView_CellClick);
 			// 
@@ -71,18 +71,18 @@
             | System.Windows.Forms.AnchorStyles.Right)));
 			this._filterTextBox.Location = new System.Drawing.Point(7, 21);
 			this._filterTextBox.Name = "_filterTextBox";
-			this._filterTextBox.Size = new System.Drawing.Size(139, 22);
+			this._filterTextBox.Size = new System.Drawing.Size(236, 22);
 			this._filterTextBox.TabIndex = 1;
 			this._filterTextBox.TextChanged += new System.EventHandler(this._filterTextBox_TextChanged);
 			// 
 			// _createEntryButton
 			// 
 			this._createEntryButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-			this._createEntryButton.Location = new System.Drawing.Point(152, 21);
+			this._createEntryButton.Location = new System.Drawing.Point(246, 21);
 			this._createEntryButton.Name = "_createEntryButton";
-			this._createEntryButton.Size = new System.Drawing.Size(91, 23);
+			this._createEntryButton.Size = new System.Drawing.Size(106, 23);
 			this._createEntryButton.TabIndex = 2;
-			this._createEntryButton.Text = "Create entry";
+			this._createEntryButton.Text = "Create entry...";
 			this._createEntryButton.UseVisualStyleBackColor = true;
 			this._createEntryButton.Click += new System.EventHandler(this._createEntryButton_Click);
 			// 
@@ -140,7 +140,7 @@
 			this._selectedEntryGroupBox.Controls.Add(this._deselectButton);
 			this._selectedEntryGroupBox.Location = new System.Drawing.Point(12, 95);
 			this._selectedEntryGroupBox.Name = "_selectedEntryGroupBox";
-			this._selectedEntryGroupBox.Size = new System.Drawing.Size(253, 49);
+			this._selectedEntryGroupBox.Size = new System.Drawing.Size(358, 49);
 			this._selectedEntryGroupBox.TabIndex = 6;
 			this._selectedEntryGroupBox.TabStop = false;
 			this._selectedEntryGroupBox.Text = "Entry";
@@ -155,7 +155,7 @@
 			this.filterGroupBox.Controls.Add(this._relatedEntriesCheckBox);
 			this.filterGroupBox.Location = new System.Drawing.Point(12, 12);
 			this.filterGroupBox.Name = "filterGroupBox";
-			this.filterGroupBox.Size = new System.Drawing.Size(253, 77);
+			this.filterGroupBox.Size = new System.Drawing.Size(358, 77);
 			this.filterGroupBox.TabIndex = 7;
 			this.filterGroupBox.TabStop = false;
 			this.filterGroupBox.Text = "Filter";
@@ -163,7 +163,7 @@
 			// _aboutButton
 			// 
 			this._aboutButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-			this._aboutButton.Location = new System.Drawing.Point(149, 518);
+			this._aboutButton.Location = new System.Drawing.Point(254, 518);
 			this._aboutButton.Name = "_aboutButton";
 			this._aboutButton.Size = new System.Drawing.Size(116, 23);
 			this._aboutButton.TabIndex = 8;
@@ -175,7 +175,7 @@
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-			this.ClientSize = new System.Drawing.Size(277, 553);
+			this.ClientSize = new System.Drawing.Size(382, 553);
 			this.Controls.Add(this._aboutButton);
 			this.Controls.Add(this.filterGroupBox);
 			this.Controls.Add(this._selectedEntryGroupBox);

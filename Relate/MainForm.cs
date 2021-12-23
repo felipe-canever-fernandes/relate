@@ -333,6 +333,11 @@ namespace Relate
 		#pragma warning restore IDE1006 // Naming Styles
 		{
 			_relatedEntriesCheckBox.Enabled = _selectedEntryGroupBox.Enabled;
+
+			_createEntryButton.Text =
+				_relatedEntriesCheckBox.Enabled ?
+				"Create entry..." :
+				"Create entry";
 		}
 
 		#pragma warning disable IDE1006 // Naming Styles
