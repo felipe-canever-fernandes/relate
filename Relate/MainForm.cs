@@ -381,8 +381,6 @@ namespace Relate
 		)
 		#pragma warning restore IDE1006 // Naming Styles
 		{
-			_relatedEntriesCheckBox.Enabled = _currentEntryGroupBox.Enabled;
-
 			_createEntryButton.Text =
 				_relatedEntriesCheckBox.Enabled ?
 				"Create entry..." :
@@ -440,7 +438,10 @@ namespace Relate
 		)
 		#pragma warning restore IDE1006 // Naming Styles
 		{
-			FilterEntries();
+			if (!(CurrentEntry is null))
+			{
+				FilterEntries();
+			}
 		}
 
 		#pragma warning disable IDE1006 // Naming Styles
