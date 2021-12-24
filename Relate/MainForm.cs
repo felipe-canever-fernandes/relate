@@ -125,11 +125,18 @@ namespace Relate
 			var firstEntry = CurrentEntry;
 			var secondEntry = SelectedEntry;
 
-			var areEntriesTheSame = firstEntry.Id == secondEntry.Id;
+			if (firstEntry.Id == secondEntry.Id)
+			{
+				_relateEntriesButton.Enabled = false;
+				return;
+			}
 
-			_relateEntriesButton.Enabled =
-				!areEntriesTheSame &&
-				!Database.AreRelated(firstEntry, secondEntry);
+			_relateEntriesButton.Enabled = true;
+
+			_relateEntriesButton.Text =
+				Database.AreRelated(firstEntry, secondEntry) ?
+				"Unrelate" :
+				"Relate";
 		}
 
 		private void FormatEntries()
@@ -199,7 +206,7 @@ namespace Relate
 
 				if (!(CurrentEntry is null))
 				{
-					RelateEntries(entry, shouldAskFirst: true);
+					RelateEntries(entry, shouldAskBeforeRelating: true);
 				}
 
 				ClearFilterTextBox();
@@ -272,20 +279,28 @@ namespace Relate
 			CurrentEntry = Database.ReadEntry(CurrentEntry.Id);
 		}
 
-		private void RelateEntries(Entry entry, bool shouldAskFirst)
+		private void RelateEntries(Entry entry, bool shouldAskBeforeRelating)
 		{
 			Debug.Assert(entry != null);
 
-			if (shouldAskFirst)
+			var areRelated = Database.AreRelated(CurrentEntry, entry);
+
+			string action;
+			string actionTitle;
+
+			if (areRelated || shouldAskBeforeRelating)
 			{
+				action = areRelated ? "unrelate" : "relate";
+				actionTitle = action.ToUpper()[0] + action.Substring(1);
+
 				var answer = MessageBox.Show
 				(
 					this,
 
-					$"Do you want to relate \"{entry.Name}\" " +
+					$"Do you want to {action} \"{entry.Name}\" " +
 					$"to \"{CurrentEntry.Name}\"?",
 
-					"Relate entries",
+					$"{actionTitle} entries",
 					MessageBoxButtons.YesNo,
 					MessageBoxIcon.Question,
 					MessageBoxDefaultButton.Button1
@@ -297,17 +312,29 @@ namespace Relate
 				}
 			}
 
-			var relation = new Relation(CurrentEntry.Id, entry.Id);
+			bool wasSuccessful;
 
-			var wasSuccessful = Database.Create(relation);
+			if (areRelated)
+			{
+				var relation = new Relation(CurrentEntry.Id, entry.Id);
+				wasSuccessful = Database.Delete(relation);
+			}
+			else
+			{
+				var relation = new Relation(CurrentEntry.Id, entry.Id);
+				wasSuccessful = Database.Create(relation);
+			}
+
+			action = areRelated ? "delete" : "create";
+			actionTitle = action.ToUpper()[0] + action.Substring(1);
 
 			if (!wasSuccessful)
 			{
 				_ = MessageBox.Show
 				(
 					this,
-					"The relation could not be created.",
-					"Create relation",
+					$"The relation could not be {action}d.",
+					$"{actionTitle} relation",
 					MessageBoxButtons.OK,
 					MessageBoxIcon.Error
 				);
@@ -315,7 +342,7 @@ namespace Relate
 				return;
 			}
 
-			UpdateRelateEntriesButton();
+			FilterEntries();
 		}
 
 		#endregion
@@ -382,7 +409,7 @@ namespace Relate
 			RelateEntries
 			(
 				SelectedEntry,
-				shouldAskFirst: false
+				shouldAskBeforeRelating: false
 			);
 		}
 
