@@ -205,7 +205,7 @@ namespace Relate
 
 				if (!(SelectedEntry is null))
 				{
-					CreateRelation(entry);
+					RelateEntries(entry);
 				}
 
 				ClearFilterTextBox();
@@ -278,7 +278,7 @@ namespace Relate
 			SelectedEntry = Database.ReadEntry(SelectedEntry.Id);
 		}
 
-		private void CreateRelation(Entry entry)
+		private void RelateEntries(Entry entry)
 		{
 			Debug.Assert(entry != null);
 
@@ -378,7 +378,7 @@ namespace Relate
 			object sender, System.EventArgs e
 		)
 		{
-			CreateRelation(SelectedEntryInEntriesDataGridView);
+			RelateEntries(SelectedEntryInEntriesDataGridView);
 		}
 
 		#pragma warning disable IDE1006 // Naming Styles
