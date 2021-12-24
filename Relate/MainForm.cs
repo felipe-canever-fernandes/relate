@@ -41,9 +41,7 @@ namespace Relate
 				_entries = value;
 
 				_entriesDataGridView.DataSource = Entries;
-
 				FormatEntries();
-				SelectEntriesDataGridViewRow();
 			}
 		}
 
@@ -164,30 +162,6 @@ namespace Relate
 				{
 					var font = new Font(style, FontStyle.Italic);
 					row.DefaultCellStyle.Font = font;
-				}
-			}
-		}
-
-		private void SelectEntriesDataGridViewRow()
-		{
-			_entriesDataGridView.ClearSelection();
-
-			if (!(CurrentEntry is null))
-			{
-				HighlightEntriesDataGridViewRow();
-			}
-		}
-
-		private void HighlightEntriesDataGridViewRow()
-		{
-			for (int i = 0; i < Entries.Count; i++)
-			{
-				if (Entries[i].Id == CurrentEntry.Id)
-				{
-					_entriesDataGridView.Rows[i].Selected = true;
-					_entriesDataGridView.FirstDisplayedScrollingRowIndex = i;
-
-					break;
 				}
 			}
 		}
