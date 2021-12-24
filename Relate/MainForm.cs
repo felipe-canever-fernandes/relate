@@ -317,7 +317,11 @@ namespace Relate
 					MessageBoxButtons.OK,
 					MessageBoxIcon.Error
 				);
+
+				return;
 			}
+
+			UpdateRelateEntriesButton();
 		}
 
 		#endregion
