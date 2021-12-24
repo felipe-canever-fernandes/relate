@@ -4,6 +4,7 @@ using RelateLibrary.Database;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Diagnostics;
+using System.Drawing;
 using System.Windows.Forms;
 
 namespace Relate
@@ -41,6 +42,7 @@ namespace Relate
 
 				_entriesDataGridView.DataSource = Entries;
 
+				FormatEntries();
 				SelectEntriesDataGridViewRow();
 			}
 		}
@@ -138,6 +140,32 @@ namespace Relate
 			_relateEntriesButton.Enabled =
 				!areEntriesTheSame &&
 				!Database.AreRelated(firstEntry, secondEntry);
+		}
+
+		private void FormatEntries()
+		{
+			if (CurrentEntry is null)
+			{
+				return;
+			}
+
+			var style = _entriesDataGridView.DefaultCellStyle.Font;
+
+			foreach (DataGridViewRow row in _entriesDataGridView.Rows)
+			{
+				var entry = row.DataBoundItem as Entry;
+
+				if (entry.Id == CurrentEntry.Id)
+				{
+					var font = new Font(style, FontStyle.Bold);
+					row.DefaultCellStyle.Font = font;
+				}
+				else if (Database.AreRelated(CurrentEntry, entry))
+				{
+					var font = new Font(style, FontStyle.Italic);
+					row.DefaultCellStyle.Font = font;
+				}
+			}
 		}
 
 		private void SelectEntriesDataGridViewRow()
