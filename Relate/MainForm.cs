@@ -27,7 +27,7 @@ namespace Relate
 
 		private string Filter => _filterTextBox.Text.Trim();
 
-		private Entry SelectedEntryInEntriesDataGridView =>
+		private Entry SelectedEntry =>
 			_entriesDataGridView.CurrentRow.DataBoundItem as Entry;
 
 		private BindingList<Entry> Entries
@@ -131,7 +131,7 @@ namespace Relate
 			}
 
 			var firstEntry = CurrentEntry;
-			var secondEntry = SelectedEntryInEntriesDataGridView;
+			var secondEntry = SelectedEntry;
 
 			var areEntriesTheSame = firstEntry.Id == secondEntry.Id;
 
@@ -261,7 +261,7 @@ namespace Relate
 
 		private void SetCurrentEntry()
 		{
-			CurrentEntry = SelectedEntryInEntriesDataGridView;
+			CurrentEntry = SelectedEntry;
 			ClearFilterTextBox();
 		}
 
@@ -387,7 +387,7 @@ namespace Relate
 		{
 			RelateEntries
 			(
-				SelectedEntryInEntriesDataGridView,
+				SelectedEntry,
 				shouldAskFirst: false
 			);
 		}
