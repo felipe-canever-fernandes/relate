@@ -205,7 +205,7 @@ namespace Relate
 
 				if (!(SelectedEntry is null))
 				{
-					RelateEntries(entry);
+					RelateEntries(entry, shouldAskFirst: true);
 				}
 
 				ClearFilterTextBox();
@@ -278,26 +278,29 @@ namespace Relate
 			SelectedEntry = Database.ReadEntry(SelectedEntry.Id);
 		}
 
-		private void RelateEntries(Entry entry)
+		private void RelateEntries(Entry entry, bool shouldAskFirst)
 		{
 			Debug.Assert(entry != null);
 
-			var answer = MessageBox.Show
-			(
-				this,
-
-				$"Do you want to relate \"{entry.Name}\" " +
-				$"to \"{SelectedEntry.Name}\"?",
-
-				"Relate entries",
-				MessageBoxButtons.YesNo,
-				MessageBoxIcon.Question,
-				MessageBoxDefaultButton.Button1
-			);
-
-			if (answer == DialogResult.No)
+			if (shouldAskFirst)
 			{
-				return;
+				var answer = MessageBox.Show
+				(
+					this,
+
+					$"Do you want to relate \"{entry.Name}\" " +
+					$"to \"{SelectedEntry.Name}\"?",
+
+					"Relate entries",
+					MessageBoxButtons.YesNo,
+					MessageBoxIcon.Question,
+					MessageBoxDefaultButton.Button1
+				);
+
+				if (answer == DialogResult.No)
+				{
+					return;
+				}
 			}
 
 			var relation = new Relation(SelectedEntry.Id, entry.Id);
@@ -378,7 +381,11 @@ namespace Relate
 			object sender, System.EventArgs e
 		)
 		{
-			RelateEntries(SelectedEntryInEntriesDataGridView);
+			RelateEntries
+			(
+				SelectedEntryInEntriesDataGridView,
+				shouldAskFirst: false
+			);
 		}
 
 		#pragma warning disable IDE1006 // Naming Styles
