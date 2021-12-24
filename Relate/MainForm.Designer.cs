@@ -39,6 +39,7 @@
 			this._relateEntriesButton = new System.Windows.Forms.Button();
 			this.filterGroupBox = new System.Windows.Forms.GroupBox();
 			this._aboutButton = new System.Windows.Forms.Button();
+			this._currentEntryNameLabel = new System.Windows.Forms.Label();
 			((System.ComponentModel.ISupportInitialize)(this._entriesDataGridView)).BeginInit();
 			this._currentEntryGroupBox.SuspendLayout();
 			this.filterGroupBox.SuspendLayout();
@@ -54,7 +55,7 @@
             | System.Windows.Forms.AnchorStyles.Right)));
 			this._entriesDataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
 			this._entriesDataGridView.ColumnHeadersVisible = false;
-			this._entriesDataGridView.Location = new System.Drawing.Point(12, 150);
+			this._entriesDataGridView.Location = new System.Drawing.Point(12, 170);
 			this._entriesDataGridView.MultiSelect = false;
 			this._entriesDataGridView.Name = "_entriesDataGridView";
 			this._entriesDataGridView.ReadOnly = true;
@@ -62,7 +63,7 @@
 			this._entriesDataGridView.RowHeadersWidth = 51;
 			this._entriesDataGridView.RowTemplate.Height = 24;
 			this._entriesDataGridView.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-			this._entriesDataGridView.Size = new System.Drawing.Size(358, 362);
+			this._entriesDataGridView.Size = new System.Drawing.Size(358, 342);
 			this._entriesDataGridView.TabIndex = 0;
 			this._entriesDataGridView.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this._entriesDataGridView_CellDoubleClick);
 			this._entriesDataGridView.SelectionChanged += new System.EventHandler(this._entriesDataGridView_SelectionChanged);
@@ -103,7 +104,7 @@
 			// _renameCurrentEntryButton
 			// 
 			this._renameCurrentEntryButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-			this._renameCurrentEntryButton.Location = new System.Drawing.Point(87, 20);
+			this._renameCurrentEntryButton.Location = new System.Drawing.Point(87, 40);
 			this._renameCurrentEntryButton.Name = "_renameCurrentEntryButton";
 			this._renameCurrentEntryButton.Size = new System.Drawing.Size(80, 23);
 			this._renameCurrentEntryButton.TabIndex = 4;
@@ -114,7 +115,7 @@
 			// _deleteCurrentEntryButton
 			// 
 			this._deleteCurrentEntryButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-			this._deleteCurrentEntryButton.Location = new System.Drawing.Point(254, 20);
+			this._deleteCurrentEntryButton.Location = new System.Drawing.Point(254, 40);
 			this._deleteCurrentEntryButton.Name = "_deleteCurrentEntryButton";
 			this._deleteCurrentEntryButton.Size = new System.Drawing.Size(75, 23);
 			this._deleteCurrentEntryButton.TabIndex = 4;
@@ -125,7 +126,7 @@
 			// _closeCurrentEntryButton
 			// 
 			this._closeCurrentEntryButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-			this._closeCurrentEntryButton.Location = new System.Drawing.Point(6, 20);
+			this._closeCurrentEntryButton.Location = new System.Drawing.Point(6, 40);
 			this._closeCurrentEntryButton.Name = "_closeCurrentEntryButton";
 			this._closeCurrentEntryButton.Size = new System.Drawing.Size(75, 23);
 			this._closeCurrentEntryButton.TabIndex = 4;
@@ -137,22 +138,23 @@
 			// 
 			this._currentEntryGroupBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+			this._currentEntryGroupBox.Controls.Add(this._currentEntryNameLabel);
 			this._currentEntryGroupBox.Controls.Add(this._relateEntriesButton);
 			this._currentEntryGroupBox.Controls.Add(this._deleteCurrentEntryButton);
 			this._currentEntryGroupBox.Controls.Add(this._renameCurrentEntryButton);
 			this._currentEntryGroupBox.Controls.Add(this._closeCurrentEntryButton);
 			this._currentEntryGroupBox.Location = new System.Drawing.Point(12, 95);
 			this._currentEntryGroupBox.Name = "_currentEntryGroupBox";
-			this._currentEntryGroupBox.Size = new System.Drawing.Size(358, 49);
+			this._currentEntryGroupBox.Size = new System.Drawing.Size(358, 69);
 			this._currentEntryGroupBox.TabIndex = 6;
 			this._currentEntryGroupBox.TabStop = false;
-			this._currentEntryGroupBox.Text = "Entry";
+			this._currentEntryGroupBox.Text = "Current entry";
 			this._currentEntryGroupBox.EnabledChanged += new System.EventHandler(this._currentEntryGroupBox_EnabledChanged);
 			// 
 			// _relateEntriesButton
 			// 
 			this._relateEntriesButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-			this._relateEntriesButton.Location = new System.Drawing.Point(173, 20);
+			this._relateEntriesButton.Location = new System.Drawing.Point(173, 40);
 			this._relateEntriesButton.Name = "_relateEntriesButton";
 			this._relateEntriesButton.Size = new System.Drawing.Size(75, 23);
 			this._relateEntriesButton.TabIndex = 4;
@@ -185,6 +187,17 @@
 			this._aboutButton.UseVisualStyleBackColor = true;
 			this._aboutButton.Click += new System.EventHandler(this._aboutButton_Click);
 			// 
+			// _currentEntryNameLabel
+			// 
+			this._currentEntryNameLabel.AutoSize = true;
+			this._currentEntryNameLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+			this._currentEntryNameLabel.Location = new System.Drawing.Point(6, 18);
+			this._currentEntryNameLabel.Name = "_currentEntryNameLabel";
+			this._currentEntryNameLabel.Size = new System.Drawing.Size(42, 16);
+			this._currentEntryNameLabel.TabIndex = 5;
+			this._currentEntryNameLabel.Text = "Entry";
+			this._currentEntryNameLabel.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+			// 
 			// MainForm
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -200,6 +213,7 @@
 			this.Shown += new System.EventHandler(this.MainForm_Shown);
 			((System.ComponentModel.ISupportInitialize)(this._entriesDataGridView)).EndInit();
 			this._currentEntryGroupBox.ResumeLayout(false);
+			this._currentEntryGroupBox.PerformLayout();
 			this.filterGroupBox.ResumeLayout(false);
 			this.filterGroupBox.PerformLayout();
 			this.ResumeLayout(false);
@@ -219,6 +233,7 @@
 		private System.Windows.Forms.GroupBox filterGroupBox;
 		private System.Windows.Forms.Button _aboutButton;
 		private System.Windows.Forms.Button _relateEntriesButton;
+		private System.Windows.Forms.Label _currentEntryNameLabel;
 	}
 }
 

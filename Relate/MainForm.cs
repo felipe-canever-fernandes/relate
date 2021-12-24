@@ -56,12 +56,12 @@ namespace Relate
 				if (CurrentEntry == null)
 				{
 					_currentEntryGroupBox.Enabled = false;
-					_currentEntryGroupBox.Text = "";
+					_currentEntryNameLabel.Text = "";
 				}
 				else
 				{
 					_currentEntryGroupBox.Enabled = true;
-					_currentEntryGroupBox.Text = CurrentEntry.Name;
+					_currentEntryNameLabel.Text = CurrentEntry.Name;
 				}
 
 				if (_relatedEntriesCheckBox.Checked)
