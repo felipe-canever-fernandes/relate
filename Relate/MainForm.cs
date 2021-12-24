@@ -41,7 +41,6 @@ namespace Relate
 				_entries = value;
 
 				_entriesDataGridView.DataSource = Entries;
-				FormatEntries();
 			}
 		}
 
@@ -64,10 +63,7 @@ namespace Relate
 					_currentEntryNameLabel.Text = CurrentEntry.Name;
 				}
 
-				if (_relatedEntriesCheckBox.Checked)
-				{
-					FilterEntries();
-				}
+				FilterEntries();
 			}
 		}
 
@@ -94,6 +90,7 @@ namespace Relate
 		private void FilterEntries()
 		{
 			UpdateEntries();
+			FormatEntries();
 			UpdateCreateEntryButton();
 		}
 
