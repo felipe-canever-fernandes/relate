@@ -13,7 +13,7 @@ namespace Relate
 		#region Fields
 
 		private BindingList<Entry> _entries;
-		private Entry _selectedEntry;
+		private Entry _currentEntry;
 
 		#endregion
 
@@ -45,23 +45,23 @@ namespace Relate
 			}
 		}
 
-		private Entry SelectedEntry
+		private Entry CurrentEntry
 		{
-			get => _selectedEntry;
+			get => _currentEntry;
 
 			set
 			{
-				_selectedEntry = value;
+				_currentEntry = value;
 
-				if (SelectedEntry == null)
+				if (CurrentEntry == null)
 				{
-					_selectedEntryGroupBox.Enabled = false;
-					_selectedEntryGroupBox.Text = "";
+					_currentEntryGroupBox.Enabled = false;
+					_currentEntryGroupBox.Text = "";
 				}
 				else
 				{
-					_selectedEntryGroupBox.Enabled = true;
-					_selectedEntryGroupBox.Text = SelectedEntry.Name;
+					_currentEntryGroupBox.Enabled = true;
+					_currentEntryGroupBox.Text = CurrentEntry.Name;
 				}
 
 				if (_relatedEntriesCheckBox.Checked)
@@ -79,7 +79,7 @@ namespace Relate
 		{
 			FilterEntries();
 			SetUpEntriesDataGridView();
-			SelectedEntry = null;
+			CurrentEntry = null;
 			_relatedEntriesCheckBox.Checked = true;
 		}
 
@@ -101,7 +101,7 @@ namespace Relate
 		{
 			var relatedTo =
 				_relatedEntriesCheckBox.Checked ?
-				SelectedEntry :
+				CurrentEntry :
 				null;
 
 			var entries = new List<Entry>();
@@ -130,7 +130,7 @@ namespace Relate
 				return;
 			}
 
-			var firstEntry = SelectedEntry;
+			var firstEntry = CurrentEntry;
 			var secondEntry = SelectedEntryInEntriesDataGridView;
 
 			var areEntriesTheSame = firstEntry.Id == secondEntry.Id;
@@ -144,7 +144,7 @@ namespace Relate
 		{
 			_entriesDataGridView.ClearSelection();
 
-			if (!(SelectedEntry is null))
+			if (!(CurrentEntry is null))
 			{
 				HighlightEntriesDataGridViewRow();
 			}
@@ -154,7 +154,7 @@ namespace Relate
 		{
 			for (int i = 0; i < Entries.Count; i++)
 			{
-				if (Entries[i].Id == SelectedEntry.Id)
+				if (Entries[i].Id == CurrentEntry.Id)
 				{
 					_entriesDataGridView.Rows[i].Selected = true;
 					_entriesDataGridView.FirstDisplayedScrollingRowIndex = i;
@@ -203,7 +203,7 @@ namespace Relate
 			{
 				entry.Id = entryId;
 
-				if (!(SelectedEntry is null))
+				if (!(CurrentEntry is null))
 				{
 					RelateEntries(entry, shouldAskFirst: true);
 				}
@@ -214,7 +214,7 @@ namespace Relate
 
 		private void RenameEntry()
 		{
-			var renameForm = new RenameForm(SelectedEntry);
+			var renameForm = new RenameForm(CurrentEntry);
 			var answer = renameForm.ShowDialog();
 
 			if (answer == DialogResult.OK)
@@ -229,7 +229,7 @@ namespace Relate
 			var answer = MessageBox.Show
 			(
 				this,
-				$"Are you sure you want to delete \"{SelectedEntry.Name}\"?",
+				$"Are you sure you want to delete \"{CurrentEntry.Name}\"?",
 				"Delete entry",
 				MessageBoxButtons.YesNo,
 				MessageBoxIcon.Question,
@@ -238,11 +238,11 @@ namespace Relate
 
 			if (answer == DialogResult.Yes)
 			{
-				var wasDeleteSuccessful = Database.Delete(SelectedEntry);
+				var wasDeleteSuccessful = Database.Delete(CurrentEntry);
 
 				if (wasDeleteSuccessful)
 				{
-					SelectedEntry = null;
+					CurrentEntry = null;
 					FilterEntries();
 				}
 				else
@@ -259,23 +259,23 @@ namespace Relate
 			}
 		}
 
-		private void SelectEntry()
+		private void SetCurrentEntry()
 		{
-			SelectedEntry = SelectedEntryInEntriesDataGridView;
+			CurrentEntry = SelectedEntryInEntriesDataGridView;
 			ClearFilterTextBox();
 		}
 
-		private void DeselectEntry()
+		private void UnsetCurrentEntry()
 		{
-			if (!(SelectedEntry is null))
+			if (!(CurrentEntry is null))
 			{
-				SelectedEntry = null;
+				CurrentEntry = null;
 			}
 		}
 
 		private void UpdateEntry()
 		{
-			SelectedEntry = Database.ReadEntry(SelectedEntry.Id);
+			CurrentEntry = Database.ReadEntry(CurrentEntry.Id);
 		}
 
 		private void RelateEntries(Entry entry, bool shouldAskFirst)
@@ -289,7 +289,7 @@ namespace Relate
 					this,
 
 					$"Do you want to relate \"{entry.Name}\" " +
-					$"to \"{SelectedEntry.Name}\"?",
+					$"to \"{CurrentEntry.Name}\"?",
 
 					"Relate entries",
 					MessageBoxButtons.YesNo,
@@ -303,7 +303,7 @@ namespace Relate
 				}
 			}
 
-			var relation = new Relation(SelectedEntry.Id, entry.Id);
+			var relation = new Relation(CurrentEntry.Id, entry.Id);
 
 			var wasSuccessful = Database.Create(relation);
 
@@ -354,13 +354,13 @@ namespace Relate
 		}
 
 		#pragma warning disable IDE1006 // Naming Styles
-		private void _selectedEntryGroupBox_EnabledChanged
+		private void _currentEntryGroupBox_EnabledChanged
 		(
 			object sender, System.EventArgs e
 		)
 		#pragma warning restore IDE1006 // Naming Styles
 		{
-			_relatedEntriesCheckBox.Enabled = _selectedEntryGroupBox.Enabled;
+			_relatedEntriesCheckBox.Enabled = _currentEntryGroupBox.Enabled;
 
 			_createEntryButton.Text =
 				_relatedEntriesCheckBox.Enabled ?
@@ -369,7 +369,7 @@ namespace Relate
 		}
 
 		#pragma warning disable IDE1006 // Naming Styles
-		private void _renameSelectedEntryButton_Click
+		private void _renameCurrentEntryButton_Click
 		#pragma warning restore IDE1006 // Naming Styles
 		(
 			object sender, System.EventArgs e
@@ -393,7 +393,7 @@ namespace Relate
 		}
 
 		#pragma warning disable IDE1006 // Naming Styles
-		private void _deleteSelectedEntryButton_Click
+		private void _deleteCurrentEntryButton_Click
 		#pragma warning restore IDE1006 // Naming Styles
 		(
 			object sender, System.EventArgs e
@@ -403,10 +403,13 @@ namespace Relate
 		}
 
 		#pragma warning disable IDE1006 // Naming Styles
-		private void _deselectButton_Click(object sender, System.EventArgs e)
+		private void _closeCurrentEntryButton_Click
+		(
+			object sender, System.EventArgs e
+		)
 		#pragma warning restore IDE1006 // Naming Styles
 		{
-			DeselectEntry();
+			UnsetCurrentEntry();
 		}
 
 		#pragma warning disable IDE1006 // Naming Styles
@@ -426,7 +429,7 @@ namespace Relate
 			object sender, DataGridViewCellEventArgs e
 		)
 		{
-			SelectEntry();
+			SetCurrentEntry();
 		}
 
 		#pragma warning disable IDE1006 // Naming Styles
@@ -436,7 +439,7 @@ namespace Relate
 		)
 		#pragma warning restore IDE1006 // Naming Styles
 		{
-			if (!(SelectedEntry is null))
+			if (!(CurrentEntry is null))
 			{
 				UpdateRelateEntriesButton();
 			}

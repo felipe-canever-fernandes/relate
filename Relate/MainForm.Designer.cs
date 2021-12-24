@@ -32,15 +32,15 @@
 			this._filterTextBox = new System.Windows.Forms.TextBox();
 			this._createEntryButton = new System.Windows.Forms.Button();
 			this._relatedEntriesCheckBox = new System.Windows.Forms.CheckBox();
-			this._renameSelectedEntryButton = new System.Windows.Forms.Button();
-			this._deleteSelectedEntryButton = new System.Windows.Forms.Button();
-			this._deselectButton = new System.Windows.Forms.Button();
-			this._selectedEntryGroupBox = new System.Windows.Forms.GroupBox();
+			this._renameCurrentEntryButton = new System.Windows.Forms.Button();
+			this._deleteCurrentEntryButton = new System.Windows.Forms.Button();
+			this._closeCurrentEntryButton = new System.Windows.Forms.Button();
+			this._currentEntryGroupBox = new System.Windows.Forms.GroupBox();
 			this._relateEntriesButton = new System.Windows.Forms.Button();
 			this.filterGroupBox = new System.Windows.Forms.GroupBox();
 			this._aboutButton = new System.Windows.Forms.Button();
 			((System.ComponentModel.ISupportInitialize)(this._entriesDataGridView)).BeginInit();
-			this._selectedEntryGroupBox.SuspendLayout();
+			this._currentEntryGroupBox.SuspendLayout();
 			this.filterGroupBox.SuspendLayout();
 			this.SuspendLayout();
 			// 
@@ -94,60 +94,60 @@
 			this._relatedEntriesCheckBox.AutoSize = true;
 			this._relatedEntriesCheckBox.Location = new System.Drawing.Point(7, 51);
 			this._relatedEntriesCheckBox.Name = "_relatedEntriesCheckBox";
-			this._relatedEntriesCheckBox.Size = new System.Drawing.Size(178, 20);
+			this._relatedEntriesCheckBox.Size = new System.Drawing.Size(166, 20);
 			this._relatedEntriesCheckBox.TabIndex = 5;
-			this._relatedEntriesCheckBox.Text = "Related to selected entry";
+			this._relatedEntriesCheckBox.Text = "Related to current entry";
 			this._relatedEntriesCheckBox.UseVisualStyleBackColor = true;
 			this._relatedEntriesCheckBox.CheckedChanged += new System.EventHandler(this._relatedEntriesCheckBox_CheckedChanged);
 			// 
-			// _renameSelectedEntryButton
+			// _renameCurrentEntryButton
 			// 
-			this._renameSelectedEntryButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-			this._renameSelectedEntryButton.Location = new System.Drawing.Point(87, 20);
-			this._renameSelectedEntryButton.Name = "_renameSelectedEntryButton";
-			this._renameSelectedEntryButton.Size = new System.Drawing.Size(80, 23);
-			this._renameSelectedEntryButton.TabIndex = 4;
-			this._renameSelectedEntryButton.Text = "Rename...";
-			this._renameSelectedEntryButton.UseVisualStyleBackColor = true;
-			this._renameSelectedEntryButton.Click += new System.EventHandler(this._renameSelectedEntryButton_Click);
+			this._renameCurrentEntryButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+			this._renameCurrentEntryButton.Location = new System.Drawing.Point(87, 20);
+			this._renameCurrentEntryButton.Name = "_renameCurrentEntryButton";
+			this._renameCurrentEntryButton.Size = new System.Drawing.Size(80, 23);
+			this._renameCurrentEntryButton.TabIndex = 4;
+			this._renameCurrentEntryButton.Text = "Rename...";
+			this._renameCurrentEntryButton.UseVisualStyleBackColor = true;
+			this._renameCurrentEntryButton.Click += new System.EventHandler(this._renameCurrentEntryButton_Click);
 			// 
-			// _deleteSelectedEntryButton
+			// _deleteCurrentEntryButton
 			// 
-			this._deleteSelectedEntryButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-			this._deleteSelectedEntryButton.Location = new System.Drawing.Point(254, 20);
-			this._deleteSelectedEntryButton.Name = "_deleteSelectedEntryButton";
-			this._deleteSelectedEntryButton.Size = new System.Drawing.Size(75, 23);
-			this._deleteSelectedEntryButton.TabIndex = 4;
-			this._deleteSelectedEntryButton.Text = "Delete";
-			this._deleteSelectedEntryButton.UseVisualStyleBackColor = true;
-			this._deleteSelectedEntryButton.Click += new System.EventHandler(this._deleteSelectedEntryButton_Click);
+			this._deleteCurrentEntryButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+			this._deleteCurrentEntryButton.Location = new System.Drawing.Point(254, 20);
+			this._deleteCurrentEntryButton.Name = "_deleteCurrentEntryButton";
+			this._deleteCurrentEntryButton.Size = new System.Drawing.Size(75, 23);
+			this._deleteCurrentEntryButton.TabIndex = 4;
+			this._deleteCurrentEntryButton.Text = "Delete";
+			this._deleteCurrentEntryButton.UseVisualStyleBackColor = true;
+			this._deleteCurrentEntryButton.Click += new System.EventHandler(this._deleteCurrentEntryButton_Click);
 			// 
-			// _deselectButton
+			// _closeCurrentEntryButton
 			// 
-			this._deselectButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-			this._deselectButton.Location = new System.Drawing.Point(6, 20);
-			this._deselectButton.Name = "_deselectButton";
-			this._deselectButton.Size = new System.Drawing.Size(75, 23);
-			this._deselectButton.TabIndex = 4;
-			this._deselectButton.Text = "Deselect";
-			this._deselectButton.UseVisualStyleBackColor = true;
-			this._deselectButton.Click += new System.EventHandler(this._deselectButton_Click);
+			this._closeCurrentEntryButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+			this._closeCurrentEntryButton.Location = new System.Drawing.Point(6, 20);
+			this._closeCurrentEntryButton.Name = "_closeCurrentEntryButton";
+			this._closeCurrentEntryButton.Size = new System.Drawing.Size(75, 23);
+			this._closeCurrentEntryButton.TabIndex = 4;
+			this._closeCurrentEntryButton.Text = "Close";
+			this._closeCurrentEntryButton.UseVisualStyleBackColor = true;
+			this._closeCurrentEntryButton.Click += new System.EventHandler(this._closeCurrentEntryButton_Click);
 			// 
-			// _selectedEntryGroupBox
+			// _currentEntryGroupBox
 			// 
-			this._selectedEntryGroupBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+			this._currentEntryGroupBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-			this._selectedEntryGroupBox.Controls.Add(this._relateEntriesButton);
-			this._selectedEntryGroupBox.Controls.Add(this._deleteSelectedEntryButton);
-			this._selectedEntryGroupBox.Controls.Add(this._renameSelectedEntryButton);
-			this._selectedEntryGroupBox.Controls.Add(this._deselectButton);
-			this._selectedEntryGroupBox.Location = new System.Drawing.Point(12, 95);
-			this._selectedEntryGroupBox.Name = "_selectedEntryGroupBox";
-			this._selectedEntryGroupBox.Size = new System.Drawing.Size(358, 49);
-			this._selectedEntryGroupBox.TabIndex = 6;
-			this._selectedEntryGroupBox.TabStop = false;
-			this._selectedEntryGroupBox.Text = "Entry";
-			this._selectedEntryGroupBox.EnabledChanged += new System.EventHandler(this._selectedEntryGroupBox_EnabledChanged);
+			this._currentEntryGroupBox.Controls.Add(this._relateEntriesButton);
+			this._currentEntryGroupBox.Controls.Add(this._deleteCurrentEntryButton);
+			this._currentEntryGroupBox.Controls.Add(this._renameCurrentEntryButton);
+			this._currentEntryGroupBox.Controls.Add(this._closeCurrentEntryButton);
+			this._currentEntryGroupBox.Location = new System.Drawing.Point(12, 95);
+			this._currentEntryGroupBox.Name = "_currentEntryGroupBox";
+			this._currentEntryGroupBox.Size = new System.Drawing.Size(358, 49);
+			this._currentEntryGroupBox.TabIndex = 6;
+			this._currentEntryGroupBox.TabStop = false;
+			this._currentEntryGroupBox.Text = "Entry";
+			this._currentEntryGroupBox.EnabledChanged += new System.EventHandler(this._currentEntryGroupBox_EnabledChanged);
 			// 
 			// _relateEntriesButton
 			// 
@@ -192,14 +192,14 @@
 			this.ClientSize = new System.Drawing.Size(382, 553);
 			this.Controls.Add(this._aboutButton);
 			this.Controls.Add(this.filterGroupBox);
-			this.Controls.Add(this._selectedEntryGroupBox);
+			this.Controls.Add(this._currentEntryGroupBox);
 			this.Controls.Add(this._entriesDataGridView);
 			this.Name = "MainForm";
 			this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
 			this.Text = "RELATE";
 			this.Shown += new System.EventHandler(this.MainForm_Shown);
 			((System.ComponentModel.ISupportInitialize)(this._entriesDataGridView)).EndInit();
-			this._selectedEntryGroupBox.ResumeLayout(false);
+			this._currentEntryGroupBox.ResumeLayout(false);
 			this.filterGroupBox.ResumeLayout(false);
 			this.filterGroupBox.PerformLayout();
 			this.ResumeLayout(false);
@@ -211,11 +211,11 @@
 		private System.Windows.Forms.DataGridView _entriesDataGridView;
 		private System.Windows.Forms.TextBox _filterTextBox;
 		private System.Windows.Forms.Button _createEntryButton;
-		private System.Windows.Forms.Button _deleteSelectedEntryButton;
-		private System.Windows.Forms.Button _renameSelectedEntryButton;
+		private System.Windows.Forms.Button _deleteCurrentEntryButton;
+		private System.Windows.Forms.Button _renameCurrentEntryButton;
 		private System.Windows.Forms.CheckBox _relatedEntriesCheckBox;
-		private System.Windows.Forms.Button _deselectButton;
-		private System.Windows.Forms.GroupBox _selectedEntryGroupBox;
+		private System.Windows.Forms.Button _closeCurrentEntryButton;
+		private System.Windows.Forms.GroupBox _currentEntryGroupBox;
 		private System.Windows.Forms.GroupBox filterGroupBox;
 		private System.Windows.Forms.Button _aboutButton;
 		private System.Windows.Forms.Button _relateEntriesButton;
