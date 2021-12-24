@@ -10,7 +10,7 @@ namespace Relate
 		public RenameForm(Entry entry)
 		{
 			Entry = entry;
-			WasRenameSuccessful = false;
+			ThereWasAProblem = false;
 
 			InitializeComponent();
 			SetUp();
@@ -20,7 +20,7 @@ namespace Relate
 
 		private Entry Entry { get; }
 		private string EntryName => nameTextBox.Text.Trim();
-		private bool WasRenameSuccessful { get; set; }
+		private bool ThereWasAProblem { get; set; }
 
 		#endregion
 
@@ -45,7 +45,7 @@ namespace Relate
 		private void RenameEntry()
 		{
 			Entry.Name = EntryName;
-			WasRenameSuccessful = Database.Update(Entry);
+			ThereWasAProblem = !Database.Update(Entry);
 		}
 
 		#endregion
@@ -54,7 +54,7 @@ namespace Relate
 
 		private void RenameForm_FormClosing(object sender, FormClosingEventArgs e)
 		{
-			if (!WasRenameSuccessful)
+			if (ThereWasAProblem)
 			{
 				_ = MessageBox.Show
 				(
