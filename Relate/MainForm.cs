@@ -104,12 +104,7 @@ namespace Relate
 				CurrentEntry :
 				null;
 
-			var entries = new List<Entry>();
-
-			if (!(relatedTo is null))
-				entries.Add(relatedTo);
-
-			entries.AddRange(Database.ReadEntries(relatedTo, Filter));
+			var entries = Database.ReadEntries(relatedTo, Filter);
 
 			Entries = new BindingList<Entry>(entries);
 		}
