@@ -76,7 +76,7 @@ namespace Relate
 			FilterEntries();
 			SetUpEntriesDataGridView();
 			CurrentEntry = null;
-			_relatedEntriesCheckBox.Checked = true;
+			_allEntriesRadioButton.Checked = true;
 		}
 
 		private void SetUpEntriesDataGridView()
@@ -96,12 +96,26 @@ namespace Relate
 
 		private void UpdateEntries()
 		{
-			var relatedTo =
-				_relatedEntriesCheckBox.Checked ?
-				CurrentEntry :
-				null;
+			List<Entry> entries;
 
-			var entries = Database.ReadEntries(relatedTo, Filter);
+			if
+			(
+				CurrentEntry is null ||
+				_allEntriesRadioButton.Checked ||
+				_relatedEntriesRadioButton.Checked
+			)
+			{
+				var relatedTo =
+					_relatedEntriesRadioButton.Checked ?
+					CurrentEntry :
+					null;
+
+				entries = Database.ReadEntries(relatedTo, Filter);
+			}
+			else
+			{
+				entries = Database.ReadRelatableEntries(CurrentEntry.Id);
+			}
 
 			Entries = new BindingList<Entry>(entries);
 		}
@@ -382,7 +396,7 @@ namespace Relate
 		#pragma warning restore IDE1006 // Naming Styles
 		{
 			_createEntryButton.Text =
-				_relatedEntriesCheckBox.Enabled ?
+				_currentEntryGroupBox.Enabled ?
 				"Create entry..." :
 				"Create entry";
 		}
@@ -432,16 +446,24 @@ namespace Relate
 		}
 
 		#pragma warning disable IDE1006 // Naming Styles
-		private void _relatedEntriesCheckBox_CheckedChanged
-		(
-			object sender, System.EventArgs e
-		)
+		private void _allEntriesRadioButton_CheckedChanged(object sender, System.EventArgs e)
 		#pragma warning restore IDE1006 // Naming Styles
 		{
-			if (!(CurrentEntry is null))
-			{
-				FilterEntries();
-			}
+			FilterEntries();
+		}
+
+		#pragma warning disable IDE1006 // Naming Styles
+		private void _relatedEntriesRadioButton_CheckedChanged(object sender, System.EventArgs e)
+		#pragma warning restore IDE1006 // Naming Styles
+		{
+			FilterEntries();
+		}
+
+		#pragma warning disable IDE1006 // Naming Styles
+		private void _unrelatedEntriesRadioButton_CheckedChanged(object sender, System.EventArgs e)
+		#pragma warning restore IDE1006 // Naming Styles
+		{
+			FilterEntries();
 		}
 
 		#pragma warning disable IDE1006 // Naming Styles

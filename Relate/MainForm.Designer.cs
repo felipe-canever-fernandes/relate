@@ -31,7 +31,6 @@
 			this._entriesDataGridView = new System.Windows.Forms.DataGridView();
 			this._filterTextBox = new System.Windows.Forms.TextBox();
 			this._createEntryButton = new System.Windows.Forms.Button();
-			this._relatedEntriesCheckBox = new System.Windows.Forms.CheckBox();
 			this._renameCurrentEntryButton = new System.Windows.Forms.Button();
 			this._deleteCurrentEntryButton = new System.Windows.Forms.Button();
 			this._closeCurrentEntryButton = new System.Windows.Forms.Button();
@@ -40,6 +39,9 @@
 			this.filterGroupBox = new System.Windows.Forms.GroupBox();
 			this._aboutButton = new System.Windows.Forms.Button();
 			this._currentEntryNameLabel = new System.Windows.Forms.Label();
+			this._allEntriesRadioButton = new System.Windows.Forms.RadioButton();
+			this._relatedEntriesRadioButton = new System.Windows.Forms.RadioButton();
+			this._unrelatedEntriesRadioButton = new System.Windows.Forms.RadioButton();
 			((System.ComponentModel.ISupportInitialize)(this._entriesDataGridView)).BeginInit();
 			this._currentEntryGroupBox.SuspendLayout();
 			this.filterGroupBox.SuspendLayout();
@@ -63,7 +65,7 @@
 			this._entriesDataGridView.RowHeadersWidth = 51;
 			this._entriesDataGridView.RowTemplate.Height = 24;
 			this._entriesDataGridView.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-			this._entriesDataGridView.Size = new System.Drawing.Size(335, 342);
+			this._entriesDataGridView.Size = new System.Drawing.Size(403, 342);
 			this._entriesDataGridView.TabIndex = 0;
 			this._entriesDataGridView.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this._entriesDataGridView_CellDoubleClick);
 			this._entriesDataGridView.SelectionChanged += new System.EventHandler(this._entriesDataGridView_SelectionChanged);
@@ -74,32 +76,20 @@
             | System.Windows.Forms.AnchorStyles.Right)));
 			this._filterTextBox.Location = new System.Drawing.Point(7, 21);
 			this._filterTextBox.Name = "_filterTextBox";
-			this._filterTextBox.Size = new System.Drawing.Size(213, 22);
+			this._filterTextBox.Size = new System.Drawing.Size(281, 22);
 			this._filterTextBox.TabIndex = 1;
 			this._filterTextBox.TextChanged += new System.EventHandler(this._filterTextBox_TextChanged);
 			// 
 			// _createEntryButton
 			// 
 			this._createEntryButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-			this._createEntryButton.Location = new System.Drawing.Point(223, 21);
+			this._createEntryButton.Location = new System.Drawing.Point(291, 21);
 			this._createEntryButton.Name = "_createEntryButton";
 			this._createEntryButton.Size = new System.Drawing.Size(106, 23);
 			this._createEntryButton.TabIndex = 2;
 			this._createEntryButton.Text = "Create entry...";
 			this._createEntryButton.UseVisualStyleBackColor = true;
 			this._createEntryButton.Click += new System.EventHandler(this._createEntryButton_Click);
-			// 
-			// _relatedEntriesCheckBox
-			// 
-			this._relatedEntriesCheckBox.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-			this._relatedEntriesCheckBox.AutoSize = true;
-			this._relatedEntriesCheckBox.Location = new System.Drawing.Point(7, 51);
-			this._relatedEntriesCheckBox.Name = "_relatedEntriesCheckBox";
-			this._relatedEntriesCheckBox.Size = new System.Drawing.Size(166, 20);
-			this._relatedEntriesCheckBox.TabIndex = 5;
-			this._relatedEntriesCheckBox.Text = "Related to current entry";
-			this._relatedEntriesCheckBox.UseVisualStyleBackColor = true;
-			this._relatedEntriesCheckBox.CheckedChanged += new System.EventHandler(this._relatedEntriesCheckBox_CheckedChanged);
 			// 
 			// _renameCurrentEntryButton
 			// 
@@ -145,7 +135,7 @@
 			this._currentEntryGroupBox.Controls.Add(this._closeCurrentEntryButton);
 			this._currentEntryGroupBox.Location = new System.Drawing.Point(12, 95);
 			this._currentEntryGroupBox.Name = "_currentEntryGroupBox";
-			this._currentEntryGroupBox.Size = new System.Drawing.Size(335, 69);
+			this._currentEntryGroupBox.Size = new System.Drawing.Size(403, 69);
 			this._currentEntryGroupBox.TabIndex = 6;
 			this._currentEntryGroupBox.TabStop = false;
 			this._currentEntryGroupBox.Text = "Current entry";
@@ -166,12 +156,14 @@
 			// 
 			this.filterGroupBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+			this.filterGroupBox.Controls.Add(this._unrelatedEntriesRadioButton);
+			this.filterGroupBox.Controls.Add(this._relatedEntriesRadioButton);
+			this.filterGroupBox.Controls.Add(this._allEntriesRadioButton);
 			this.filterGroupBox.Controls.Add(this._filterTextBox);
 			this.filterGroupBox.Controls.Add(this._createEntryButton);
-			this.filterGroupBox.Controls.Add(this._relatedEntriesCheckBox);
 			this.filterGroupBox.Location = new System.Drawing.Point(12, 12);
 			this.filterGroupBox.Name = "filterGroupBox";
-			this.filterGroupBox.Size = new System.Drawing.Size(335, 77);
+			this.filterGroupBox.Size = new System.Drawing.Size(403, 77);
 			this.filterGroupBox.TabIndex = 7;
 			this.filterGroupBox.TabStop = false;
 			this.filterGroupBox.Text = "Filter";
@@ -179,7 +171,7 @@
 			// _aboutButton
 			// 
 			this._aboutButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-			this._aboutButton.Location = new System.Drawing.Point(231, 518);
+			this._aboutButton.Location = new System.Drawing.Point(299, 518);
 			this._aboutButton.Name = "_aboutButton";
 			this._aboutButton.Size = new System.Drawing.Size(116, 23);
 			this._aboutButton.TabIndex = 8;
@@ -198,11 +190,47 @@
 			this._currentEntryNameLabel.Text = "Entry";
 			this._currentEntryNameLabel.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
 			// 
+			// _allEntriesRadioButton
+			// 
+			this._allEntriesRadioButton.AutoSize = true;
+			this._allEntriesRadioButton.Location = new System.Drawing.Point(6, 51);
+			this._allEntriesRadioButton.Name = "_allEntriesRadioButton";
+			this._allEntriesRadioButton.Size = new System.Drawing.Size(43, 20);
+			this._allEntriesRadioButton.TabIndex = 3;
+			this._allEntriesRadioButton.TabStop = true;
+			this._allEntriesRadioButton.Text = "All";
+			this._allEntriesRadioButton.UseVisualStyleBackColor = true;
+			this._allEntriesRadioButton.CheckedChanged += new System.EventHandler(this._allEntriesRadioButton_CheckedChanged);
+			// 
+			// _relatedEntriesRadioButton
+			// 
+			this._relatedEntriesRadioButton.AutoSize = true;
+			this._relatedEntriesRadioButton.Location = new System.Drawing.Point(55, 51);
+			this._relatedEntriesRadioButton.Name = "_relatedEntriesRadioButton";
+			this._relatedEntriesRadioButton.Size = new System.Drawing.Size(165, 20);
+			this._relatedEntriesRadioButton.TabIndex = 3;
+			this._relatedEntriesRadioButton.TabStop = true;
+			this._relatedEntriesRadioButton.Text = "Related to current entry";
+			this._relatedEntriesRadioButton.UseVisualStyleBackColor = true;
+			this._relatedEntriesRadioButton.CheckedChanged += new System.EventHandler(this._relatedEntriesRadioButton_CheckedChanged);
+			// 
+			// _unrelatedEntriesRadioButton
+			// 
+			this._unrelatedEntriesRadioButton.AutoSize = true;
+			this._unrelatedEntriesRadioButton.Location = new System.Drawing.Point(226, 51);
+			this._unrelatedEntriesRadioButton.Name = "_unrelatedEntriesRadioButton";
+			this._unrelatedEntriesRadioButton.Size = new System.Drawing.Size(176, 20);
+			this._unrelatedEntriesRadioButton.TabIndex = 3;
+			this._unrelatedEntriesRadioButton.TabStop = true;
+			this._unrelatedEntriesRadioButton.Text = "Unrelated to current entry";
+			this._unrelatedEntriesRadioButton.UseVisualStyleBackColor = true;
+			this._unrelatedEntriesRadioButton.CheckedChanged += new System.EventHandler(this._unrelatedEntriesRadioButton_CheckedChanged);
+			// 
 			// MainForm
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-			this.ClientSize = new System.Drawing.Size(359, 553);
+			this.ClientSize = new System.Drawing.Size(427, 553);
 			this.Controls.Add(this._aboutButton);
 			this.Controls.Add(this.filterGroupBox);
 			this.Controls.Add(this._currentEntryGroupBox);
@@ -227,13 +255,15 @@
 		private System.Windows.Forms.Button _createEntryButton;
 		private System.Windows.Forms.Button _deleteCurrentEntryButton;
 		private System.Windows.Forms.Button _renameCurrentEntryButton;
-		private System.Windows.Forms.CheckBox _relatedEntriesCheckBox;
 		private System.Windows.Forms.Button _closeCurrentEntryButton;
 		private System.Windows.Forms.GroupBox _currentEntryGroupBox;
 		private System.Windows.Forms.GroupBox filterGroupBox;
 		private System.Windows.Forms.Button _aboutButton;
 		private System.Windows.Forms.Button _relateEntriesButton;
 		private System.Windows.Forms.Label _currentEntryNameLabel;
+		private System.Windows.Forms.RadioButton _relatedEntriesRadioButton;
+		private System.Windows.Forms.RadioButton _allEntriesRadioButton;
+		private System.Windows.Forms.RadioButton _unrelatedEntriesRadioButton;
 	}
 }
 
