@@ -8,6 +8,9 @@
         Title="RELATE" Height="450" Width="800" SizeToContent="WidthAndHeight"
         WindowStartupLocation="CenterScreen" MinWidth="250" MinHeight="300">
     <StackPanel>
+        <GroupBox Header="Filter">
+            <TextBox />
+        </GroupBox>
         <GroupBox Header="Entries">
             <ListView ItemsSource="{Binding Entries}" />
         </GroupBox>
