@@ -7,8 +7,8 @@
     <ProjectGuid>{367EF813-EE26-4CA7-A9A4-FCF8EDE8918C}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>RelateLibrary</RootNamespace>
-    <AssemblyName>RelateLibrary</AssemblyName>
+    <RootNamespace>Core</RootNamespace>
+    <AssemblyName>Core</AssemblyName>
     <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <Deterministic>true</Deterministic>

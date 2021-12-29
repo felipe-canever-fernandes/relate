@@ -1,6 +1,6 @@
 ﻿using System.Diagnostics;
 
-namespace RelateLibrary
+namespace Core
 {
 	public class Entry
     {
