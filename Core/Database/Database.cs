@@ -7,14 +7,14 @@ namespace Core.Database
 {
 	public static class Database
 	{
-		private static readonly string _connectionString =
+		private static string ConnectionString { get; } =
 				@"Data Source=.\Database.db;Version=3;";
 
 		public static long Create(Entry entry)
 		{
 			Debug.Assert(entry != null);
 
-			using (var connection = new SQLiteConnection(_connectionString))
+			using (var connection = new SQLiteConnection(ConnectionString))
 			{
 				connection.Open();
 
@@ -62,7 +62,7 @@ namespace Core.Database
 
 			Entry entry = null;
 
-			using (var connection = new SQLiteConnection(_connectionString))
+			using (var connection = new SQLiteConnection(ConnectionString))
 			{
 				connection.Open();
 
@@ -107,7 +107,7 @@ namespace Core.Database
 		{
 			Debug.Assert(entryName != null);
 
-			using (var connection = new SQLiteConnection(_connectionString))
+			using (var connection = new SQLiteConnection(ConnectionString))
 			{
 				connection.Open();
 
@@ -153,7 +153,7 @@ namespace Core.Database
 
 			var entries = new List<Entry>();
 
-			using (var connection = new SQLiteConnection(_connectionString))
+			using (var connection = new SQLiteConnection(ConnectionString))
 			{
 				connection.Open();
 
@@ -240,7 +240,7 @@ namespace Core.Database
 			Debug.Assert(firstEntry != null);
 			Debug.Assert(secondEntry != null);
 
-			using (var connection = new SQLiteConnection(_connectionString))
+			using (var connection = new SQLiteConnection(ConnectionString))
 			{
 				connection.Open();
 
@@ -292,7 +292,7 @@ namespace Core.Database
 		{
 			Debug.Assert(entry != null);
 
-			using (var connection = new SQLiteConnection(_connectionString))
+			using (var connection = new SQLiteConnection(ConnectionString))
 			{
 				connection.Open();
 
@@ -337,7 +337,7 @@ namespace Core.Database
 		{
 			Debug.Assert(entry != null);
 
-			using (var connection = new SQLiteConnection(_connectionString))
+			using (var connection = new SQLiteConnection(ConnectionString))
 			{
 				connection.Open();
 
@@ -367,7 +367,7 @@ namespace Core.Database
 		{
 			Debug.Assert(relation != null);
 
-			using (var connection = new SQLiteConnection(_connectionString))
+			using (var connection = new SQLiteConnection(ConnectionString))
 			{
 				connection.Open();
 
@@ -423,7 +423,7 @@ namespace Core.Database
 
 			var entries = new List<Entry>();
 
-			using (var connection = new SQLiteConnection(_connectionString))
+			using (var connection = new SQLiteConnection(ConnectionString))
 			{
 				connection.Open();
 
@@ -494,7 +494,7 @@ namespace Core.Database
 		{
 			Debug.Assert(relation != null);
 
-			using (var connection = new SQLiteConnection(_connectionString))
+			using (var connection = new SQLiteConnection(ConnectionString))
 			{
 				connection.Open();
 
