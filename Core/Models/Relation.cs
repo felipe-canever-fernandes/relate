@@ -1,19 +1,20 @@
-﻿using System.Diagnostics;
+﻿
+using System.Diagnostics;
 
-namespace Core
+namespace Core.Models
 {
-	public class Relation
-	{
-		private Entry firstEntry;
-		private Entry secondEntry;
+    public class Relation
+    {
+        private Entry firstEntry;
+        private Entry secondEntry;
 
-		public Relation(Entry firstEntry, Entry secondEntry)
-		{
+        public Relation(Entry firstEntry, Entry secondEntry)
+        {
             FirstEntry = firstEntry;
             SecondEntry = secondEntry;
         }
 
-		public Entry FirstEntry
+        public Entry FirstEntry
         {
             get => firstEntry;
             set => firstEntry = Validate(value);

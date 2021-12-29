@@ -1,8 +1,9 @@
-﻿using System.Diagnostics;
+﻿
+using System.Diagnostics;
 
-namespace Core
+namespace Core.Models
 {
-	public class Entry
+    public class Entry
     {
         private long id;
         private string name;
