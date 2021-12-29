@@ -6,7 +6,5 @@
         xmlns:local="clr-namespace:Interface"
         mc:Ignorable="d"
         Title="RELATE" Height="450" Width="800" SizeToContent="WidthAndHeight" WindowStartupLocation="CenterScreen">
-    <Grid>
-        
-    </Grid>
+    <ListView ItemsSource="{Binding Entries}" />
 </Window>
