@@ -1,5 +1,4 @@
-﻿using System;
-using System.Configuration;
+﻿using System.Configuration;
 
 namespace Core.Database
 {
@@ -10,6 +9,4 @@ namespace Core.Database
 					.ConnectionStrings["SQLite"]
 					.ConnectionString;
 	}
-
-	public class NotUniqueException : Exception {}
 }
