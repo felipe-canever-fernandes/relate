@@ -6,7 +6,10 @@
         xmlns:local="clr-namespace:Interface"
         mc:Ignorable="d"
         Title="RELATE" Height="450" Width="800" SizeToContent="WidthAndHeight"
-        WindowStartupLocation="CenterScreen" MinWidth="250" MinHeight="300">
+        WindowStartupLocation="CenterScreen"
+        MinWidth="250" MinHeight="300"
+        d:Width="{Binding RelativeSource={RelativeSource Mode=Self}, Path=MinWidth}"
+        d:Height="{Binding RelativeSource={RelativeSource Mode=Self}, Path=MinHeight}">
     <StackPanel>
         <GroupBox Header="Filter">
             <TextBox />
