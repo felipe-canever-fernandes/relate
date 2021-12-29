@@ -4,7 +4,7 @@ namespace Core.Database
 {
     public static class Database
 	{
-		public static string ConnectionString { get; } =
+		private static string ConnectionString { get; } =
 				ConfigurationManager
 					.ConnectionStrings["SQLite"]
 					.ConnectionString;
