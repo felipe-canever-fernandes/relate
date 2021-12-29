@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Configuration;
 using System.Data.SQLite;
 using System.Diagnostics;
 
@@ -8,7 +9,9 @@ namespace Core.Database
 	public static class Database
 	{
 		private static string ConnectionString { get; } =
-				@"Data Source=.\Database.db;Version=3;";
+				ConfigurationManager
+					.ConnectionStrings["SQLite"]
+					.ConnectionString;
 
 		public static long Create(Entry entry)
 		{
