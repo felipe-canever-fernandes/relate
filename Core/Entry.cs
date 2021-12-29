@@ -15,7 +15,7 @@ namespace Core
 
         public long Id
         {
-            get { return id; }
+            get => id;
 
             set
             {
@@ -26,7 +26,7 @@ namespace Core
 
         public string Name
         {
-            get { return name; }
+            get => name;
 
             set
             {
@@ -36,9 +36,6 @@ namespace Core
             }
         }
 
-		public override string ToString()
-		{
-            return $"[{Name}]";
-        }
-	}
+        public override string ToString() => $"[{Name}]";
+    }
 }

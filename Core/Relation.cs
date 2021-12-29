@@ -15,7 +15,7 @@ namespace Core
 
         public long FirstEntryId
         {
-            get { return firstEntryId; }
+            get => firstEntryId;
 
             set
             {
@@ -26,7 +26,7 @@ namespace Core
 
         public long SecondEntryId
         {
-            get { return secondEntryId; }
+            get => secondEntryId;
 
             set
             {
