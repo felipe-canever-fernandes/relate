@@ -4,8 +4,8 @@ namespace Core
 {
 	public class Relation
 	{
-		private long _firstEntryId;
-		private long _secondEntryId;
+		private long firstEntryId;
+		private long secondEntryId;
 
 		public Relation(long firstEntryId, long secondEntryId)
 		{
@@ -15,7 +15,7 @@ namespace Core
 
         public long FirstEntryId
         {
-            get { return _firstEntryId; }
+            get { return firstEntryId; }
 
             set
             {
@@ -25,13 +25,13 @@ namespace Core
                     "The first entry ID must be positive."
                 );
 
-                _firstEntryId = value;
+                firstEntryId = value;
             }
         }
 
         public long SecondEntryId
         {
-            get { return _secondEntryId; }
+            get { return secondEntryId; }
 
             set
             {
@@ -41,7 +41,7 @@ namespace Core
                     "The second entry ID must be positive."
                 );
 
-                _secondEntryId = value;
+                secondEntryId = value;
             }
         }
     }

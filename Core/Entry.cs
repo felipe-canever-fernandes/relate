@@ -4,8 +4,8 @@ namespace Core
 {
 	public class Entry
     {
-        private long _id;
-        private string _name;
+        private long id;
+        private string name;
 
         public Entry(string name, long id = 0)
         {
@@ -15,7 +15,7 @@ namespace Core
 
         public long Id
         {
-            get { return _id; }
+            get { return id; }
 
             set
             {
@@ -25,13 +25,13 @@ namespace Core
                     "The entry ID cannot be negative."
                 );
 
-                _id = value;
+                id = value;
             }
         }
 
         public string Name
         {
-            get { return _name; }
+            get { return name; }
 
             set
             {
@@ -49,7 +49,7 @@ namespace Core
                     "The entry name cannot be only whitespace."
                 );
 
-                _name = value;
+                name = value;
             }
         }
 
