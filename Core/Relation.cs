@@ -4,35 +4,33 @@ namespace Core
 {
 	public class Relation
 	{
-		private long firstEntryId;
-		private long secondEntryId;
+		private Entry firstEntry;
+		private Entry secondEntry;
 
-		public Relation(long firstEntryId, long secondEntryId)
+		public Relation(Entry firstEntry, Entry secondEntry)
 		{
-            FirstEntryId = firstEntryId;
-            SecondEntryId = secondEntryId;
-		}
-
-        public long FirstEntryId
-        {
-            get => firstEntryId;
-
-            set
-            {
-                Debug.Assert(value > 0);
-                firstEntryId = value;
-            }
+            FirstEntry = firstEntry;
+            SecondEntry = secondEntry;
         }
 
-        public long SecondEntryId
+		public Entry FirstEntry
         {
-            get => secondEntryId;
+            get => firstEntry;
+            set => firstEntry = Validate(value);
+        }
 
-            set
-            {
-                Debug.Assert(value > 0);
-                secondEntryId = value;
-            }
+        public Entry SecondEntry
+        {
+            get => secondEntry;
+            set => secondEntry = Validate(value);
+        }
+
+        private static Entry Validate(Entry entry)
+        {
+            Debug.Assert(entry != null);
+            Debug.Assert(entry.Id > 0);
+
+            return entry;
         }
     }
 }
