@@ -31,8 +31,11 @@ namespace Core.Models
 
             set
             {
+                Debug.Assert(!string.IsNullOrEmpty(value));
+
                 value = value.Trim();
                 Debug.Assert(!string.IsNullOrEmpty(value));
+
                 name = value;
             }
         }
