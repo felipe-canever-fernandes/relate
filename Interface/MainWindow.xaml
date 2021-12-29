@@ -5,6 +5,9 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Interface"
         mc:Ignorable="d"
-        Title="RELATE" Height="450" Width="800" SizeToContent="WidthAndHeight" WindowStartupLocation="CenterScreen">
-    <ListView ItemsSource="{Binding Entries}" />
+        Title="RELATE" Height="450" Width="800" SizeToContent="WidthAndHeight"
+        WindowStartupLocation="CenterScreen">
+    <StackPanel>
+        <ListView ItemsSource="{Binding Entries}" />
+    </StackPanel>
 </Window>
