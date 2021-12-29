@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:Interface"
         mc:Ignorable="d"
         Title="RELATE" Height="450" Width="800" SizeToContent="WidthAndHeight"
-        WindowStartupLocation="CenterScreen">
+        WindowStartupLocation="CenterScreen" MinWidth="250" MinHeight="300">
     <StackPanel>
         <ListView ItemsSource="{Binding Entries}" />
     </StackPanel>
