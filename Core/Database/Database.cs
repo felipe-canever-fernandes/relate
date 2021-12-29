@@ -12,11 +12,7 @@ namespace Core.Database
 
 		public static long Create(Entry entry)
 		{
-			Debug.Assert
-			(
-				entry != null,
-				"The entry cannot be null."
-			);
+			Debug.Assert(entry != null);
 
 			using (var connection = new SQLiteConnection(_connectionString))
 			{
@@ -62,11 +58,7 @@ namespace Core.Database
 
 		public static Entry ReadEntry(long id)
 		{
-			Debug.Assert
-			(
-				id >= 1,
-				"The entry ID must be positive."
-			);
+			Debug.Assert(id >= 1);
 
 			Entry entry = null;
 
@@ -113,11 +105,7 @@ namespace Core.Database
 
 		public static long GetEntryId(string entryName)
 		{
-			Debug.Assert
-			(
-				entryName != null,
-				"The entry name cannot be null."
-			);
+			Debug.Assert(entryName != null);
 
 			using (var connection = new SQLiteConnection(_connectionString))
 			{
@@ -159,11 +147,7 @@ namespace Core.Database
 			string search = ""
 		)
 		{
-			Debug.Assert
-			(
-				search != null,
-				"The search cannot be null or empty."
-			);
+			Debug.Assert(search != null);
 
 			search = search.Trim();
 
@@ -306,11 +290,7 @@ namespace Core.Database
 
 		public static bool Update(Entry entry)
 		{
-			Debug.Assert
-			(
-				entry != null,
-				"The entry cannot be null."
-			);
+			Debug.Assert(entry != null);
 
 			using (var connection = new SQLiteConnection(_connectionString))
 			{
@@ -355,11 +335,7 @@ namespace Core.Database
 
 		public static bool Delete(Entry entry)
 		{
-			Debug.Assert
-			(
-				entry != null,
-				"The entry cannot be null."
-			);
+			Debug.Assert(entry != null);
 
 			using (var connection = new SQLiteConnection(_connectionString))
 			{
@@ -389,11 +365,7 @@ namespace Core.Database
 
 		public static bool Create(Relation relation)
 		{
-			Debug.Assert
-			(
-				relation != null,
-				"The relation cannot be null."
-			);
+			Debug.Assert(relation != null);
 
 			using (var connection = new SQLiteConnection(_connectionString))
 			{
@@ -447,11 +419,7 @@ namespace Core.Database
 
 		public static List<Entry> ReadRelatableEntries(long entryId)
 		{
-			Debug.Assert
-			(
-				entryId >= 1,
-				"The entry ID must be positive."
-			);
+			Debug.Assert(entryId >= 1);
 
 			var entries = new List<Entry>();
 
@@ -524,11 +492,7 @@ namespace Core.Database
 
 		public static bool Delete(Relation relation)
 		{
-			Debug.Assert
-			(
-				relation != null,
-				"The relation cannot be null."
-			);
+			Debug.Assert(relation != null);
 
 			using (var connection = new SQLiteConnection(_connectionString))
 			{

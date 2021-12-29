@@ -19,12 +19,7 @@ namespace Core
 
             set
             {
-                Debug.Assert
-                (
-                    value >= 0,
-                    "The entry ID cannot be negative."
-                );
-
+                Debug.Assert(value >= 0);
                 id = value;
             }
         }
@@ -35,20 +30,8 @@ namespace Core
 
             set
             {
-                Debug.Assert
-                (
-                    !string.IsNullOrEmpty(value),
-                    "The entry name cannot be null or empty."
-                );
-
                 value = value.Trim();
-
-                Debug.Assert
-                (
-                    value != "",
-                    "The entry name cannot be only whitespace."
-                );
-
+                Debug.Assert(!string.IsNullOrEmpty(value));
                 name = value;
             }
         }

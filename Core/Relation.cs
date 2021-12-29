@@ -19,12 +19,7 @@ namespace Core
 
             set
             {
-                Debug.Assert
-                (
-                    value > 0,
-                    "The first entry ID must be positive."
-                );
-
+                Debug.Assert(value > 0);
                 firstEntryId = value;
             }
         }
@@ -35,12 +30,7 @@ namespace Core
 
             set
             {
-                Debug.Assert
-                (
-                    value > 0,
-                    "The second entry ID must be positive."
-                );
-
+                Debug.Assert(value > 0);
                 secondEntryId = value;
             }
         }
