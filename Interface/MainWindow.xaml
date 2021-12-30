@@ -12,8 +12,15 @@
 		d:Height="{Binding RelativeSource={RelativeSource Mode=Self}, Path=MinHeight}">
 	<StackPanel>
 		<GroupBox Header="Filter">
-			<TextBox x:Name="Filter" TextChanged="Filter_TextChanged" />
-		</GroupBox>
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="auto" />
+                </Grid.ColumnDefinitions>
+                <TextBox Grid.Column="0" x:Name="Filter" TextChanged="Filter_TextChanged" />
+                <Button Grid.Column="1">Create entry</Button>
+            </Grid>
+        </GroupBox>
 		<GroupBox Header="Entries">
 			<ListView ItemsSource="{Binding Entries}" />
 		</GroupBox>
