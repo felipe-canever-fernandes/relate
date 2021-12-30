@@ -10,61 +10,88 @@ namespace Core.Database
 {
 	public static class Database
 	{
+		private delegate void CommandCallback(SQLiteCommand command);
+
 		private static string ConnectionString { get; } =
 				ConfigurationManager
 					.ConnectionStrings["SQLite"]
 					.ConnectionString;
 
-		public static List<Entry> GetEntries(string filter = "")
+		public static List<Entry> GetEntries(string search = "")
 		{
-			Debug.Assert(filter != null);
+			Debug.Assert(!(search is null));
 
-			using (var connection = new SQLiteConnection(ConnectionString))
+			var query = BuildQuery();
+			var entries = new List<Entry>();
+
+			ExecuteCommand(query.ToString(), CommandCallback);
+
+			return entries;
+
+			string BuildQuery()
 			{
-				connection.Open();
+				var queryString =
+					new StringBuilder("SELECT `Id`, `Name` FROM `Entry`");
 
-				var query = new StringBuilder("PRAGMA foreign_keys = 1;");
-
-				using (
-					var command =
-						new SQLiteCommand(query.ToString(), connection)
-				)
+				if (search != string.Empty)
 				{
-					_ = command.ExecuteNonQuery();
-				}
-
-				query = new StringBuilder("SELECT `Id`, `Name` FROM `Entry`");
-
-				if (filter != string.Empty)
-				{
-					_ = query.Append(
-						$" WHERE `Name` LIKE \"%{filter}%\" COLLATE NOCASE"
+					_ = queryString.Append(
+						$" WHERE `Name` LIKE \"%{search}%\" COLLATE NOCASE"
 					);
 				}
 
-				_ = query.Append(";");
+				_ = queryString.Append(";");
+
+				return queryString.ToString();
+			}
+
+			void CommandCallback(SQLiteCommand command)
+			{
+				using (var reader = command.ExecuteReader())
+				{
+					while (reader.Read())
+					{
+						var entry = new Entry(
+							reader["Name"].ToString(),
+							long.Parse(reader["Id"].ToString())
+						);
+
+						entries.Add(entry);
+					}
+				}
+			}
+		}
+
+		private static void ExecuteCommand(
+			string query,
+			CommandCallback commandCallback
+		)
+		{
+			Debug.Assert(!string.IsNullOrEmpty(query));
+
+			using (var connection = new SQLiteConnection(ConnectionString))
+			{
+				EnforceForeignKeyConstraints(connection);
+
+				using (var command = new SQLiteCommand(query, connection))
+				{
+					commandCallback(command);
+				}
+			}
+
+			void EnforceForeignKeyConstraints(SQLiteConnection connection)
+			{
+				connection.Open();
 
 				using (
 					var command =
-						new SQLiteCommand(query.ToString(), connection)
+						new SQLiteCommand(
+							"PRAGMA foreign_keys = 1;",
+							connection
+						)
 				)
 				{
-					using (var reader = command.ExecuteReader())
-					{
-						var entries = new List<Entry>();
-
-						while (reader.Read())
-						{
-							var entry = new Entry(
-								reader["Name"].ToString(),
-								long.Parse(reader["Id"].ToString())
-							);
-
-							entries.Add(entry);
-						}
-
-						return entries;
-					}
+					_ = command.ExecuteNonQuery();
 				}
 			}
 		}
