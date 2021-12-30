@@ -28,7 +28,7 @@ namespace Core.Models
 
 		private static Entry Validate(Entry entry)
 		{
-			Debug.Assert(entry != null);
+			Debug.Assert(!(entry is null));
 			Debug.Assert(entry.Id > 0);
 
 			return entry;
