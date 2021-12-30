@@ -31,13 +31,24 @@ namespace Interface
 			object sender, System.Windows.Controls.TextChangedEventArgs e
 		)
 		{
-			Entries.Clear();
+			var filterText = Filter.Text.Trim();
 
-			var entries = Database.GetEntries(Filter.Text.Trim());
+			UpdateCreateEntryButton();
+			UpdateEntriesList();
 
-			foreach (var entry in entries)
+			void UpdateCreateEntryButton() =>
+				CreateEntry.IsEnabled = !string.IsNullOrEmpty(filterText);
+
+			void UpdateEntriesList()
 			{
-				Entries.Add(entry);
+				Entries.Clear();
+
+				var entries = Database.GetEntries(filterText);
+
+				foreach (var entry in entries)
+				{
+					Entries.Add(entry);
+				}
 			}
 		}
 	}
