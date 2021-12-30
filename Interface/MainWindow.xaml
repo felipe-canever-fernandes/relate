@@ -29,7 +29,8 @@
                          TextChanged="Filter_TextChanged"
                          x:Name="Filter"
                          />
-                <Button Grid.Column="1"
+                <Button Click="CreateEntry_Click"
+                        Grid.Column="1"
                         Margin="1"
                         Padding="5, 3"
                         x:Name="CreateEntry"

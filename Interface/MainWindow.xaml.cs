@@ -21,6 +21,8 @@ namespace Interface
 
 		public ObservableCollection<Entry> Entries { get; set; }
 
+		public string FilterText => Filter.Text.Trim();
+
 		private void InitializeEntries()
 		{
 			Entries = new ObservableCollection<Entry>();
@@ -31,14 +33,12 @@ namespace Interface
 			object sender, System.Windows.Controls.TextChangedEventArgs e
 		)
 		{
-			var filterText = Filter.Text.Trim();
-
 			UpdateCreateEntryButton();
 			UpdateEntriesList();
 
 			void UpdateCreateEntryButton()
 			{
-				var isFilterEmpty = string.IsNullOrEmpty(filterText);
+				var isFilterEmpty = string.IsNullOrEmpty(FilterText);
 
 				if (isFilterEmpty)
 				{
@@ -46,7 +46,7 @@ namespace Interface
 				}
 				else
 				{
-					var entry = new Entry(filterText);
+					var entry = new Entry(FilterText);
 					var entryExists = Database.Exists(entry);
 
 					CreateEntry.IsEnabled = !entryExists;
@@ -57,13 +57,21 @@ namespace Interface
 			{
 				Entries.Clear();
 
-				var entries = Database.GetEntries(filterText);
+				var entries = Database.GetEntries(FilterText);
 
 				foreach (var entry in entries)
 				{
 					Entries.Add(entry);
 				}
 			}
+		}
+
+		private void CreateEntry_Click(object sender, RoutedEventArgs e)
+		{
+			var entry = new Entry(FilterText);
+			_ = Database.Insert(entry);
+
+			Filter.Text = "";
 		}
 	}
 }
