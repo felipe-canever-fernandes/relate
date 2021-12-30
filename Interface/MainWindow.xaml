@@ -5,11 +5,17 @@
 		xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
 		xmlns:local="clr-namespace:Interface"
 		mc:Ignorable="d"
-		Title="RELATE" Height="450" Width="800" SizeToContent="WidthAndHeight"
-		WindowStartupLocation="CenterScreen"
-		MinWidth="250" MinHeight="300"
+        
+		d:Height="{Binding RelativeSource={RelativeSource Mode=Self}, Path=MinHeight}"
 		d:Width="{Binding RelativeSource={RelativeSource Mode=Self}, Path=MinWidth}"
-		d:Height="{Binding RelativeSource={RelativeSource Mode=Self}, Path=MinHeight}">
+        Height="450"
+        MinHeight="300"
+		MinWidth="250"
+        SizeToContent="WidthAndHeight"
+		Title="RELATE"
+        Width="800"
+		WindowStartupLocation="CenterScreen"
+        >
 	<StackPanel Margin="1">
 		<GroupBox Header="Filter" Margin="1">
             <Grid Margin="1">
@@ -17,13 +23,18 @@
                     <ColumnDefinition Width="*"/>
                     <ColumnDefinition Width="auto"/>
                 </Grid.ColumnDefinitions>
-                <TextBox Grid.Column="0" x:Name="Filter" Margin="1"
-                         TextChanged="Filter_TextChanged"/>
-                <Button Grid.Column="1" Margin="1">Create entry</Button>
+                <TextBox Grid.Column="0"
+                         Margin="1"
+                         TextChanged="Filter_TextChanged"
+                         x:Name="Filter"
+                         />
+                <Button Grid.Column="1" Margin="1">
+                    Create entry
+                </Button>
             </Grid>
         </GroupBox>
 		<GroupBox Header="Entries" Margin="1">
-			<ListView Margin="1" ItemsSource="{Binding Entries}"/>
+            <ListView ItemsSource="{Binding Entries}" Margin="1"/>
 		</GroupBox>
 	</StackPanel>
 </Window>
