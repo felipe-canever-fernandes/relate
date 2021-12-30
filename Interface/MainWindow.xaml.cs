@@ -6,39 +6,39 @@ using System.Windows;
 
 namespace Interface
 {
-    /// <summary>
-    /// Interaction logic for MainWindow.xaml
-    /// </summary>
-    public partial class MainWindow : Window
-    {
-        public MainWindow()
-        {
-            InitializeComponent();
+	/// <summary>
+	/// Interaction logic for MainWindow.xaml
+	/// </summary>
+	public partial class MainWindow : Window
+	{
+		public MainWindow()
+		{
+			InitializeComponent();
 
-            DataContext = this;
-            InitializeEntries();
-        }
+			DataContext = this;
+			InitializeEntries();
+		}
 
-        public ObservableCollection<Entry> Entries { get; set; }
+		public ObservableCollection<Entry> Entries { get; set; }
 
-        private void InitializeEntries()
-        {
-            Entries = new ObservableCollection<Entry>();
-            Filter.Text = " ";
-        }
+		private void InitializeEntries()
+		{
+			Entries = new ObservableCollection<Entry>();
+			Filter.Text = " ";
+		}
 
-        private void Filter_TextChanged(
-            object sender, System.Windows.Controls.TextChangedEventArgs e
-        )
-        {
-            Entries.Clear();
+		private void Filter_TextChanged(
+			object sender, System.Windows.Controls.TextChangedEventArgs e
+		)
+		{
+			Entries.Clear();
 
-            var entries = Database.GetEntries(Filter.Text.Trim());
+			var entries = Database.GetEntries(Filter.Text.Trim());
 
-            foreach (var entry in entries)
-            {
-                Entries.Add(entry);
-            }
-        }
-    }
+			foreach (var entry in entries)
+			{
+				Entries.Add(entry);
+			}
+		}
+	}
 }

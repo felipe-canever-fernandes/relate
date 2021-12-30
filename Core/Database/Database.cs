@@ -8,7 +8,7 @@ using System.Text;
 
 namespace Core.Database
 {
-    public static class Database
+	public static class Database
 	{
 		private static string ConnectionString { get; } =
 				ConfigurationManager
@@ -36,13 +36,13 @@ namespace Core.Database
 				query = new StringBuilder("SELECT `Id`, `Name` FROM `Entry`");
 
 				if (filter != string.Empty)
-                {
-                    _ = query.Append(
-                        $" WHERE `Name` LIKE \"%{filter}%\" COLLATE NOCASE"
-                    );
+				{
+					_ = query.Append(
+						$" WHERE `Name` LIKE \"%{filter}%\" COLLATE NOCASE"
+					);
 				}
 
-                _ = query.Append(";");
+				_ = query.Append(";");
 
 				using (
 					var command =
