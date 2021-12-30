@@ -6,14 +6,8 @@
 		xmlns:local="clr-namespace:Interface"
 		mc:Ignorable="d"
         
-		d:Height="{Binding RelativeSource={RelativeSource Mode=Self}, Path=MinHeight}"
-		d:Width="{Binding RelativeSource={RelativeSource Mode=Self}, Path=MinWidth}"
-        Height="450"
-        MinHeight="300"
-		MinWidth="250"
         SizeToContent="WidthAndHeight"
 		Title="RELATE"
-        Width="800"
 		WindowStartupLocation="CenterScreen"
         >
 	<DockPanel Margin="2">
@@ -26,6 +20,7 @@
                 <TextBox Grid.Column="0"
                          KeyDown="FilterTextBox_KeyDown"
                          Margin="2"
+                         MinWidth="200"
                          Padding="5, 3"
                          TextChanged="FilterTextBox_TextChanged"
                          x:Name="FilterTextBox"
@@ -41,7 +36,10 @@
             </Grid>
         </GroupBox>
 		<GroupBox Header="Entries" Margin="2">
-            <ListView ItemsSource="{Binding Entries}" Margin="2"/>
+            <ListView ItemsSource="{Binding Entries}"
+                      Margin="2"
+                      MinHeight="200"
+                      />
 		</GroupBox>
 	</DockPanel>
 </Window>
