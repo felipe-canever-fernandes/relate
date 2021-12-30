@@ -26,14 +26,14 @@
                 <TextBox Grid.Column="0"
                          Margin="2"
                          Padding="5, 3"
-                         TextChanged="Filter_TextChanged"
-                         x:Name="Filter"
+                         TextChanged="FilterTextBox_TextChanged"
+                         x:Name="FilterTextBox"
                          />
-                <Button Click="CreateEntry_Click"
+                <Button Click="CreateEntryButton_Click"
                         Grid.Column="1"
                         Margin="2"
                         Padding="5, 3"
-                        x:Name="CreateEntry"
+                        x:Name="CreateEntryButton"
                         >
                     Create entry
                 </Button>

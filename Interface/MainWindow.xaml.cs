@@ -21,16 +21,17 @@ namespace Interface
 
 		public ObservableCollection<Entry> Entries { get; set; }
 
-		public string FilterText => Filter.Text.Trim();
+		public string Filter => FilterTextBox.Text.Trim();
 
 		private void InitializeEntries()
 		{
 			Entries = new ObservableCollection<Entry>();
-			Filter.Text = " ";
+			FilterTextBox.Text = " ";
 		}
 
-		private void Filter_TextChanged(
-			object sender, System.Windows.Controls.TextChangedEventArgs e
+		private void FilterTextBox_TextChanged(
+			object sender,
+			System.Windows.Controls.TextChangedEventArgs e
 		)
 		{
 			UpdateCreateEntryButton();
@@ -38,18 +39,18 @@ namespace Interface
 
 			void UpdateCreateEntryButton()
 			{
-				var isFilterEmpty = string.IsNullOrEmpty(FilterText);
+				var isFilterEmpty = string.IsNullOrEmpty(Filter);
 
 				if (isFilterEmpty)
 				{
-					CreateEntry.IsEnabled = false;
+					CreateEntryButton.IsEnabled = false;
 				}
 				else
 				{
-					var entry = new Entry(FilterText);
+					var entry = new Entry(Filter);
 					var entryExists = Database.Exists(entry);
 
-					CreateEntry.IsEnabled = !entryExists;
+					CreateEntryButton.IsEnabled = !entryExists;
 				}
 			}
 
@@ -57,7 +58,7 @@ namespace Interface
 			{
 				Entries.Clear();
 
-				var entries = Database.GetEntries(FilterText);
+				var entries = Database.GetEntries(Filter);
 
 				foreach (var entry in entries)
 				{
@@ -66,12 +67,12 @@ namespace Interface
 			}
 		}
 
-		private void CreateEntry_Click(object sender, RoutedEventArgs e)
+		private void CreateEntryButton_Click(object sender, RoutedEventArgs e)
 		{
-			var entry = new Entry(FilterText);
+			var entry = new Entry(Filter);
 			_ = Database.Insert(entry);
 
-			Filter.Text = "";
+			FilterTextBox.Text = "";
 		}
 	}
 }
