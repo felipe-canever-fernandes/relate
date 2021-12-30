@@ -14,15 +14,15 @@
 		<GroupBox Header="Filter">
             <Grid>
                 <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="*" />
-                    <ColumnDefinition Width="auto" />
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="auto"/>
                 </Grid.ColumnDefinitions>
-                <TextBox Grid.Column="0" x:Name="Filter" TextChanged="Filter_TextChanged" />
+                <TextBox Grid.Column="0" x:Name="Filter" TextChanged="Filter_TextChanged"/>
                 <Button Grid.Column="1">Create entry</Button>
             </Grid>
         </GroupBox>
 		<GroupBox Header="Entries">
-			<ListView ItemsSource="{Binding Entries}" />
+			<ListView ItemsSource="{Binding Entries}"/>
 		</GroupBox>
 	</StackPanel>
 </Window>
