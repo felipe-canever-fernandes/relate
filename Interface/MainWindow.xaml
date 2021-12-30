@@ -10,19 +10,20 @@
 		MinWidth="250" MinHeight="300"
 		d:Width="{Binding RelativeSource={RelativeSource Mode=Self}, Path=MinWidth}"
 		d:Height="{Binding RelativeSource={RelativeSource Mode=Self}, Path=MinHeight}">
-	<StackPanel>
-		<GroupBox Header="Filter">
-            <Grid>
+	<StackPanel Margin="1">
+		<GroupBox Header="Filter" Margin="1">
+            <Grid Margin="1">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="*"/>
                     <ColumnDefinition Width="auto"/>
                 </Grid.ColumnDefinitions>
-                <TextBox Grid.Column="0" x:Name="Filter" TextChanged="Filter_TextChanged"/>
-                <Button Grid.Column="1">Create entry</Button>
+                <TextBox Grid.Column="0" x:Name="Filter" Margin="1"
+                         TextChanged="Filter_TextChanged"/>
+                <Button Grid.Column="1" Margin="1">Create entry</Button>
             </Grid>
         </GroupBox>
-		<GroupBox Header="Entries">
-			<ListView ItemsSource="{Binding Entries}"/>
+		<GroupBox Header="Entries" Margin="1">
+			<ListView Margin="1" ItemsSource="{Binding Entries}"/>
 		</GroupBox>
 	</StackPanel>
 </Window>
