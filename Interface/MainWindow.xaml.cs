@@ -3,6 +3,7 @@ using Core.Models;
 
 using System.Collections.ObjectModel;
 using System.Windows;
+using System.Windows.Controls.Primitives;
 
 namespace Interface
 {
@@ -65,6 +66,25 @@ namespace Interface
 					Entries.Add(entry);
 				}
 			}
+		}
+
+		private void FilterTextBox_KeyDown(
+			object sender,
+			System.Windows.Input.KeyEventArgs e
+		)
+		{
+			if (e.Key != System.Windows.Input.Key.Enter)
+			{
+				return;
+			}
+
+			if (!CreateEntryButton.IsEnabled)
+			{
+				return;
+			}
+
+			var args = new RoutedEventArgs(ButtonBase.ClickEvent);
+			CreateEntryButton.RaiseEvent(args);
 		}
 
 		private void CreateEntryButton_Click(object sender, RoutedEventArgs e)

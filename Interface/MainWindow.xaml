@@ -24,6 +24,7 @@
                     <ColumnDefinition Width="auto"/>
                 </Grid.ColumnDefinitions>
                 <TextBox Grid.Column="0"
+                         KeyDown="FilterTextBox_KeyDown"
                          Margin="2"
                          Padding="5, 3"
                          TextChanged="FilterTextBox_TextChanged"
