@@ -16,22 +16,22 @@
         Width="800"
 		WindowStartupLocation="CenterScreen"
         >
-	<DockPanel Margin="1">
-		<GroupBox DockPanel.Dock="Top" Header="Filter" Margin="1">
-            <Grid Margin="1">
+	<DockPanel Margin="2">
+		<GroupBox DockPanel.Dock="Top" Header="Filter" Margin="2">
+            <Grid Margin="2">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="*"/>
                     <ColumnDefinition Width="auto"/>
                 </Grid.ColumnDefinitions>
                 <TextBox Grid.Column="0"
-                         Margin="1"
+                         Margin="2"
                          Padding="5, 3"
                          TextChanged="Filter_TextChanged"
                          x:Name="Filter"
                          />
                 <Button Click="CreateEntry_Click"
                         Grid.Column="1"
-                        Margin="1"
+                        Margin="2"
                         Padding="5, 3"
                         x:Name="CreateEntry"
                         >
@@ -39,8 +39,8 @@
                 </Button>
             </Grid>
         </GroupBox>
-		<GroupBox Header="Entries" Margin="1">
-            <ListView ItemsSource="{Binding Entries}" Margin="1"/>
+		<GroupBox Header="Entries" Margin="2">
+            <ListView ItemsSource="{Binding Entries}" Margin="2"/>
 		</GroupBox>
 	</DockPanel>
 </Window>
