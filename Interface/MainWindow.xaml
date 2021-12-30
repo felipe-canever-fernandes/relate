@@ -9,11 +9,10 @@
         WindowStartupLocation="CenterScreen"
         MinWidth="250" MinHeight="300"
         d:Width="{Binding RelativeSource={RelativeSource Mode=Self}, Path=MinWidth}"
-        d:Height="{Binding RelativeSource={RelativeSource Mode=Self}, Path=MinHeight}"
-        Loaded="Window_Loaded">
+        d:Height="{Binding RelativeSource={RelativeSource Mode=Self}, Path=MinHeight}">
     <StackPanel>
         <GroupBox Header="Filter">
-            <TextBox x:Name="Filter" />
+            <TextBox x:Name="Filter" TextChanged="Filter_TextChanged" />
         </GroupBox>
         <GroupBox Header="Entries">
             <ListView ItemsSource="{Binding Entries}" />

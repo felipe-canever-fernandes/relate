@@ -3,6 +3,8 @@
 using System.Collections.Generic;
 using System.Configuration;
 using System.Data.SQLite;
+using System.Diagnostics;
+using System.Text;
 
 namespace Core.Database
 {
@@ -13,22 +15,39 @@ namespace Core.Database
 					.ConnectionStrings["SQLite"]
 					.ConnectionString;
 
-		public static List<Entry> GetAllEntries()
+		public static List<Entry> GetEntries(string filter = "")
 		{
+			Debug.Assert(filter != null);
+
 			using (var connection = new SQLiteConnection(ConnectionString))
 			{
 				connection.Open();
 
-				var query = "PRAGMA foreign_keys = 1;";
+				var query = new StringBuilder("PRAGMA foreign_keys = 1;");
 
-				using (var command = new SQLiteCommand(query, connection))
+				using (
+					var command =
+						new SQLiteCommand(query.ToString(), connection)
+				)
 				{
 					_ = command.ExecuteNonQuery();
 				}
 
-				query = "SELECT `Id`, `Name` FROM `Entry`;";
+				query = new StringBuilder("SELECT `Id`, `Name` FROM `Entry`");
 
-				using (var command = new SQLiteCommand(query, connection))
+				if (filter != string.Empty)
+                {
+                    _ = query.Append(
+                        $" WHERE `Name` LIKE \"%{filter}%\" COLLATE NOCASE"
+                    );
+				}
+
+                _ = query.Append(";");
+
+				using (
+					var command =
+						new SQLiteCommand(query.ToString(), connection)
+				)
 				{
 					using (var reader = command.ExecuteReader())
 					{

@@ -11,19 +11,34 @@ namespace Interface
     /// </summary>
     public partial class MainWindow : Window
     {
-        public MainWindow() => InitializeComponent();
+        public MainWindow()
+        {
+            InitializeComponent();
+
+            DataContext = this;
+            InitializeEntries();
+        }
 
         public ObservableCollection<Entry> Entries { get; set; }
 
-        private void Initialize()
+        private void InitializeEntries()
         {
-            DataContext = this;
-
-            var entries = Database.GetAllEntries();
-            Entries = new ObservableCollection<Entry>(entries);
+            Entries = new ObservableCollection<Entry>();
+            Filter.Text = " ";
         }
 
-        private void Window_Loaded(object sender, RoutedEventArgs e) =>
-            Initialize();
+        private void Filter_TextChanged(
+            object sender, System.Windows.Controls.TextChangedEventArgs e
+        )
+        {
+            Entries.Clear();
+
+            var entries = Database.GetEntries(Filter.Text.Trim());
+
+            foreach (var entry in entries)
+            {
+                Entries.Add(entry);
+            }
+        }
     }
 }
