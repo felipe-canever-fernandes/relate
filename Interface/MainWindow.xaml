@@ -16,8 +16,8 @@
         Width="800"
 		WindowStartupLocation="CenterScreen"
         >
-	<StackPanel Margin="1">
-		<GroupBox Header="Filter" Margin="1">
+	<DockPanel Margin="1">
+		<GroupBox DockPanel.Dock="Top" Header="Filter" Margin="1">
             <Grid Margin="1">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="*"/>
@@ -37,5 +37,5 @@
 		<GroupBox Header="Entries" Margin="1">
             <ListView ItemsSource="{Binding Entries}" Margin="1"/>
 		</GroupBox>
-	</StackPanel>
+	</DockPanel>
 </Window>
