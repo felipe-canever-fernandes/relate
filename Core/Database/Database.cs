@@ -85,7 +85,7 @@ namespace Core.Database
 					);
 				}
 
-				_ = queryString.Append(";");
+				_ = queryString.Append(" ORDER BY `Name` ASC;");
 
 				return queryString.ToString();
 			}
