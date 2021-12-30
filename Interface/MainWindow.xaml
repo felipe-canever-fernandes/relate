@@ -25,10 +25,11 @@
                 </Grid.ColumnDefinitions>
                 <TextBox Grid.Column="0"
                          Margin="1"
+                         Padding="5, 3"
                          TextChanged="Filter_TextChanged"
                          x:Name="Filter"
                          />
-                <Button Grid.Column="1" Margin="1">
+                <Button Grid.Column="1" Margin="1" Padding="5, 3">
                     Create entry
                 </Button>
             </Grid>
