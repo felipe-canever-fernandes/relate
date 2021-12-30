@@ -36,8 +36,22 @@ namespace Interface
 			UpdateCreateEntryButton();
 			UpdateEntriesList();
 
-			void UpdateCreateEntryButton() =>
-				CreateEntry.IsEnabled = !string.IsNullOrEmpty(filterText);
+			void UpdateCreateEntryButton()
+			{
+				var isFilterEmpty = string.IsNullOrEmpty(filterText);
+
+				if (isFilterEmpty)
+				{
+					CreateEntry.IsEnabled = false;
+				}
+				else
+				{
+					var entry = new Entry(filterText);
+					var entryExists = Database.Exists(entry);
+
+					CreateEntry.IsEnabled = !entryExists;
+				}
+			}
 
 			void UpdateEntriesList()
 			{

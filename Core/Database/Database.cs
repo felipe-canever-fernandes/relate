@@ -17,6 +17,31 @@ namespace Core.Database
 					.ConnectionStrings["SQLite"]
 					.ConnectionString;
 
+		public static bool Exists(Entry entry)
+		{
+			Debug.Assert(!(entry is null));
+
+			var query =
+				"SELECT EXISTS(SELECT 1 FROM `Entry` WHERE `Name` = @Name);";
+
+			var exists = false;
+
+			ExecuteCommand(query.ToString(), CommandCallback);
+
+			return exists;
+
+			void CommandCallback(SQLiteCommand command)
+			{
+				_ = command.Parameters.AddWithValue("@Name", entry.Name);
+
+				using (var reader = command.ExecuteReader())
+				{
+					_ = reader.Read();
+					exists = reader.GetBoolean(0);
+				}
+			}
+		}
+
 		public static List<Entry> GetEntries(string search = "")
 		{
 			Debug.Assert(!(search is null));
