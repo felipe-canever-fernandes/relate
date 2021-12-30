@@ -11,16 +11,19 @@ namespace Interface
     /// </summary>
     public partial class MainWindow : Window
     {
+        public MainWindow() => InitializeComponent();
+
         public ObservableCollection<Entry> Entries { get; set; }
 
-        public MainWindow()
+        private void Initialize()
         {
-            InitializeComponent();
-
             DataContext = this;
 
-            Entries =
-                new ObservableCollection<Entry>(Database.GetAllEntries());
+            var entries = Database.GetAllEntries();
+            Entries = new ObservableCollection<Entry>(entries);
         }
+
+        private void Window_Loaded(object sender, RoutedEventArgs e) =>
+            Initialize();
     }
 }
