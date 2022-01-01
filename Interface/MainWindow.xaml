@@ -39,6 +39,7 @@
             <ListView ItemsSource="{Binding Entries}"
                       Margin="2"
                       MinHeight="200"
+                      Padding="5, 3"
                       />
 		</GroupBox>
 	</DockPanel>
