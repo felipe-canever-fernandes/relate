@@ -39,9 +39,7 @@ namespace Core
 				"SELECT EXISTS(SELECT 1 FROM `Entry` WHERE `Name` = @Name);";
 
 			var exists = false;
-
 			ExecuteCommand(query.ToString(), CommandCallback);
-
 			return exists;
 
 			void CommandCallback(SQLiteCommand command)
