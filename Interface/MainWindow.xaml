@@ -13,30 +13,48 @@
 >
 	<DockPanel Margin="2">
 		<GroupBox DockPanel.Dock="Top" Header="Filter" Margin="2">
-			<Grid Margin="2">
-				<Grid.ColumnDefinitions>
-					<ColumnDefinition Width="*"/>
-					<ColumnDefinition Width="auto"/>
-				</Grid.ColumnDefinitions>
-				<TextBox
-					Grid.Column="0"
-					KeyDown="FilterTextBox_KeyDown"
+			<DockPanel>
+				<Grid DockPanel.Dock="Top" Margin="2">
+					<Grid.ColumnDefinitions>
+						<ColumnDefinition Width="*"/>
+						<ColumnDefinition Width="auto"/>
+					</Grid.ColumnDefinitions>
+					<TextBox
+						Grid.Column="0"
+						KeyDown="FilterTextBox_KeyDown"
+						Margin="2"
+						MinWidth="200"
+						Padding="5, 3"
+						TextChanged="FilterTextBox_TextChanged"
+						x:Name="FilterTextBox"
+					/>
+					<Button
+						Click="CreateEntryButton_Click"
+						Grid.Column="1"
+						Margin="2"
+						Padding="5, 3"
+						x:Name="CreateEntryButton"
+					>
+						Create entry
+					</Button>
+				</Grid>
+				<RadioButton
+					Checked="AllEntriesRadioButton_Checked"
+					DockPanel.Dock="Left"
 					Margin="2"
-					MinWidth="200"
-					Padding="5, 3"
-					TextChanged="FilterTextBox_TextChanged"
-					x:Name="FilterTextBox"
-				/>
-				<Button
-					Click="CreateEntryButton_Click"
-					Grid.Column="1"
-					Margin="2"
-					Padding="5, 3"
-					x:Name="CreateEntryButton"
+					x:Name="AllEntriesRadioButton"
 				>
-					Create entry
-				</Button>
-			</Grid>
+					All
+				</RadioButton>
+				<RadioButton
+					Checked="RelatedCurrentEntryRadioButton_Checked"
+					DockPanel.Dock="Left"
+					Margin="2"
+					x:Name="RelatedCurrentEntryRadioButton"
+				>
+					Only related to current entry
+				</RadioButton>
+			</DockPanel>
 		</GroupBox>
 		<GroupBox
 			DockPanel.Dock="Top"
