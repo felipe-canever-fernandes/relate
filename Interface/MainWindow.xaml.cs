@@ -138,6 +138,11 @@ namespace Interface
 			FilterTextBox.Text = "";
 		}
 
+		private void CloseEntryButton_Click(object sender, RoutedEventArgs e)
+		{
+			CurrentEntry = null;
+		}
+
 		private void EntriesListViewTextBlock_MouseDown(
 			object sender,
 			System.Windows.Input.MouseButtonEventArgs e
