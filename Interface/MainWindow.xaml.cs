@@ -50,6 +50,7 @@ namespace Interface
 			{
 				currentEntry = value;
 				NotifyPropertyChanged(nameof(CurrentEntry));
+				UpdateEntriesList();
 			}
 		}
 
@@ -63,13 +64,19 @@ namespace Interface
 		{
 			Entries = new ObservableCollection<Entry>();
 			FilterTextBox.Text = " ";
+			AllEntriesRadioButton.IsChecked = true;
 		}
 
 		private void UpdateEntriesList()
 		{
 			Entries.Clear();
 
-			var entries = Database.GetEntries(Filter);
+			Entry relatedTo =
+				AllEntriesRadioButton.IsChecked.Value ?
+				null :
+				CurrentEntry;
+
+			var entries = Database.GetEntries(Filter, relatedTo);
 
 			foreach (var entry in entries)
 			{
@@ -136,6 +143,22 @@ namespace Interface
 			Database.Insert(entry);
 
 			FilterTextBox.Text = "";
+		}
+
+		private void AllEntriesRadioButton_Checked(
+			object sender,
+			RoutedEventArgs e
+		)
+		{
+			UpdateEntriesList();
+		}
+
+		private void RelatedCurrentEntryRadioButton_Checked(
+			object sender,
+			RoutedEventArgs e
+		)
+		{
+			UpdateEntriesList();
 		}
 
 		private void CloseEntryButton_Click(object sender, RoutedEventArgs e)

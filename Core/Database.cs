@@ -54,14 +54,40 @@ namespace Core
 			}
 		}
 
-		public static List<Entry> GetEntries(string search)
+		public static List<Entry> GetEntries(string search, Entry relatedTo)
 		{
 			Debug.Assert(!(search is null));
 
-			var query =
-				"SELECT `Id`, `Name` FROM `Entry` " +
-				$"WHERE `Name` LIKE \"%{search}%\" COLLATE NOCASE " +
-				"ORDER BY `Name` ASC;";
+			if (!(relatedTo is null))
+			{
+				Debug.Assert(relatedTo.Id > 0);
+			}
+
+			string query;
+
+			if (relatedTo is null)
+			{
+				query =
+					"SELECT `Id`, `Name` FROM `Entry` " +
+					$"WHERE `Name` LIKE \"%{search}%\" COLLATE NOCASE " +
+					"ORDER BY `Name` ASC;";
+			}
+			else
+			{
+				query =
+					"SELECT `Id`, `Name` " +
+					"FROM `Relation` " +
+					"INNER JOIN `Entry` " +
+					"ON `SecondEntryId` = `Id` " +
+					$"WHERE `FirstEntryId` = @Id AND `Name` LIKE \"%{search}%\" " +
+					"UNION " +
+					"SELECT `Id`, `Name` " +
+					"FROM `Relation` " +
+					"INNER JOIN `Entry` " +
+					"ON `FirstEntryId` = `Id` " +
+					$"WHERE `SecondEntryId` = @Id AND `Name` LIKE \"%{search}%\" " +
+					"COLLATE NOCASE;";
+			}
 
 			var entries = new List<Entry>();
 
@@ -71,6 +97,11 @@ namespace Core
 
 			void CommandCallback(SQLiteCommand command)
 			{
+				if (!(relatedTo is null))
+				{
+					_ = command.Parameters.AddWithValue("@Id", relatedTo.Id);
+				}
+
 				using (var reader = command.ExecuteReader())
 				{
 					while (reader.Read())
