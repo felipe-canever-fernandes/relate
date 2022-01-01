@@ -54,33 +54,20 @@ namespace Core
 			}
 		}
 
-		public static List<Entry> GetEntries(string search = "")
+		public static List<Entry> GetEntries(string search)
 		{
 			Debug.Assert(!(search is null));
 
-			var query = BuildQuery();
+			var query =
+				"SELECT `Id`, `Name` FROM `Entry` " +
+				$"WHERE `Name` LIKE \"%{search}%\" COLLATE NOCASE " +
+				"ORDER BY `Name` ASC;";
+
 			var entries = new List<Entry>();
 
-			ExecuteCommand(query.ToString(), CommandCallback);
+			ExecuteCommand(query, CommandCallback);
 
 			return entries;
-
-			string BuildQuery()
-			{
-				var queryString =
-					new StringBuilder("SELECT `Id`, `Name` FROM `Entry`");
-
-				if (search != string.Empty)
-				{
-					_ = queryString.Append(
-						$" WHERE `Name` LIKE \"%{search}%\" COLLATE NOCASE"
-					);
-				}
-
-				_ = queryString.Append(" ORDER BY `Name` ASC;");
-
-				return queryString.ToString();
-			}
 
 			void CommandCallback(SQLiteCommand command)
 			{
