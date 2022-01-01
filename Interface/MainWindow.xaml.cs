@@ -14,7 +14,13 @@ namespace Interface
 	/// </summary>
 	public partial class MainWindow : Window, INotifyPropertyChanged
 	{
+		#region Fields
+
 		private Entry currentEntry;
+
+		#endregion
+
+		#region Constructors
 
 		public MainWindow()
 		{
@@ -24,7 +30,15 @@ namespace Interface
 			InitializeEntries();
 		}
 
+		#endregion
+
+		#region Events
+
 		public event PropertyChangedEventHandler PropertyChanged;
+
+		#endregion
+
+		#region Properties
 
 		public string Filter => FilterTextBox.Text.Trim();
 
@@ -40,6 +54,10 @@ namespace Interface
 		}
 
 		public ObservableCollection<Entry> Entries { get; set; }
+
+		#endregion
+
+		#region Methods
 
 		private void InitializeEntries()
 		{
@@ -130,5 +148,7 @@ namespace Interface
 				CurrentEntry = EntriesListView.SelectedItem as Entry;
 			}
 		}
+
+		#endregion
 	}
 }
