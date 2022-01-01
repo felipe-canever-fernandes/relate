@@ -2,6 +2,8 @@
 using Core.Models;
 
 using System.Collections.ObjectModel;
+using System.ComponentModel;
+using System.Diagnostics;
 using System.Windows;
 using System.Windows.Controls.Primitives;
 
@@ -10,8 +12,10 @@ namespace Interface
 	/// <summary>
 	/// Interaction logic for MainWindow.xaml
 	/// </summary>
-	public partial class MainWindow : Window
+	public partial class MainWindow : Window, INotifyPropertyChanged
 	{
+		private Entry currentEntry;
+
 		public MainWindow()
 		{
 			InitializeComponent();
@@ -20,14 +24,35 @@ namespace Interface
 			InitializeEntries();
 		}
 
-		public ObservableCollection<Entry> Entries { get; set; }
+		public event PropertyChangedEventHandler PropertyChanged;
 
 		public string Filter => FilterTextBox.Text.Trim();
+
+		public Entry CurrentEntry
+		{
+			get => currentEntry;
+
+			private set
+			{
+				currentEntry = value;
+				NotifyPropertyChanged(nameof(CurrentEntry));
+			}
+		}
+
+		public ObservableCollection<Entry> Entries { get; set; }
 
 		private void InitializeEntries()
 		{
 			Entries = new ObservableCollection<Entry>();
 			FilterTextBox.Text = " ";
+		}
+
+		private void NotifyPropertyChanged(string propertyName)
+		{
+			Debug.Assert(!string.IsNullOrEmpty(propertyName));
+
+			var e = new PropertyChangedEventArgs(propertyName);
+			PropertyChanged?.Invoke(this, e);
 		}
 
 		private void FilterTextBox_TextChanged(
@@ -93,6 +118,17 @@ namespace Interface
 			_ = Database.Insert(entry);
 
 			FilterTextBox.Text = "";
+		}
+
+		private void EntriesListViewTextBlock_MouseDown(
+			object sender,
+			System.Windows.Input.MouseButtonEventArgs e
+		)
+		{
+			if (e.ClickCount == 2)
+			{
+				CurrentEntry = EntriesListView.SelectedItem as Entry;
+			}
 		}
 	}
 }

@@ -36,7 +36,10 @@
             </Grid>
         </GroupBox>
         <GroupBox DockPanel.Dock="Top" Header="Current entry" Margin="2">
-            <TextBlock FontWeight="Bold" Margin="2">Entry</TextBlock>
+            <TextBlock FontWeight="Bold"
+                       Margin="2"
+                       Text="{Binding CurrentEntry.Name}"
+                       />
         </GroupBox>
 		<GroupBox Header="Entries" Margin="2">
             <ListView ItemsSource="{Binding Entries}"
@@ -47,7 +50,9 @@
                       >
                 <ListView.ItemTemplate>
                     <DataTemplate>
-                        <TextBlock Text="{Binding Name}"/>
+                        <TextBlock MouseDown="EntriesListViewTextBlock_MouseDown"
+                                   Text="{Binding Name}"
+                                   />
                     </DataTemplate>
                 </ListView.ItemTemplate>
                 <ListView.ItemContainerStyle>
