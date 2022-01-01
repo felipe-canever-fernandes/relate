@@ -145,6 +145,20 @@ namespace Interface
 
 		private void DeleteEntryButton_Click(object sender, RoutedEventArgs e)
 		{
+			var answer = MessageBox.Show(
+				this,
+				$"Are you sure you want to delete \"{CurrentEntry}\"?",
+				"Delete entry",
+				MessageBoxButton.YesNo,
+				MessageBoxImage.Question,
+				MessageBoxResult.No
+			);
+
+			if (answer == MessageBoxResult.No)
+			{
+				return;
+			}
+
 			Database.Delete(CurrentEntry);
 			CurrentEntry = null;
 			UpdateEntriesList();
