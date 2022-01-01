@@ -43,7 +43,21 @@
                       Margin="2"
                       MinHeight="200"
                       Padding="5, 3"
-                      />
+                      x:Name="EntriesListView"
+                      >
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <TextBlock Text="{Binding Name}"/>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+                <ListView.ItemContainerStyle>
+                    <Style TargetType="ListViewItem">
+                        <Setter Property="HorizontalContentAlignment"
+                                Value="Stretch"
+                                />
+                    </Style>
+                </ListView.ItemContainerStyle>
+            </ListView>
 		</GroupBox>
 	</DockPanel>
 </Window>
