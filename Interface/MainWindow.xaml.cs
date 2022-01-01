@@ -133,7 +133,7 @@ namespace Interface
 		private void CreateEntryButton_Click(object sender, RoutedEventArgs e)
 		{
 			var entry = new Entry(Filter);
-			_ = Database.Insert(entry);
+			Database.Insert(entry);
 
 			FilterTextBox.Text = "";
 		}

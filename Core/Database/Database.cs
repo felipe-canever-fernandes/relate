@@ -17,22 +17,17 @@ namespace Core.Database
 					.ConnectionStrings["SQLite"]
 					.ConnectionString;
 
-		public static Entry Insert(Entry entry)
+		public static void Insert(Entry entry)
 		{
 			Debug.Assert(!(entry is null));
 
 			var query = "INSERT INTO `Entry` (`Name`) VALUES (@Name);";
-
 			ExecuteCommand(query, CommandCallback);
-
-			return entry;
 
 			void CommandCallback(SQLiteCommand command)
 			{
 				_ = command.Parameters.AddWithValue("@Name", entry.Name);
 				_ = command.ExecuteNonQuery();
-
-				entry.Id = command.Connection.LastInsertRowId;
 			}
 		}
 
