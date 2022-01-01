@@ -69,8 +69,7 @@ namespace Core
 			{
 				query =
 					"SELECT `Id`, `Name` FROM `Entry` " +
-					$"WHERE `Name` LIKE \"%{search}%\" COLLATE NOCASE " +
-					"ORDER BY `Name` ASC;";
+					$"WHERE `Name` LIKE \"%{search}%\" COLLATE NOCASE ";
 			}
 			else
 			{
@@ -86,8 +85,10 @@ namespace Core
 					"INNER JOIN `Entry` " +
 					"ON `FirstEntryId` = `Id` " +
 					$"WHERE `SecondEntryId` = @Id AND `Name` LIKE \"%{search}%\" " +
-					"COLLATE NOCASE;";
+					"COLLATE NOCASE ";
 			}
+
+			query += "ORDER BY `Name` ASC;";
 
 			var entries = new List<Entry>();
 
