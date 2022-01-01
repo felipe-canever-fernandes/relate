@@ -40,7 +40,7 @@ namespace Interface
 
 		#region Properties
 
-		public string Filter => FilterTextBox.Text.Trim();
+		private string Filter => FilterTextBox.Text.Trim();
 
 		public Entry CurrentEntry
 		{
@@ -53,7 +53,7 @@ namespace Interface
 			}
 		}
 
-		public ObservableCollection<Entry> Entries { get; set; }
+		public ObservableCollection<Entry> Entries { get; private set; }
 
 		#endregion
 
