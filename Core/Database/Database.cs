@@ -106,6 +106,21 @@ namespace Core.Database
 			}
 		}
 
+		public static void Delete(Entry entry)
+		{
+			Debug.Assert(!(entry is null));
+			Debug.Assert(entry.Id > 0);
+
+			var query = "DELETE FROM `Entry` WHERE `Id` = @Id;";
+			ExecuteCommand(query, CommandCallback);
+
+			void CommandCallback(SQLiteCommand command)
+			{
+				_ = command.Parameters.AddWithValue("@Id", entry.Id);
+				_ = command.ExecuteNonQuery();
+			}
+		}
+
 		private static void ExecuteCommand(
 			string query,
 			CommandCallback commandCallback

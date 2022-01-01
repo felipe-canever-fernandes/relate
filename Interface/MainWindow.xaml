@@ -59,7 +59,14 @@
 					>
 						Close
 					</Button>
-					<Button Margin="2" Padding="5, 3">Delete</Button>
+					<Button
+						Click="DeleteEntryButton_Click"
+						Margin="2"
+						Padding="5, 3"
+						x:Name="DeleteEntryButton"
+					>
+						Delete
+					</Button>
 				</UniformGrid>
 			</StackPanel>
 		</GroupBox>

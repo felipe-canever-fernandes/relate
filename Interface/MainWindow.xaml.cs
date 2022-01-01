@@ -65,6 +65,18 @@ namespace Interface
 			FilterTextBox.Text = " ";
 		}
 
+		private void UpdateEntriesList()
+		{
+			Entries.Clear();
+
+			var entries = Database.GetEntries(Filter);
+
+			foreach (var entry in entries)
+			{
+				Entries.Add(entry);
+			}
+		}
+
 		private void NotifyPropertyChanged(string propertyName)
 		{
 			Debug.Assert(!string.IsNullOrEmpty(propertyName));
@@ -95,18 +107,6 @@ namespace Interface
 					var entryExists = Database.Exists(entry);
 
 					CreateEntryButton.IsEnabled = !entryExists;
-				}
-			}
-
-			void UpdateEntriesList()
-			{
-				Entries.Clear();
-
-				var entries = Database.GetEntries(Filter);
-
-				foreach (var entry in entries)
-				{
-					Entries.Add(entry);
 				}
 			}
 		}
@@ -141,6 +141,13 @@ namespace Interface
 		private void CloseEntryButton_Click(object sender, RoutedEventArgs e)
 		{
 			CurrentEntry = null;
+		}
+
+		private void DeleteEntryButton_Click(object sender, RoutedEventArgs e)
+		{
+			Database.Delete(CurrentEntry);
+			CurrentEntry = null;
+			UpdateEntriesList();
 		}
 
 		private void EntriesListViewTextBlock_MouseDown(
