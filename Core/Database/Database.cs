@@ -21,10 +21,9 @@ namespace Core.Database
 		{
 			Debug.Assert(!(entry is null));
 
-			var query =
-				"INSERT INTO `Entry` (`Name`) VALUES (@Name);";
+			var query = "INSERT INTO `Entry` (`Name`) VALUES (@Name);";
 
-			ExecuteCommand(query.ToString(), CommandCallback);
+			ExecuteCommand(query, CommandCallback);
 
 			return entry;
 
