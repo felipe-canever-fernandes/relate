@@ -36,10 +36,15 @@
             </Grid>
         </GroupBox>
         <GroupBox DockPanel.Dock="Top" Header="Current entry" Margin="2">
-            <TextBlock FontWeight="Bold"
-                       Margin="2"
-                       Text="{Binding CurrentEntry.Name}"
-                       />
+            <StackPanel>
+                <TextBlock FontWeight="Bold"
+                           Margin="2"
+                           Text="{Binding CurrentEntry.Name}"
+                           />
+                <UniformGrid Columns="1" Rows="1">
+                    <Button Margin="2" Padding="5, 3">Delete</Button>
+                </UniformGrid>
+            </StackPanel>
         </GroupBox>
 		<GroupBox Header="Entries" Margin="2">
             <ListView ItemsSource="{Binding Entries}"
