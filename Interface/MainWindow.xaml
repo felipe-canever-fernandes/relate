@@ -38,7 +38,12 @@
 				</Button>
 			</Grid>
 		</GroupBox>
-		<GroupBox DockPanel.Dock="Top" Header="Current entry" Margin="2">
+		<GroupBox
+			DockPanel.Dock="Top"
+			Header="Current entry"
+			IsEnabled="{Binding Path=CurrentEntry, TargetNullValue=false}"
+			Margin="2"
+		>
 			<StackPanel>
 				<TextBlock
 					FontWeight="Bold"
