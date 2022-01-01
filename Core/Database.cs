@@ -6,7 +6,7 @@ using System.Data.SQLite;
 using System.Diagnostics;
 using System.Text;
 
-namespace Core.Database
+namespace Core
 {
 	public static class Database
 	{
