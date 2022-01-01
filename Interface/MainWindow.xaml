@@ -45,7 +45,8 @@
 					Margin="2"
 					Text="{Binding CurrentEntry.Name}"
 				/>
-				<UniformGrid Columns="1" Rows="1">
+				<UniformGrid Columns="2" Rows="1">
+					<Button Margin="2" Padding="5, 3">Close</Button>
 					<Button Margin="2" Padding="5, 3">Delete</Button>
 				</UniformGrid>
 			</StackPanel>
