@@ -35,6 +35,9 @@
                 </Button>
             </Grid>
         </GroupBox>
+        <GroupBox DockPanel.Dock="Top" Header="Current entry" Margin="2">
+            <TextBlock FontWeight="Bold" Margin="2">Entry</TextBlock>
+        </GroupBox>
 		<GroupBox Header="Entries" Margin="2">
             <ListView ItemsSource="{Binding Entries}"
                       Margin="2"
