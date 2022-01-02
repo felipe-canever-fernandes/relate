@@ -54,6 +54,14 @@
 				>
 					Related
 				</RadioButton>
+				<RadioButton
+					Checked="UnrelatedCurrentEntryRadioButton_Checked"
+					DockPanel.Dock="Left"
+					Margin="2"
+					x:Name="UnrelatedCurrentEntryRadioButton"
+				>
+					Unrelated
+				</RadioButton>
 			</DockPanel>
 		</GroupBox>
 		<GroupBox
