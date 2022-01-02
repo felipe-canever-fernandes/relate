@@ -74,6 +74,7 @@
 			<StackPanel>
 				<TextBox
 					FontWeight="Bold"
+					LostFocus="EntryNameTextBox_LostFocus"
 					Margin="2"
 					Padding="5, 3"
 					Text="{Binding CurrentEntry.Name}"
@@ -90,9 +91,12 @@
 						Close
 					</Button>
 					<Button
+						Click="RenameButton_Click"
 						IsEnabled="{Binding CanRename}"
+						FocusManager.FocusedElement="{Binding ElementName=EntryNameTextBox}"
 						Margin="2"
 						Padding="5, 3"
+						x:Name="RenameButton"
 					>
 						Rename
 					</Button>

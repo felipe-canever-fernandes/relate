@@ -209,6 +209,14 @@ namespace Interface
 			CanRename = CanChange(EntryName);
 		}
 
+		private void EntryNameTextBox_LostFocus(
+			object sender,
+			RoutedEventArgs e
+		)
+		{
+			EntryNameTextBox.Text = CurrentEntry.Name;
+		}
+
 		private void CloseEntryButton_Click(object sender, RoutedEventArgs e)
 		{
 			CurrentEntry = null;
