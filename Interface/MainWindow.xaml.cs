@@ -7,7 +7,9 @@ using System.ComponentModel;
 using System.Diagnostics;
 using System.Linq;
 using System.Windows;
+using System.Windows.Controls;
 using System.Windows.Controls.Primitives;
+using System.Windows.Input;
 
 namespace Interface
 {
@@ -158,18 +160,23 @@ namespace Interface
 			System.Windows.Input.KeyEventArgs e
 		)
 		{
-			if (e.Key != System.Windows.Input.Key.Enter)
+			ClickButton(CreateEntryButton, e);
+		}
+
+		private void ClickButton(Button button, KeyEventArgs e)
+		{
+			if (e.Key != Key.Enter)
 			{
 				return;
 			}
 
-			if (!CreateEntryButton.IsEnabled)
+			if (!button.IsEnabled)
 			{
 				return;
 			}
 
 			var args = new RoutedEventArgs(ButtonBase.ClickEvent);
-			CreateEntryButton.RaiseEvent(args);
+			button.RaiseEvent(args);
 		}
 
 		private void CreateEntryButton_Click(object sender, RoutedEventArgs e)
@@ -213,6 +220,14 @@ namespace Interface
 		)
 		{
 			UpdateCanChange();
+		}
+
+		private void EntryNameTextBox_KeyDown(
+			object sender,
+			System.Windows.Input.KeyEventArgs e
+		)
+		{
+			ClickButton(RenameButton, e);
 		}
 
 		private void EntryNameTextBox_LostFocus(

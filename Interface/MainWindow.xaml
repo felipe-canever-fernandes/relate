@@ -74,6 +74,7 @@
 			<StackPanel>
 				<TextBox
 					FontWeight="Bold"
+					KeyDown="EntryNameTextBox_KeyDown"
 					LostFocus="EntryNameTextBox_LostFocus"
 					Margin="2"
 					Padding="5, 3"
