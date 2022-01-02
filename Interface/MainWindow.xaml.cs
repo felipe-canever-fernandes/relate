@@ -18,6 +18,7 @@ namespace Interface
 		#region Fields
 
 		private Entry currentEntry;
+		private bool canRename;
 
 		#endregion
 
@@ -42,6 +43,7 @@ namespace Interface
 		#region Properties
 
 		private string Filter => FilterTextBox.Text.Trim();
+
 		private Database.FilterType FilterType;
 
 		public Entry CurrentEntry
@@ -53,6 +55,19 @@ namespace Interface
 				currentEntry = value;
 				NotifyPropertyChanged(nameof(CurrentEntry));
 				UpdateEntriesList();
+			}
+		}
+
+		public string EntryName => EntryNameTextBox.Text.Trim();
+
+		public bool CanRename
+		{
+			get => canRename;
+
+			private set
+			{
+				canRename = value;
+				NotifyPropertyChanged(nameof(CanRename));
 			}
 		}
 
@@ -176,6 +191,23 @@ namespace Interface
 		{
 			FilterType = Database.FilterType.Unrelated;
 			UpdateEntriesList();
+		}
+
+		private void EntryNameTextBox_TextChanged(
+			object sender,
+			System.Windows.Controls.TextChangedEventArgs e
+		)
+		{
+			if (string.IsNullOrEmpty(EntryName))
+			{
+				CanRename = false;
+			}
+			else
+			{
+
+				var candidate = new Entry(EntryName);
+				CanRename = !Database.Exists(candidate);
+			}
 		}
 
 		private void CloseEntryButton_Click(object sender, RoutedEventArgs e)

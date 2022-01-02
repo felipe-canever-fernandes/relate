@@ -76,6 +76,8 @@
 					Margin="2"
 					Padding="5, 3"
 					Text="{Binding CurrentEntry.Name}"
+					TextChanged="EntryNameTextBox_TextChanged"
+					x:Name="EntryNameTextBox"
 				/>
 				<UniformGrid Columns="3" Rows="1">
 					<Button
@@ -87,6 +89,7 @@
 						Close
 					</Button>
 					<Button
+						IsEnabled="{Binding CanRename}"
 						Margin="2"
 						Padding="5, 3"
 					>
