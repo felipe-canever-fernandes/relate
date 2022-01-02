@@ -1,11 +1,9 @@
 ﻿using Core;
 using Core.Models;
 
-using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Diagnostics;
-using System.Linq;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Controls.Primitives;
@@ -148,7 +146,7 @@ namespace Interface
 
 		private void FilterTextBox_TextChanged(
 			object sender,
-			System.Windows.Controls.TextChangedEventArgs e
+			TextChangedEventArgs e
 		)
 		{
 			CanCreate = CanChange(Filter);
@@ -157,7 +155,7 @@ namespace Interface
 
 		private void FilterTextBox_KeyDown(
 			object sender,
-			System.Windows.Input.KeyEventArgs e
+			KeyEventArgs e
 		)
 		{
 			ClickButton(CreateEntryButton, e);
@@ -216,16 +214,13 @@ namespace Interface
 
 		private void EntryNameTextBox_TextChanged(
 			object sender,
-			System.Windows.Controls.TextChangedEventArgs e
+			TextChangedEventArgs e
 		)
 		{
 			UpdateCanChange();
 		}
 
-		private void EntryNameTextBox_KeyDown(
-			object sender,
-			System.Windows.Input.KeyEventArgs e
-		)
+		private void EntryNameTextBox_KeyDown(object sender,KeyEventArgs e)
 		{
 			ClickButton(RenameButton, e);
 		}
@@ -276,7 +271,7 @@ namespace Interface
 
 		private void EntriesListViewTextBlock_MouseDown(
 			object sender,
-			System.Windows.Input.MouseButtonEventArgs e
+			MouseButtonEventArgs e
 		)
 		{
 			if (e.ClickCount == 2)

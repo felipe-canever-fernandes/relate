@@ -1,11 +1,9 @@
 ﻿using Core.Models;
 
-using System;
 using System.Collections.Generic;
 using System.Configuration;
 using System.Data.SQLite;
 using System.Diagnostics;
-using System.Text;
 
 namespace Core
 {
