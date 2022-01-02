@@ -71,9 +71,10 @@
 			Margin="2"
 		>
 			<StackPanel>
-				<TextBlock
+				<TextBox
 					FontWeight="Bold"
 					Margin="2"
+					Padding="5, 3"
 					Text="{Binding CurrentEntry.Name}"
 				/>
 				<UniformGrid Columns="2" Rows="1">
