@@ -79,7 +79,7 @@
 					TextChanged="EntryNameTextBox_TextChanged"
 					x:Name="EntryNameTextBox"
 				/>
-				<UniformGrid Columns="3" Rows="1">
+				<StackPanel Orientation="Horizontal">
 					<Button
 						Click="CloseEntryButton_Click"
 						Margin="2"
@@ -103,7 +103,7 @@
 					>
 						Delete
 					</Button>
-				</UniformGrid>
+				</StackPanel>
 			</StackPanel>
 		</GroupBox>
 		<GroupBox Header="Entries" Margin="2">
