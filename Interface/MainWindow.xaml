@@ -30,6 +30,7 @@
 					/>
 					<Button
 						Click="CreateEntryButton_Click"
+						IsEnabled="{Binding CanCreate}"
 						Grid.Column="1"
 						Margin="2"
 						Padding="5, 3"

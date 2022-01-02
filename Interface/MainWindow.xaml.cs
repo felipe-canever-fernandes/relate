@@ -17,6 +17,7 @@ namespace Interface
 	{
 		#region Fields
 
+		private bool canCreate;
 		private Entry currentEntry;
 		private bool canRename;
 
@@ -43,6 +44,17 @@ namespace Interface
 		#region Properties
 
 		private string Filter => FilterTextBox.Text.Trim();
+
+		public bool CanCreate
+		{
+			get => canCreate;
+
+			private set
+			{
+				canCreate = value;
+				NotifyPropertyChanged(nameof(CanCreate));
+			}
+		}
 
 		private Database.FilterType FilterType;
 
@@ -113,30 +125,26 @@ namespace Interface
 			PropertyChanged?.Invoke(this, e);
 		}
 
+		private bool CanChange(string name)
+		{
+			if (string.IsNullOrEmpty(name))
+			{
+				return false;
+			}
+
+			var entry = new Entry(name);
+			var entryExists = Database.Exists(entry);
+
+			return !entryExists;
+		}
+
 		private void FilterTextBox_TextChanged(
 			object sender,
 			System.Windows.Controls.TextChangedEventArgs e
 		)
 		{
-			UpdateCreateEntryButton();
+			CanCreate = CanChange(Filter);
 			UpdateEntriesList();
-
-			void UpdateCreateEntryButton()
-			{
-				var isFilterEmpty = string.IsNullOrEmpty(Filter);
-
-				if (isFilterEmpty)
-				{
-					CreateEntryButton.IsEnabled = false;
-				}
-				else
-				{
-					var entry = new Entry(Filter);
-					var entryExists = Database.Exists(entry);
-
-					CreateEntryButton.IsEnabled = !entryExists;
-				}
-			}
 		}
 
 		private void FilterTextBox_KeyDown(
@@ -198,16 +206,7 @@ namespace Interface
 			System.Windows.Controls.TextChangedEventArgs e
 		)
 		{
-			if (string.IsNullOrEmpty(EntryName))
-			{
-				CanRename = false;
-			}
-			else
-			{
-
-				var candidate = new Entry(EntryName);
-				CanRename = !Database.Exists(candidate);
-			}
+			CanRename = CanChange(EntryName);
 		}
 
 		private void CloseEntryButton_Click(object sender, RoutedEventArgs e)
