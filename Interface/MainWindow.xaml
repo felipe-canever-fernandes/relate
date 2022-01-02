@@ -77,7 +77,7 @@
 					Padding="5, 3"
 					Text="{Binding CurrentEntry.Name}"
 				/>
-				<UniformGrid Columns="2" Rows="1">
+				<UniformGrid Columns="3" Rows="1">
 					<Button
 						Click="CloseEntryButton_Click"
 						Margin="2"
@@ -85,6 +85,12 @@
 						x:Name="CloseEntryButton"
 					>
 						Close
+					</Button>
+					<Button
+						Margin="2"
+						Padding="5, 3"
+					>
+						Rename
 					</Button>
 					<Button
 						Click="DeleteEntryButton_Click"
