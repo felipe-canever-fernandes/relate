@@ -1,6 +1,7 @@
 ﻿using Core;
 using Core.Models;
 
+using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Diagnostics;
@@ -41,6 +42,7 @@ namespace Interface
 		#region Properties
 
 		private string Filter => FilterTextBox.Text.Trim();
+		private Database.FilterType FilterType;
 
 		public Entry CurrentEntry
 		{
@@ -71,12 +73,16 @@ namespace Interface
 		{
 			Entries.Clear();
 
-			Entry relatedTo =
-				AllEntriesRadioButton.IsChecked.Value ?
-				null :
-				CurrentEntry;
+			var filterType =
+				CurrentEntry is null ?
+				Database.FilterType.All :
+				FilterType;
 
-			var entries = Database.GetEntries(Filter, relatedTo);
+			var entries = Database.GetEntries(
+				search: Filter,
+				reference: CurrentEntry,
+				filterType: filterType
+			);
 
 			foreach (var entry in entries)
 			{
@@ -150,6 +156,7 @@ namespace Interface
 			RoutedEventArgs e
 		)
 		{
+			FilterType = Database.FilterType.All;
 			UpdateEntriesList();
 		}
 
@@ -158,6 +165,16 @@ namespace Interface
 			RoutedEventArgs e
 		)
 		{
+			FilterType = Database.FilterType.Related;
+			UpdateEntriesList();
+		}
+
+		private void UnrelatedCurrentEntryRadioButton_Checked(
+			object sender,
+			RoutedEventArgs e
+		)
+		{
+			FilterType = Database.FilterType.Unrelated;
 			UpdateEntriesList();
 		}
 

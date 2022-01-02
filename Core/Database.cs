@@ -12,6 +12,13 @@ namespace Core
 	{
 		private delegate void CommandCallback(SQLiteCommand command);
 
+		public enum FilterType
+		{
+			All,
+			Related,
+			Unrelated
+		}
+
 		private static string ConnectionString { get; } =
 				ConfigurationManager
 					.ConnectionStrings["SQLite"]
@@ -54,53 +61,76 @@ namespace Core
 			}
 		}
 
-		public static List<Entry> GetEntries(string search, Entry relatedTo)
+		public static List<Entry> GetEntries(
+			string search,
+			FilterType filterType,
+			Entry reference
+		)
 		{
 			Debug.Assert(!(search is null));
 
-			if (!(relatedTo is null))
+			if (reference is null)
 			{
-				Debug.Assert(relatedTo.Id > 0);
-			}
-
-			string query;
-
-			if (relatedTo is null)
-			{
-				query =
-					"SELECT `Id`, `Name` FROM `Entry` " +
-					$"WHERE `Name` LIKE \"%{search}%\" COLLATE NOCASE ";
+				Debug.Assert(filterType == FilterType.All);
 			}
 			else
 			{
-				query =
-					"SELECT `Id`, `Name` " +
-					"FROM `Relation` " +
-					"INNER JOIN `Entry` " +
-					"ON `SecondEntryId` = `Id` " +
-					$"WHERE `FirstEntryId` = @Id AND `Name` LIKE \"%{search}%\" " +
-					"UNION " +
-					"SELECT `Id`, `Name` " +
-					"FROM `Relation` " +
-					"INNER JOIN `Entry` " +
-					"ON `FirstEntryId` = `Id` " +
-					$"WHERE `SecondEntryId` = @Id AND `Name` LIKE \"%{search}%\" " +
-					"COLLATE NOCASE ";
+				Debug.Assert(reference.Id > 0);
 			}
 
-			query += "ORDER BY `Name` ASC;";
-
 			var entries = new List<Entry>();
-
-			ExecuteCommand(query, CommandCallback);
-
+			ExecuteCommand(GetQuery(), CommandCallback);
 			return entries;
+
+			string GetQuery()
+			{
+				var query = string.Empty;
+
+				if (filterType == FilterType.All)
+				{
+					query +=
+						"SELECT `Id`, `Name` FROM `Entry` " +
+						$"WHERE `Name` LIKE \"%{search}%\" COLLATE NOCASE ";
+				}
+				else
+				{
+					if (filterType == FilterType.Unrelated)
+					{
+						query +=
+							"SELECT `Id`, `Name` " +
+							"FROM `Entry` " +
+							"WHERE `Id` != @Id " +
+							"EXCEPT ";
+					}
+
+
+					query +=
+						"SELECT * FROM ( " +
+						"SELECT `Id`, `Name` " +
+						"FROM `Relation` " +
+						"INNER JOIN `Entry` " +
+						"ON `SecondEntryId` = `Id` " +
+						$"WHERE `FirstEntryId` = @Id AND `Name` LIKE \"%{search}%\" " +
+						"UNION " +
+						"SELECT `Id`, `Name` " +
+						"FROM `Relation` " +
+						"INNER JOIN `Entry` " +
+						"ON `FirstEntryId` = `Id` " +
+						$"WHERE `SecondEntryId` = @Id AND `Name` LIKE \"%{search}%\" " +
+						"COLLATE NOCASE " +
+						")";
+				}
+
+				query += "ORDER BY `Name` ASC;";
+
+				return query;
+			}
 
 			void CommandCallback(SQLiteCommand command)
 			{
-				if (!(relatedTo is null))
+				if (!(reference is null))
 				{
-					_ = command.Parameters.AddWithValue("@Id", relatedTo.Id);
+					_ = command.Parameters.AddWithValue("@Id", reference.Id);
 				}
 
 				using (var reader = command.ExecuteReader())
