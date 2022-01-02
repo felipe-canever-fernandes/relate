@@ -1,5 +1,6 @@
 ﻿using Core.Models;
 
+using System;
 using System.Collections.Generic;
 using System.Configuration;
 using System.Data.SQLite;
@@ -35,6 +36,47 @@ namespace Core
 			{
 				_ = command.Parameters.AddWithValue("@Name", entry.Name);
 				_ = command.ExecuteNonQuery();
+			}
+		}
+
+		public static void Rename(Entry entry)
+		{
+			Debug.Assert(!(entry is null));
+			Debug.Assert(entry.Id > 0);
+
+			var query = "UPDATE `Entry` SET `Name` = @Name WHERE `Id` = @Id;";
+			ExecuteCommand(query, CommandCallback);
+
+			void CommandCallback(SQLiteCommand command)
+			{
+				_ = command.Parameters.AddWithValue("@Id", entry.Id);
+				_ = command.Parameters.AddWithValue("@Name", entry.Name);
+
+				_ = command.ExecuteNonQuery();
+			}
+		}
+
+		public static Entry GetEntry(Entry candidate)
+		{
+			Debug.Assert(!(candidate is null));
+			Debug.Assert(candidate.Id > 0);
+
+			var query =
+				"SELECT `Id`, `Name` FROM `Entry` WHERE `Id` = @Id;";
+
+			Entry entry = null;
+			ExecuteCommand(query.ToString(), CommandCallback);
+			return entry;
+
+			void CommandCallback(SQLiteCommand command)
+			{
+				_ = command.Parameters.AddWithValue("@Id", candidate.Id);
+
+				using (var reader = command.ExecuteReader())
+				{
+					_ = reader.Read();
+					entry = ReadEntry(reader);
+				}
 			}
 		}
 
@@ -137,11 +179,7 @@ namespace Core
 				{
 					while (reader.Read())
 					{
-						var entry = new Entry(
-							reader["Name"].ToString(),
-							long.Parse(reader["Id"].ToString())
-						);
-
+						var entry = ReadEntry(reader);
 						entries.Add(entry);
 					}
 				}
@@ -195,6 +233,16 @@ namespace Core
 					_ = command.ExecuteNonQuery();
 				}
 			}
+		}
+
+		private static Entry ReadEntry(SQLiteDataReader reader)
+		{
+			Debug.Assert(!(reader is null));
+
+			return new Entry(
+				reader["Name"].ToString(),
+				long.Parse(reader["Id"].ToString())
+			);
 		}
 	}
 }

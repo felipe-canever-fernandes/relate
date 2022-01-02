@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Diagnostics;
+using System.Linq;
 using System.Windows;
 using System.Windows.Controls.Primitives;
 
@@ -117,12 +118,9 @@ namespace Interface
 			}
 		}
 
-		private void NotifyPropertyChanged(string propertyName)
+		private void UpdateCanChange()
 		{
-			Debug.Assert(!string.IsNullOrEmpty(propertyName));
-
-			var e = new PropertyChangedEventArgs(propertyName);
-			PropertyChanged?.Invoke(this, e);
+			CanRename = CanChange(EntryName);
 		}
 
 		private bool CanChange(string name)
@@ -136,6 +134,14 @@ namespace Interface
 			var entryExists = Database.Exists(entry);
 
 			return !entryExists;
+		}
+
+		private void NotifyPropertyChanged(string propertyName)
+		{
+			Debug.Assert(!string.IsNullOrEmpty(propertyName));
+
+			var e = new PropertyChangedEventArgs(propertyName);
+			PropertyChanged?.Invoke(this, e);
 		}
 
 		private void FilterTextBox_TextChanged(
@@ -206,7 +212,7 @@ namespace Interface
 			System.Windows.Controls.TextChangedEventArgs e
 		)
 		{
-			CanRename = CanChange(EntryName);
+			UpdateCanChange();
 		}
 
 		private void EntryNameTextBox_LostFocus(
@@ -224,7 +230,12 @@ namespace Interface
 
 		private void RenameButton_Click(object sender, RoutedEventArgs e)
 		{
-			_ = MessageBox.Show(EntryName);
+			var renamedEntry = new Entry(EntryName, CurrentEntry.Id);
+			Database.Rename(renamedEntry);
+
+			CurrentEntry = Database.GetEntry(renamedEntry);
+			UpdateCanChange();
+			UpdateEntriesList();
 		}
 
 		private void DeleteEntryButton_Click(object sender, RoutedEventArgs e)
