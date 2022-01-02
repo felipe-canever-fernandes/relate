@@ -222,6 +222,11 @@ namespace Interface
 			CurrentEntry = null;
 		}
 
+		private void RenameButton_Click(object sender, RoutedEventArgs e)
+		{
+			_ = MessageBox.Show(EntryName);
+		}
+
 		private void DeleteEntryButton_Click(object sender, RoutedEventArgs e)
 		{
 			var answer = MessageBox.Show(
